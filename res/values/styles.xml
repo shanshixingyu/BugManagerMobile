@@ -1,12 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="CustomDialogTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="login_input_et">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:textColorHint">#AAAAAA</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:layout_marginRight">15dp</item>
+        <item name="android:background">@drawable/login_et_shape</item>
     </style>
+
+    <style name="SettingGroupTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/setting_group_shape</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+
+    </style>
+
+    <style name="SettingGroupItemDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/setting_group_item_divider</item>
+    </style>
+
+    <style name="SettingGroupItemBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:onClick">onClickGroupItem</item>
+    </style>
+
+    <style name="SettingGroupItemTop" parent="SettingGroupItemBase">
+        <item name="android:background">@drawable/setting_group_item_top_selector</item>
+    </style>
+
+    <style name="SettingGroupItemBottom" parent="SettingGroupItemBase">
+        <item name="android:background">@drawable/setting_group_item_bottom_selector</item>
+    </style>
+
+    <style name="SettingGroupItemTextBase">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SettingGroupItemLeft" parent="SettingGroupItemTextBase">
+        <item name="android:layout_width">110dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="SettingGroupItemRight" parent="SettingGroupItemTextBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="SlideLeftMenuItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/bg_slide_left_menu_item</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableRight">@drawable/ic_go</item>
+    </style>
+
+    <style name="SlideLeftMenuItemDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#383D41</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
 </resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setting_dialog_lyt"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/setting_pop_shape"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/setting_dialog_title"
+        android:textColor="@android:color/white"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/setting_dialog_msg_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/setting_dialog_msg_ip"
+        android:textColor="@android:color/white"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/setting_dialog_input_et"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_edittext"
+        android:hint="@string/setting_dialog_input_hint_server_ip"
+        android:padding="5dp"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/setting_dialog_cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_weight="1"
+            android:background="@drawable/setting_dialog_btn_selector"
+            android:padding="5dp"
+            android:text="@string/setting_dialog_cancel"
+            android:textColor="@android:color/white"
+            android:textSize="19dp" />
+
+        <Button
+            android:id="@+id/setting_dialog_sure_btn"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/setting_dialog_btn_selector"
+            android:padding="5dp"
+            android:text="@string/setting_dialog_sure"
+            android:textColor="@android:color/white"
+            android:textSize="19dp" />
+    </LinearLayout>
+</LinearLayout>

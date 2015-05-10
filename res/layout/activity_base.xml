@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gf.BugManagerMobile.view.SlideView
+    android:id="@+id/slide_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#191F24">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/left_menu_lyt"
+            layout="@layout/slide_left_menu_lyt"
+            android:layout_width="250dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/center_content_lyt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff2837ff"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+
+</com.gf.BugManagerMobile.view.SlideView>

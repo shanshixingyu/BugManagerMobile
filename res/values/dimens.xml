@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<dimen name="login_et_margin_left">5dp</dimen>-->
+    <dimen name="login_radius">5dp</dimen>
+    <!--设置界面-->
+    <dimen name="setting_group_corner">10dp</dimen>
+
+    <!--slide_left_menu-->
+    <dimen name="exit_btn_radius">5dp</dimen>
+
 </resources>

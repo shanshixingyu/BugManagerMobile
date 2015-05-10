@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--登录界面-->
     <string name="app_name">BugManagerMobile</string>
     <string name="login_username">账号</string>
     <string name="login_password">密码</string>
     <string name="login_btn">登录</string>
+    <string name="login_remember">记住密码</string>
+    <string name="login_forget"><u>忘记密码?</u></string>
+
+    <!--menu-->
+    <string name="menu_setting">设置</string>
+    <string name="menu_about">关于</string>
+
+    <!--设置界面-->
+    <string name="setting_title">关于</string>
+    <string name="setting_server_ip">服务器IP:</string>
+    <string name="setting_server_port">服务器端口:</string>
+    <string name="setting_dialog_title">服务配置</string>
+    <string name="setting_dialog_msg_ip">请在下面的输入框中输入服务器IP地址：</string>
+    <string name="setting_dialog_msg_port">请在下面的输入框中输入服务器端口号：</string>
+    <string name="setting_dialog_input_hint_server_ip">IP</string>
+    <string name="setting_dialog_input_hint_server_port">端口</string>
+    <string name="setting_dialog_sure">确定</string>
+    <string name="setting_dialog_cancel">取消</string>
+
+    <!--滑动左边菜单布局-->
+    <string name="slide_left_menu_pim">个人信息管理</string>
+    <string name="slide_left_menu_home">首页</string>
+    <string name="slide_left_menu_submit">我提交的Bug</string>
+    <string name="slide_left_menu_assign">指派给我的Bug</string>
+    <string name="slide_left_menu_opt">操作过的Bug</string>
+    <string name="slide_left_menu_project_module">项目与模块</string>
+    <string name="slide_left_menu_setting">设置</string>
+    <string name="slide_left_menu_about">关于</string>
+    <string name="slide_left_menu_exit">退出登录</string>
+
+
 </resources>

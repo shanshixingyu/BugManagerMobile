@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_slide_left_menu_item"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_head" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="是的农夫弄"
+                android:textColor="@android:color/white"
+                android:textSize="19dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="管理人员"
+                android:textColor="#ffc1c1c1"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                style="@style/SlideLeftMenuItemDivider"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_home" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_project_module" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_submit" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_assign" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_opt" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_setting" />
+
+            <TextView
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_about" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/exit_btn"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="8dp"
+        android:text="@string/slide_left_menu_exit"
+        android:textColor="#ffb4b8ba"
+        android:textSize="15dp" />
+
+</LinearLayout>
