@@ -19,6 +19,7 @@
     <EditText
         android:id="@+id/login_username_et"
         style="@style/login_input_et"
+        android:inputType="text"
         android:drawableLeft="@drawable/ic_login_username"
         android:hint="@string/login_username" />
 
@@ -65,8 +66,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/login_btn"
-        android:padding="10dp"
         android:onClick="onBtnClick"
+        android:padding="10dp"
         android:text="@string/login_btn"
         android:textColor="@android:color/white"
         android:textSize="20dp" />

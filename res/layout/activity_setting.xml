@@ -1,70 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#0076CD"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp">
+    <RelativeLayout style="@style/TopOptTheme">
 
         <ImageView
             android:id="@+id/setting_back_imgv"
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:onClick="onClickBtn"
-            android:scaleType="fitCenter"
-            android:src="@drawable/setting_back_selector" />
+            style="@style/TopOptBackTheme" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="@string/setting_title"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            style="@style/TopOptTitleTheme"
+            android:text="@string/setting_title" />
 
     </RelativeLayout>
 
     <LinearLayout
-        style="@style/SettingGroupTheme"
+        style="@style/RadiusGroupTheme"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/setting_item_server_ip"
-            style="@style/SettingGroupItemTop">
+            android:onClick="onClickGroupItem"
+            style="@style/RadiusGroupItemTop">
 
             <TextView
-                style="@style/SettingGroupItemLeft"
+                style="@style/RadiusGroupItemLeft"
                 android:text="@string/setting_server_ip" />
 
             <TextView
                 android:id="@+id/setting_server_ip_tv"
-                style="@style/SettingGroupItemRight"
-                android:text="192.168.1.145" />
+                style="@style/RadiusGroupItemRight"
+                tools:text="192.168.1.145" />
         </LinearLayout>
 
-        <View style="@style/SettingGroupItemDivider" />
+        <View style="@style/RadiusGroupItemDivider" />
 
         <LinearLayout
             android:id="@+id/setting_item_server_port"
-            style="@style/SettingGroupItemBottom">
+            android:onClick="onClickGroupItem"
+            style="@style/RadiusGroupItemBottom">
 
             <TextView
-                style="@style/SettingGroupItemLeft"
+                style="@style/RadiusGroupItemLeft"
                 android:text="@string/setting_server_port" />
 
             <TextView
                 android:id="@+id/setting_server_port_tv"
-                style="@style/SettingGroupItemRight"
-                android:text="26453" />
+                style="@style/RadiusGroupItemRight"
+                tools:text="26453" />
         </LinearLayout>
 
     </LinearLayout>

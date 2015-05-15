@@ -2,9 +2,8 @@ package com.gf.BugManagerMobile.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.util.Log;
+import android.view.*;
 import android.widget.HorizontalScrollView;
 import android.widget.Scroller;
 import com.gf.BugManagerMobile.R;
@@ -34,7 +33,9 @@ public class SlideView extends HorizontalScrollView {
     private int leftMenuWidth = 0;
     private ViewGroup leftMenuLyt;
     private ViewGroup centerContentLyt;
+    private View centerContentCoverView = null;
     private Scroller mScroller;
+    private int mScaleTouchSlop;
 
     public SlideView(Context context) {
         this(context, null);
@@ -51,6 +52,7 @@ public class SlideView extends HorizontalScrollView {
         screenWidth = wm.getDefaultDisplay().getWidth();
 
         mScroller = new Scroller(context);
+        mScaleTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
@@ -58,6 +60,16 @@ public class SlideView extends HorizontalScrollView {
         if (once) {
             leftMenuLyt = (ViewGroup) findViewById(R.id.left_menu_lyt);
             centerContentLyt = (ViewGroup) findViewById(R.id.center_content_lyt);
+            centerContentCoverView = findViewById(R.id.center_content_cover);
+            centerContentCoverView.setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        toggleMenu();
+                    }
+                    return true;
+                }
+            });
             centerContentLyt.getLayoutParams().width = screenWidth;
             once = false;
         }
@@ -71,6 +83,13 @@ public class SlideView extends HorizontalScrollView {
             this.leftMenuWidth = leftMenuLyt.getMeasuredWidth();
             this.scrollTo(this.leftMenuWidth, 0);
             this.slideState = SlideState.CLOSE;
+        }
+        if (slideState == SlideState.CLOSE) {
+            centerContentCoverView.setVisibility(View.GONE);
+        } else if (slideState == SlideState.OPEN) {
+            centerContentCoverView.bringToFront();
+            centerContentCoverView.setVisibility(View.VISIBLE);
+            centerContentCoverView.requestFocus();
         }
     }
 
@@ -92,6 +111,9 @@ public class SlideView extends HorizontalScrollView {
         ViewHelper.setPivotY(centerContentLyt, centerContentLyt.getHeight() / 2);
         ViewHelper.setScaleX(centerContentLyt, centerContentLytScale);
         ViewHelper.setScaleY(centerContentLyt, centerContentLytScale);
+        if (slideState == SlideState.OPEN) {
+            centerContentCoverView.requestFocus();
+        }
     }
 
     /**
@@ -108,10 +130,14 @@ public class SlideView extends HorizontalScrollView {
             mScroller.startScroll(scrollX, 0, -scrollX, 0);
             invalidate();
             this.slideState = SlideState.OPEN;
+            centerContentCoverView.bringToFront();
+            centerContentCoverView.setVisibility(View.VISIBLE);
+            centerContentCoverView.requestFocus();
         } else {
             mScroller.startScroll(scrollX, 0, leftMenuWidth - scrollX, 0);
             invalidate();
             this.slideState = SlideState.CLOSE;
+            centerContentCoverView.setVisibility(View.GONE);
         }
     }
 
@@ -138,17 +164,30 @@ public class SlideView extends HorizontalScrollView {
                 if (!mScroller.isFinished())
                     mScroller.forceFinished(true);
                 int scrollX = getScrollX();
-                if (getScrollX() >= leftMenuWidth / 2) {//出界部分超过了1/2，变成关闭状态
+                if (getScrollX() >= leftMenuWidth / 2) {// 出界部分超过了1/2，变成关闭状态
                     mScroller.startScroll(scrollX, 0, leftMenuWidth - scrollX, 0);
                     invalidate();
                     this.slideState = SlideState.CLOSE;
-                } else {//出界部分小于1/2，变成打开状态
+                    centerContentCoverView.setVisibility(View.GONE);
+                } else {// 出界部分小于1/2，变成打开状态
                     mScroller.startScroll(scrollX, 0, -scrollX, 0);
                     invalidate();
                     this.slideState = SlideState.OPEN;
+                    centerContentCoverView.bringToFront();
+                    centerContentCoverView.setVisibility(View.VISIBLE);
+                    centerContentCoverView.requestFocus();
                 }
                 break;
         }
+    }
+
+    /**
+     * 获得当前状态
+     *
+     * @return
+     */
+    public SlideState getSlideState() {
+        return this.slideState;
     }
 
     @Override

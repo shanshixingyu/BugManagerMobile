@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
 import com.gf.BugManagerMobile.view.SettingInputDialog;
 
@@ -28,11 +29,11 @@ public class SettingActivity extends Activity {
         serverIpTv = (TextView) findViewById(R.id.setting_server_ip_tv);
         serverPortTv = (TextView) findViewById(R.id.setting_server_port_tv);
 
-        serverIpTv.setText(SharedPreferenceUtils.queryString(this, SharedPreferenceUtils.SERVER_IP));
-        serverPortTv.setText(SharedPreferenceUtils.queryString(this, SharedPreferenceUtils.SERVER_PORT));
+        serverIpTv.setText(SharedPreferenceUtils.queryString(this, MyConstant.SERVER_IP));
+        serverPortTv.setText(SharedPreferenceUtils.queryString(this, MyConstant.SERVER_PORT));
     }
 
-    public void onClickBtn(View v) {
+    public void onOptClick(View v) {
         switch (v.getId()) {
             case R.id.setting_back_imgv:
                 this.finish();
@@ -70,19 +71,19 @@ public class SettingActivity extends Activity {
     }
 
     private SettingInputDialog.OnSettingInfoListener onSettingInfoListener =
-            new SettingInputDialog.OnSettingInfoListener() {
-                @Override
-                public void onSettingInfo(SettingInputDialog.DialogType type, String input) {
-                    if (input == null)
-                        input = "";
-                    if (type == SettingInputDialog.DialogType.IP) {
-                        SharedPreferenceUtils.save(SettingActivity.this, SharedPreferenceUtils.SERVER_IP, input);
-                        serverIpTv.setText(input);
-                    } else if (type == SettingInputDialog.DialogType.PORT) {
-                        SharedPreferenceUtils.save(SettingActivity.this, SharedPreferenceUtils.SERVER_PORT, input);
-                        serverPortTv.setText(input);
-                    }
+        new SettingInputDialog.OnSettingInfoListener() {
+            @Override
+            public void onSettingInfo(SettingInputDialog.DialogType type, String input) {
+                if (input == null)
+                    input = "";
+                if (type == SettingInputDialog.DialogType.IP) {
+                    SharedPreferenceUtils.save(SettingActivity.this, MyConstant.SERVER_IP, input);
+                    serverIpTv.setText(input);
+                } else if (type == SettingInputDialog.DialogType.PORT) {
+                    SharedPreferenceUtils.save(SettingActivity.this, MyConstant.SERVER_PORT, input);
+                    serverPortTv.setText(input);
                 }
-            };
+            }
+        };
 
 }

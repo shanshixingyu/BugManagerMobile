@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<RelativeLayout style="@style/TopOptTheme">-->
+
+        <!--<ImageView style="@style/TopOptBackTheme" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/show_info_top_title_tv"-->
+            <!--style="@style/TopOptTitleTheme"-->
+            <!--android:text="所在分组" />-->
+    <!--</RelativeLayout>-->
+
+    <ListView
+        android:id="@+id/show_info_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

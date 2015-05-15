@@ -31,10 +31,10 @@ public class SettingInputDialog extends Dialog {
 
     private OnSettingInfoListener onSettingInfoListener = null;
 
-    private DialogType dialogType = DialogType.IP;//默认的
+    private DialogType dialogType = DialogType.IP;// 默认的
 
-    private int msgResId = R.string.setting_dialog_msg_ip;//默认
-    private int inputResId = R.string.setting_dialog_input_hint_server_ip;//默认
+    private int msgResId = R.string.setting_dialog_msg_ip;// 默认
+    private int inputResId = R.string.setting_dialog_input_hint_server_ip;// 默认
 
     private RectF settingDialogBoundRectF = null;
     private View settingDialogLyt = null;
@@ -51,7 +51,7 @@ public class SettingInputDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setting_input_dialog);
+        setContentView(R.layout.dialog_setting_input);
 
         settingDialogLyt = findViewById(R.id.setting_dialog_lyt);
 
@@ -89,13 +89,13 @@ public class SettingInputDialog extends Dialog {
         if (settingDialogBoundRectF == null) {
             settingDialogBoundRectF = new RectF();
             settingDialogBoundRectF.set(settingDialogLyt.getLeft(), settingDialogLyt.getTop(),
-                    settingDialogLyt.getRight(), settingDialogLyt.getBottom());
+                settingDialogLyt.getRight(), settingDialogLyt.getBottom());
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             if (settingDialogBoundRectF.contains(event.getX(), event.getY())) {
-                //在对话框内部
+                // 在对话框内部
             } else {
-                //在对话框外面
+                // 在对话框外面
                 inputMethodManager.hideSoftInputFromWindow(settingDialogInputEt.getWindowToken(), 0);
             }
         }

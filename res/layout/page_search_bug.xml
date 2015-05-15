@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/search_bug_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/search_bug_title" />
+
+        <Button
+            android:id="@+id/search_bug_btn"
+            android:text="@string/search_bug_btn"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -4,6 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.gf.BugManagerMobile.view.SatelliteMenuLyt xmlns:gulang="http://schemas.android.com/apk/res/com.gf.BugManagerMobile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        gulang:distanceBottom="10dp"
+        gulang:distanceRight="10dp"
+        gulang:radius="150dp">
+
+        <ImageView
+            style="@style/SatelliteMenuItem"
+            android:src="@drawable/ic_satellite_manager" />
+
+        <ImageView
+            style="@style/SatelliteMenuItem"
+            android:src="@drawable/ic_satellite_user" />
+
+        <ImageView
+            style="@style/SatelliteMenuItem"
+            android:src="@drawable/ic_satellite_group" />
+
+        <ImageView
+            style="@style/SatelliteMenuItem"
+            android:src="@drawable/ic_satellite_project_manager" />
+
+        <ImageView
+            style="@style/SatelliteMenuItem"
+            android:src="@drawable/ic_satellite_setting" />
+
+    </com.gf.BugManagerMobile.view.SatelliteMenuLyt>
 
 </LinearLayout>
 

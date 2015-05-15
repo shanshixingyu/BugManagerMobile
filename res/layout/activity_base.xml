@@ -17,14 +17,26 @@
             android:layout_width="250dp"
             android:layout_height="match_parent" />
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/center_content_lyt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ff2837ff"
-            android:orientation="vertical" />
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/satellite_menu_lyt"
+                layout="@layout/part_satellite_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!--增加一层遮盖层-->
+            <View
+                android:id="@+id/center_content_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+        </FrameLayout>
 
     </LinearLayout>
-
-
 </com.gf.BugManagerMobile.view.SlideView>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--所有界面上的顶部操作栏-->
+    <color name="bg_top_opt">#0076CD</color>
+
+    <!--登录界面-->
     <color name="bg_login">#0076CD</color>
 
     <!--设置界面-->

@@ -7,4 +7,7 @@
     <!--slide_left_menu-->
     <dimen name="exit_btn_radius">5dp</dimen>
 
+    <!--所有界面顶部的操作栏-->
+    <dimen name="opt_btn_radius">5dp</dimen>
+
 </resources>

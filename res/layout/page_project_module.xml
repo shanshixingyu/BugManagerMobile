@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/project_module_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/project_module_title" />
+
+    </RelativeLayout>
+
+    <ExpandableListView
+        android:id="@+id/project_module_xlv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

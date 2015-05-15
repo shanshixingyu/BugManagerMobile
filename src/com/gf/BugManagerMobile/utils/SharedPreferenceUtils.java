@@ -11,10 +11,6 @@ import java.util.Set;
  */
 public class SharedPreferenceUtils {
     public static final String SAVE_FILE_NAME = MyConstant.SHARED_PREFERENCE_NAME;
-    public static final String SERVER_IP = "SERVER_IP";
-    public static final String SERVER_PORT = "SERVER_PORT";
-    public static final String SHOW_NAME = "SHOW_NAME";
-    public static final String SHOW_PASSWORD = "SHOW_PASSWORD";
 
     public static void save(Context context, String key, Object value) {
         if (context == null || key == null || value == null || key.trim().length() == 0)
@@ -22,18 +18,18 @@ public class SharedPreferenceUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SAVE_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (value instanceof Long) {
-            editor.putLong(key, ((Long) value).longValue());
+            editor.putLong(key, (Long) value);
         } else if (value instanceof Integer) {
-            editor.putInt(key, ((Integer) value).intValue());
+            editor.putInt(key, (Integer) value);
         } else if (value instanceof Float) {
-            editor.putFloat(key, ((Float) value).floatValue());
+            editor.putFloat(key, (Float) value);
         } else if (value instanceof Boolean) {
-            editor.putBoolean(key, ((Boolean) value).booleanValue());
+            editor.putBoolean(key, (Boolean) value);
         } else {
             // 剩下部分全部当成是字符串保存
             editor.putString(key, value.toString());
         }
-        editor.commit();
+        editor.apply();
     }
 
     public static void delete(Context context, String key) {

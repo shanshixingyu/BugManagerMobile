@@ -20,22 +20,21 @@
         <item name="android:background">@drawable/login_et_shape</item>
     </style>
 
-    <style name="SettingGroupTheme">
+    <style name="RadiusGroupTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/setting_group_shape</item>
+        <item name="android:background">@drawable/radius_group_shape</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
-
     </style>
 
-    <style name="SettingGroupItemDivider">
+    <style name="RadiusGroupItemDivider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/setting_group_item_divider</item>
     </style>
 
-    <style name="SettingGroupItemBase">
+    <style name="RadiusGroupItemBase">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:clickable">true</item>
@@ -44,30 +43,36 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:onClick">onClickGroupItem</item>
     </style>
 
-    <style name="SettingGroupItemTop" parent="SettingGroupItemBase">
-        <item name="android:background">@drawable/setting_group_item_top_selector</item>
+    <style name="RadiusGroupItemTop" parent="RadiusGroupItemBase">
+        <item name="android:background">@drawable/radius_group_item_top_selector</item>
     </style>
 
-    <style name="SettingGroupItemBottom" parent="SettingGroupItemBase">
-        <item name="android:background">@drawable/setting_group_item_bottom_selector</item>
+    <style name="RadiusGroupItemMiddle" parent="RadiusGroupItemBase">
+        <item name="android:background">@drawable/radius_group_item_middle_selector</item>
     </style>
 
-    <style name="SettingGroupItemTextBase">
+    <style name="RadiusGroupItemBottom" parent="RadiusGroupItemBase">
+        <item name="android:background">@drawable/radius_group_item_bottom_selector</item>
+    </style>
+    <style name="RadiusGroupItemSingle" parent="RadiusGroupItemBase">
+        <item name="android:background">@drawable/radius_group_item_single_selector</item>
+    </style>
+
+    <style name="RadiusGroupItemTextBase">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">17dp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="SettingGroupItemLeft" parent="SettingGroupItemTextBase">
+    <style name="RadiusGroupItemLeft" parent="RadiusGroupItemTextBase">
         <item name="android:layout_width">110dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">left|center_vertical</item>
     </style>
 
-    <style name="SettingGroupItemRight" parent="SettingGroupItemTextBase">
+    <style name="RadiusGroupItemRight" parent="RadiusGroupItemTextBase">
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">right|center_vertical</item>
     </style>
@@ -87,6 +92,7 @@
         <item name="android:background">@drawable/bg_slide_left_menu_item</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawableRight">@drawable/ic_go</item>
+        <item name="android:onClick">onLeftMenuClick</item>
     </style>
 
     <style name="SlideLeftMenuItemDivider">
@@ -95,5 +101,69 @@
         <item name="android:background">#383D41</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
+
+    <style name="TopOptTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/bg_top_opt</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TopOptBackTheme">
+        <item name="android:clickable">true</item>
+        <item name="android:onClick">onOptClick</item>
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/opt_back_selector</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="TopOptTitleTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="TopOptBtnTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@drawable/opt_btn_shape</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:onClick">onOptClick</item>
+    </style>
+
+    <style name="SatelliteMenuItem">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <declare-styleable name="SatelliteMenu">
+        <attr name="radius" format="dimension" />
+        <attr name="distanceRight" format="dimension" />
+        <attr name="distanceBottom" format="dimension" />
+    </declare-styleable>
+
+    <!--&lt;!&ndash;首页Bug概况中ListView的每一项的布局&ndash;&gt;-->
+    <!--<style name="HomeBugOverviewItemCount">-->
+    <!--<item name="android:layout_height">match_parent</item>-->
+    <!--<item name="android:textSize">16dp</item>-->
+    <!--<item name="android:textColor">#333333</item>-->
+    <!--</style>-->
+
 
 </resources>

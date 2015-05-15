@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/pim_top_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/pim_top_title" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/pim_top_save_btn"-->
+        <!--android:text="@string/pim_top_save"-->
+        <!--style="@style/TopOptBtnTheme" />-->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/RadiusGroupTheme"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/RadiusGroupItemTop">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_user_id" />
+
+            <TextView
+                android:id="@+id/pim_user_id_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="192.168.1.145" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout style="@style/RadiusGroupItemMiddle">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_user_name" />
+
+            <TextView
+                android:id="@+id/pim_user_name_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="root" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout style="@style/RadiusGroupItemMiddle">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_role_name" />
+
+            <TextView
+                android:id="@+id/pim_role_name_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="管理员" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout
+            android:id="@+id/pim_row_email_lyt"
+            android:onClick="onRowItemClick"
+            style="@style/RadiusGroupItemMiddle">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_email" />
+
+            <TextView
+                android:id="@+id/pim_email_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="15616156@qq.com" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout style="@style/RadiusGroupItemMiddle">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_creator" />
+
+            <TextView
+                android:id="@+id/pim_creator_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="孤狼" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout style="@style/RadiusGroupItemBottom">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_create_time" />
+
+            <TextView
+                android:id="@+id/pim_create_time_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="2015-05-01" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/RadiusGroupTheme"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/pim_row_pwd_lyt"
+            android:onClick="onRowItemClick"
+            style="@style/RadiusGroupItemSingle">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_password" />
+
+            <TextView
+                android:id="@+id/pim_password_tv"
+                style="@style/RadiusGroupItemRight" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/RadiusGroupTheme"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/pim_row_join_group_lyt"
+            android:onClick="onRowItemClick"
+            style="@style/RadiusGroupItemTop">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_join_group" />
+
+            <TextView
+                android:id="@+id/pim_join_group_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="5个" />
+        </LinearLayout>
+
+        <View style="@style/RadiusGroupItemDivider" />
+
+        <LinearLayout
+            android:id="@+id/pim_row_project_module_lyt"
+            android:onClick="onRowItemClick"
+            style="@style/RadiusGroupItemBottom">
+
+            <TextView
+                style="@style/RadiusGroupItemLeft"
+                android:text="@string/pim_join_project_module" />
+
+            <TextView
+                android:id="@+id/pim_join_project_module_tv"
+                style="@style/RadiusGroupItemRight"
+                tools:text="10个" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/submit_bug_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/submit_bug_title" />
+
+        <Button
+            android:id="@+id/submit_bug_add_btn"
+            style="@style/TopOptBtnTheme"
+            android:text="@string/submit_bug_add" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
