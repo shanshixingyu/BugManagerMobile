@@ -146,9 +146,6 @@ public class ProjectBugOverview {
         public String getTempBugInfo(Context context) {
             if (tempBugInfo == null) {
                 StringBuilder strBuilder = new StringBuilder();
-                // strBuilder.append(context.getString(R.string.home_bug_item_total));
-                // strBuilder.append(projectBugCount);
-                // strBuilder.append(DIVIDER_SPACE);
                 strBuilder.append(context.getString(R.string.home_bug_item_unsolved));
                 strBuilder.append(bugStatusUnsolved);
                 strBuilder.append(DIVIDER_SPACE);

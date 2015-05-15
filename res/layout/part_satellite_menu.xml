@@ -7,9 +7,9 @@
     gulang:distanceRight="10dp"
     gulang:radius="150dp">
 
-    <ImageView
-        style="@style/SatelliteMenuItem"
-        android:src="@drawable/ic_satellite_manager" />
+    <!--<ImageView-->
+        <!--style="@style/SatelliteMenuItem"-->
+        <!--android:src="@drawable/ic_satellite_manager" />-->
 
     <ImageView
         style="@style/SatelliteMenuItem"

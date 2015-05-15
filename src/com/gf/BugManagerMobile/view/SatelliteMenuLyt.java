@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import com.gf.BugManagerMobile.R;
 import com.gf.BugManagerMobile.utils.SizeUtils;
 import com.nineoldandroids.animation.AnimatorSet;
@@ -33,11 +34,10 @@ public class SatelliteMenuLyt extends ViewGroup {
     private int distanceRight;
     private int distanceBottom;
 
+    private View centerView;
     private int centerViewLeft;
     private int centerViewTop;
     private OnSatelliteMenuItemClickListener onSatelliteMenuItemClickListener = null;
-
-    private View centerView = null;
 
     public SatelliteMenuLyt(Context context) {
         this(context, null);
@@ -62,13 +62,35 @@ public class SatelliteMenuLyt extends ViewGroup {
         }
     }
 
+    private View getCenterView() {
+        if (centerView != null)
+            return centerView;
+        ImageView imageView = new ImageView(getContext());
+        int size = SizeUtils.dp2px(getContext(), 43);
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(size, size);
+        imageView.setLayoutParams(lp);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setImageResource(R.drawable.ic_satellite_manager);
+        imageView.setClickable(true);
+        return imageView;
+    }
+
+    private boolean once = true;
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         int childCount = getChildCount();
-        if (childCount < 3)
-            throw new IllegalStateException("至少需要三个子控件");
+        if (childCount < 2)
+            throw new IllegalStateException("至少需要2个子控件");
         for (int i = 0; i < childCount; i++) {
             measureChild(getChildAt(i), widthMeasureSpec, heightMeasureSpec);
+        }
+        if (once) {
+            this.centerView = getCenterView();
+            addView(centerView);
+            measureChild(centerView, widthMeasureSpec, heightMeasureSpec);
+            once = false;
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -84,7 +106,7 @@ public class SatelliteMenuLyt extends ViewGroup {
             drawHeightBottom = getMeasuredHeight() - getPaddingBottom() - distanceBottom;
 
             // 获得主按钮的宽高
-            centerView = getChildAt(0);
+//            centerView = getChildAt(0);
             int centerImgvWidth = centerView.getMeasuredWidth();
             int centerImgvHeight = centerView.getMeasuredHeight();
             centerViewLeft = drawWidthRight - centerImgvWidth;
@@ -125,7 +147,7 @@ public class SatelliteMenuLyt extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //当菜单打开后，不允许拦截响应事件
+        // 当菜单打开后，不允许拦截响应事件
         if (status == Status.OPEN)
             return true;
         return super.onTouchEvent(event);

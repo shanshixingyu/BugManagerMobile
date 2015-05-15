@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.LocalInfo;
 import com.gf.BugManagerMobile.models.PimInfo;
+import com.gf.BugManagerMobile.models.User;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;
@@ -67,7 +68,7 @@ public class PimActivity extends BaseActivity {
                     mPimInfo = JSON.parseObject(result.getResult(), PimInfo.class);
                     Log.i(TAG, mPimInfo.toString());
 
-                    PimInfo.User user = mPimInfo.getUser();
+                    User user = mPimInfo.getUser();
                     userIdTv.setText("" + user.getId());
                     userNameTv.setText(user.getName());
                     roleNameTv.setText(mPimInfo.getRoleName());

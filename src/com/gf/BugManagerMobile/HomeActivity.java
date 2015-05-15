@@ -55,8 +55,9 @@ public class HomeActivity extends BaseActivity {
                 Toast.makeText(HomeActivity.this, "获取数据错误", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Log.i(TAG, mHomeBugOverLvAdapter.getItem(position).toString());
             Intent intent = new Intent(HomeActivity.this, SearchBugActivity.class);
+            intent.putExtra(MyConstant.HOME_2_SEARCH_PROJECT_ID, projectBugInfo.getProjectId());
+            intent.putExtra(MyConstant.HOME_2_SEARCH_PROJECT_NAME, projectBugInfo.getProjectName());
             startActivity(intent);
         }
     };

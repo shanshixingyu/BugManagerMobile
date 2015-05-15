@@ -140,8 +140,11 @@ public class LoginActivity extends Activity {
                 startActivity(settingIntent);
                 break;
             case R.id.menu_about:
-                Intent aboutIntent = new Intent(this, AboutActivity.class);
-                startActivity(aboutIntent);
+                Intent testIntent = new Intent(this, TestActivity.class);
+                startActivity(testIntent);
+
+                // Intent aboutIntent = new Intent(this, AboutActivity.class);
+                // startActivity(aboutIntent);
                 break;
             default:
         }

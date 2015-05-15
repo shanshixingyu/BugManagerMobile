@@ -112,5 +112,18 @@
     <!--bug查询条件-->
     <string name="search_bug_title">Bug查询条件</string>
     <string name="search_bug_btn">查询</string>
+    <string name="search_bug_project">项目</string>
+    <string name="search_bug_module">模块</string>
+    <string name="search_bug_priority">优先级</string>
+    <string name="search_bug_serious">影响程度</string>
+    <string name="search_bug_assign">指派给</string>
+    <string name="search_bug_submit">提交者</string>
+    <string name="search_bug_status">当前状态</string>
+    <string name="search_bug_key_word">关键字</string>
+
+    <!--bug列表界面-->
+    <string name="bug_list_title">项目缺陷列表</string>
+    <string name="bug_list_item_status">当前状态：</string>
+    <string name="bug_list_item_submit">提交时间：</string>
 
 </resources>

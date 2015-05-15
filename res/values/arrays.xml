@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="BugPriority">
+        <item>全部</item>
+        <item>低</item>
+        <item>中</item>
+        <item>高</item>
+        <item>紧急</item>
+    </string-array>
+    <string-array name="BugSerious">
+        <item>全部</item>
+        <item>不影响</item>
+        <item>轻度影响</item>
+        <item>影响</item>
+        <item>影响较大</item>
+        <item>影响严重</item>
+    </string-array>
+    <string-array name="BugStatus">
+        <item>全部</item>
+        <item>关闭</item>
+        <item>未解决</item>
+        <item>解决</item>
+        <item>重新激活</item>
+        <item>其它</item>
+    </string-array>
+
+</resources>

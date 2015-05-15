@@ -91,5 +91,10 @@ public class MyConstant {
      * PIM跳转到显示信息界面的信息
      */
     public static final String SHOW_INFO_DATA = "show_info_data";
+    /**
+     * 从首页到项目Bug查询页面的参数
+     */
+    public static final String HOME_2_SEARCH_PROJECT_ID = "home_2_search_project_id";
+    public static final String HOME_2_SEARCH_PROJECT_NAME = "home_2_search_project_Name";
 
 }

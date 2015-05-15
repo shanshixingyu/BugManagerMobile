@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:layout_width="match_parent"
@@ -22,4 +23,96 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_project"
+            style="@style/SearchBugItemTitle" />
+
+        <TextView
+            android:id="@+id/search_bug_project_name_tv"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_module"
+            style="@style/SearchBugItemTitle" />
+
+        <Spinner
+            android:id="@+id/search_bug_module_sp"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_priority"
+            style="@style/SearchBugItemTitle" />
+
+        <Spinner
+            android:id="@+id/search_bug_priority_sp"
+            android:entries="@array/BugPriority"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_serious"
+            style="@style/SearchBugItemTitle" />
+
+        <Spinner
+            android:id="@+id/search_bug_serious_sp"
+            android:entries="@array/BugSerious"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_assign"
+            style="@style/SearchBugItemTitle" />
+
+        <Spinner
+            android:id="@+id/search_bug_assign_sp"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            style="@style/SearchBugItemTitle"
+            android:text="@string/search_bug_submit" />
+
+        <EditText
+            android:id="@+id/search_bug_submit_et"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            style="@style/SearchBugItemTitle"
+            android:text="@string/search_bug_status" />
+
+        <Spinner
+            android:id="@+id/search_bug_status_sp"
+            android:entries="@array/BugStatus"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/search_bug_key_word"
+            style="@style/SearchBugItemTitle" />
+
+        <EditText
+            android:id="@+id/search_bug_key_word_et"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
 </LinearLayout>
