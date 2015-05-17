@@ -154,9 +154,9 @@
     </style>
 
     <declare-styleable name="SatelliteMenu">
-        <attr name="radius" format="dimension" />
-        <attr name="distanceRight" format="dimension" />
-        <attr name="distanceBottom" format="dimension" />
+        <attr name="radius" format="dimension"/>
+        <attr name="distanceRight" format="dimension"/>
+        <attr name="distanceBottom" format="dimension"/>
     </declare-styleable>
 
     <!--&lt;!&ndash;首页Bug概况中ListView的每一项的布局&ndash;&gt;-->
@@ -190,6 +190,46 @@
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">#000000</item>
         <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="BugListItemInfo">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#ff494949</item>
+    </style>
+
+    <!--bug详情页每一项的标题-->
+    <style name="BugDetailItemTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+    <!--bug详情页每一项的标题-->
+    <style name="BugDetailItemTitle">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">#ff494949</item>
+        <!--<item name="android:paddingTop">5dp</item>-->
+        <!--<item name="android:paddingBottom">5dp</item>-->
+        <!--<item name="android:paddingLeft">5dp</item>-->
+    </style>
+    <!--bug详情页每一项的内容-->
+    <style name="BugDetailItemContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">18dp</item>
+        <!--<item name="android:singleLine">true</item>-->
+        <!--<item name="android:ellipsize">end</item>-->
+        <item name="android:textColor">#ff575a57</item>
     </style>
 
 </resources>

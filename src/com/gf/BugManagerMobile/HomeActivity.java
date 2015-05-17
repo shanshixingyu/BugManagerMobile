@@ -56,8 +56,8 @@ public class HomeActivity extends BaseActivity {
                 return;
             }
             Intent intent = new Intent(HomeActivity.this, SearchBugActivity.class);
-            intent.putExtra(MyConstant.HOME_2_SEARCH_PROJECT_ID, projectBugInfo.getProjectId());
-            intent.putExtra(MyConstant.HOME_2_SEARCH_PROJECT_NAME, projectBugInfo.getProjectName());
+            intent.putExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_ID, projectBugInfo.getProjectId());
+            intent.putExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_NAME, projectBugInfo.getProjectName());
             startActivity(intent);
         }
     };

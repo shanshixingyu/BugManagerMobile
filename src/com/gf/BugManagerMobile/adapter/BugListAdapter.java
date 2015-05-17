@@ -22,6 +22,8 @@ public class BugListAdapter extends BaseAdapter {
 
     private LayoutInflater lytInflater;
     private List<Bug> bugDataList;
+    private int mPageCount;
+    private int mCurrentPage;
 
     public BugListAdapter(Context context, List<Bug> data) {
         lytInflater = LayoutInflater.from(context);
@@ -62,6 +64,7 @@ public class BugListAdapter extends BaseAdapter {
             viewHolder.priorityTv = (TextView) convertView.findViewById(R.id.bug_list_item_priority_tv);
             viewHolder.statusTv = (TextView) convertView.findViewById(R.id.bug_list_item_status_tv);
             viewHolder.seriousTv = (TextView) convertView.findViewById(R.id.bug_list_item_serious_tv);
+            viewHolder.submitTimeTv = (TextView) convertView.findViewById(R.id.bug_list_item_submit_time_tv);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -71,12 +74,29 @@ public class BugListAdapter extends BaseAdapter {
 
         viewHolder.nameTv.setText(bug.getName());
         viewHolder.priorityTv.setText(BugUtils.getPriorityStr(bug.getPriority()));
-        viewHolder.priorityTv.setTextColor(BugUtils.getPriorityColor(bug.getPriority()));
+        // viewHolder.priorityTv.setTextColor(BugUtils.getPriorityColor(bug.getPriority()));
         viewHolder.statusTv.setText(BugUtils.getStatusStr(bug.getStatus()));
         viewHolder.statusTv.setTextColor(BugUtils.getStatusColor(bug.getStatus()));
         viewHolder.seriousTv.setText(BugUtils.getSeriousStr(bug.getSerious_id()));
+        viewHolder.submitTimeTv.setText(bug.getCreate_time());
 
         return convertView;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.mPageCount = pageCount;
+    }
+
+    public int getPageCount() {
+        return this.mPageCount;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.mCurrentPage = currentPage;
+    }
+
+    public int getCurrentPage() {
+        return this.mCurrentPage;
     }
 
     /**
@@ -109,6 +129,7 @@ public class BugListAdapter extends BaseAdapter {
         public TextView priorityTv;
         public TextView statusTv;
         public TextView seriousTv;
+        public TextView submitTimeTv;
     }
 
 }

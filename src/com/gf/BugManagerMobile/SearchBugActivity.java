@@ -36,13 +36,13 @@ public class SearchBugActivity extends BaseActivity {
         setCenterContentLyt(R.layout.page_search_bug);
 
         Intent startIntent = getIntent();
-        projectId = startIntent.getIntExtra(MyConstant.HOME_2_SEARCH_PROJECT_ID, 0);
-        projectName = startIntent.getStringExtra(MyConstant.HOME_2_SEARCH_PROJECT_NAME);
+        projectId = startIntent.getIntExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_ID, 0);
+        projectName = startIntent.getStringExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_NAME);
 
         initComponent();
 
         HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/get-module-member&projectId=" + projectId,
-            true, "正在加载模块..", loadModuleFinishListener);
+                true, "正在加载模块..", loadModuleFinishListener);
 
     }
 
@@ -94,8 +94,8 @@ public class SearchBugActivity extends BaseActivity {
                 return;
             // Log.i(TAG, "点击后得到的值:" + module.toString());
             String url =
-                LocalInfo.getBaseUrl(SearchBugActivity.this) + "bug/get-assign&projectId=" + projectId + "&moduleId="
-                    + module.getId();
+                    LocalInfo.getBaseUrl(SearchBugActivity.this) + "bug/get-assign&projectId=" + projectId + "&moduleId="
+                            + module.getId();
             HttpVisitUtils.getHttpVisit(SearchBugActivity.this, url, true, "加载指派人..", onGetAssignFinishListener);
         }
 
@@ -132,12 +132,15 @@ public class SearchBugActivity extends BaseActivity {
             case R.id.search_bug_btn:
                 SearchBugCondition searchBugCondition = new SearchBugCondition();
                 searchBugCondition.setProjectId(projectId);
-                final Module module =
-                    (Module) moduleSpinner.getAdapter().getItem(moduleSpinner.getSelectedItemPosition());
-                if (module == null)
-                    searchBugCondition.setModuleId(-1);
-                else
-                    searchBugCondition.setModuleId(module.getId());
+                SpinnerAdapter moduleSpinnerAdapter = moduleSpinner.getAdapter();
+                if (moduleSpinnerAdapter != null) {
+                    final Module module =
+                            (Module) moduleSpinnerAdapter.getItem(moduleSpinner.getSelectedItemPosition());
+                    if (module == null)
+                        searchBugCondition.setModuleId(-1);
+                    else
+                        searchBugCondition.setModuleId(module.getId());
+                }
                 searchBugCondition.setPriority(prioritySpinner.getSelectedItemPosition());
                 searchBugCondition.setSerious(seriousSpinner.getSelectedItemPosition());
                 final User assign = (User) assignSpinner.getAdapter().getItem(assignSpinner.getSelectedItemPosition());
@@ -149,24 +152,12 @@ public class SearchBugActivity extends BaseActivity {
                 searchBugCondition.setStatus(statusSpinner.getSelectedItemPosition());
                 searchBugCondition.setKeyWord(keyWordEt.getText().toString());
 
-                Log.i(TAG, "查询条件：" + searchBugCondition.getRequestCondition());
+//                Log.i(TAG, "查询条件：" + searchBugCondition.getRequestCondition());
 
                 Intent bugListIntent = new Intent(this, BugListActivity.class);
+                bugListIntent.putExtra(MyConstant.SEARCH_BUG_2_BUG_LIST_CONDITION,
+                        searchBugCondition.getRequestCondition());
                 startActivity(bugListIntent);
-
-                // HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/search-bug",
-                // searchBugCondition.getRequestCondition(), true, "正在查询...",
-                // new HttpVisitUtils.OnHttpFinishListener() {
-                // @Override
-                // public void onVisitFinish(HttpResult result) {
-                // if (result == null) {
-                // Log.i(TAG, "返回的结果为null");
-                // return;
-                // }
-                // Log.i(TAG, result.toString());
-                // }
-                // });
-
                 break;
             default:
         }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/bug_introduce_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/bug_detail_title" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/bug_introduce_lv"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:padding="5dp"
+        android:listSelector="@android:color/transparent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

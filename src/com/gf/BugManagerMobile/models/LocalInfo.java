@@ -1,6 +1,7 @@
 package com.gf.BugManagerMobile.models;
 
 import android.content.Context;
+import android.util.Log;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
 
@@ -24,6 +25,7 @@ public class LocalInfo {
 
     /**
      * 设置登录用户信息
+     *
      * @param mLoginSuccessInfo
      */
     public static void setLoginSuccessInfo(LoginSuccessInfo mLoginSuccessInfo) {
@@ -34,6 +36,7 @@ public class LocalInfo {
 
     /**
      * 获得登录用户信息
+     *
      * @param context
      * @return
      */
@@ -44,11 +47,11 @@ public class LocalInfo {
                     // 从配置文件中获取
                     mLoginSuccessInfo = new LoginSuccessInfo();
                     mLoginSuccessInfo.setUserName(SharedPreferenceUtils.queryString(context,
-                        MyConstant.SP_LOGIN_USE_NAME));
+                            MyConstant.SP_LOGIN_USE_NAME));
                     mLoginSuccessInfo.setRoleName(SharedPreferenceUtils.queryString(context,
-                        MyConstant.SP_LOGIN_ROLE_NAME));
+                            MyConstant.SP_LOGIN_ROLE_NAME));
                     mLoginSuccessInfo.setPassword(SharedPreferenceUtils.queryString(context,
-                        MyConstant.SP_LOGIN_PASSWORD));
+                            MyConstant.SP_LOGIN_PASSWORD));
                     mLoginSuccessInfo.setRoleId(SharedPreferenceUtils.queryInt(context, MyConstant.SP_LOGIN_ROLE_ID));
                 }
             }
@@ -64,6 +67,7 @@ public class LocalInfo {
 
     /**
      * 获取基本的URL地址
+     *
      * @param context
      * @return
      */
@@ -84,4 +88,58 @@ public class LocalInfo {
         }
         return mBaseUrl;
     }
+
+    /**
+     * 基本URL地址
+     */
+    private static String mWebUrl = null;
+    private static final Object mWebURLLock = new Object();
+
+    /**
+     * 获得web目录的路径
+     *
+     * @param context
+     * @return
+     */
+    public static String getWebUrl(Context context) {
+        if (mWebUrl == null) {
+            synchronized (mWebURLLock) {
+                if (mWebUrl == null) {
+                    // 从配置文件中获得URL地址
+                    String serverIp = SharedPreferenceUtils.queryString(context, MyConstant.SERVER_IP);
+                    String serverPort = SharedPreferenceUtils.queryString(context, MyConstant.SERVER_PORT);
+                    if (serverPort == null || "".equals(serverPort.trim())) {
+                        mWebUrl = "http://" + serverIp + "/BugManagerWeb/web/";
+                    } else {
+                        mWebUrl = "http://" + serverIp + ":" + serverPort + "/BugManagerWeb/web/";
+                    }
+                }
+            }
+        }
+        return mWebUrl;
+    }
+
+    /**
+     * 获得截图路径
+     *
+     * @param context
+     * @return
+     */
+    public static String getBufferImageFileUrl(Context context) {
+        String baseWebPath = getWebUrl(context);
+        return baseWebPath + "BufferFile/images/";
+    }
+
+    /**
+     * 获得附件路径
+     *
+     * @param context
+     * @return
+     */
+    public static String getBufferAttachmentFileUrl(Context context) {
+        String baseWebPath = getWebUrl(context);
+        return baseWebPath + "BufferFile/attachments/";
+    }
+
+
 }

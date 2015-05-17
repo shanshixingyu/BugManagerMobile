@@ -94,7 +94,10 @@ public class MyConstant {
     /**
      * 从首页到项目Bug查询页面的参数
      */
-    public static final String HOME_2_SEARCH_PROJECT_ID = "home_2_search_project_id";
-    public static final String HOME_2_SEARCH_PROJECT_NAME = "home_2_search_project_Name";
+    public static final String HOME_2_SEARCH_BUG_PROJECT_ID = "home_2_search_bug_project_id";
+    public static final String HOME_2_SEARCH_BUG_PROJECT_NAME = "home_2_search_bug_project_Name";
+    public static final String SEARCH_BUG_2_BUG_LIST_CONDITION = "search_bug_2_bug_list_condition";
+    public static final String BUG_LIST_2_BUG_DETAIL_BUG_ID = "bug_list_2_bug_detail_bug_id";
+    public static final String BUG_DETAIL_2_BUG_INTRODUCE = "bug_detail_2_bug_introduce";
 
 }

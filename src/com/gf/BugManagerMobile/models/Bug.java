@@ -1,5 +1,7 @@
 package com.gf.BugManagerMobile.models;
 
+import java.util.List;
+
 /**
  * Bug模型类
  * Created by Administrator on 5/16 0016.
@@ -20,6 +22,7 @@ public class Bug {
     private String create_time;
     private String img_path;
     private String file_path;
+    // private List<BugIntroduceItem> introduce;
     private String introduce;
     private String reappear;
     private int resolve_id;
@@ -129,6 +132,14 @@ public class Bug {
     public void setFile_path(String file_path) {
         this.file_path = file_path;
     }
+
+    // public List<BugIntroduceItem> getIntroduce() {
+    // return introduce;
+    // }
+    //
+    // public void setIntroduce(List<BugIntroduceItem> introduce) {
+    // this.introduce = introduce;
+    // }
 
     public String getIntroduce() {
         return introduce;

@@ -62,5 +62,13 @@
             android:name=".BugListActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name=".BugDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name=".BugIntroduceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
     </application>
 </manifest> 
