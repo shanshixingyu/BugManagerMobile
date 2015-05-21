@@ -27,13 +27,13 @@ public class MyConstant {
      */
     public static final String SP_REMEMBER_ME = "remember_me";
     /**
+     * 登录用户ID
+     */
+    public static final String SP_LOGIN_USE_ID = "login_user_id";
+    /**
      * 登录用户名
      */
     public static final String SP_LOGIN_USE_NAME = "login_user_name";
-    /**
-     * 登录用户角色
-     */
-    public static final String SP_LOGIN_ROLE_NAME = "login_role_name";
     /**
      * 登录用户密码
      */
@@ -42,6 +42,10 @@ public class MyConstant {
      * 登录用户角色Id
      */
     public static final String SP_LOGIN_ROLE_ID = "login_role_id";
+    /**
+     * 登录用户角色名
+     */
+    public static final String SP_LOGIN_ROLE_NAME = "login_role_name";
     /**
      * 服务器IP地址
      */

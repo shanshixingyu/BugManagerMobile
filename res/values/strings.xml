@@ -8,6 +8,7 @@
     <string name="login_remember">记住我</string>
     <string name="login_forget"><u>忘记密码?</u></string>
     <string name="login_user_name_pattern">只能输入中文、英文、数字字符、下划线</string>
+    <string name="login_parse_failure">解析失败！</string>
     <string name="login_failure">登录失败！</string>
     <string name="login_error">网络连接错误！</string>
     <string name="login_time_out">连接超时！</string>
@@ -128,6 +129,7 @@
 
     <!--bug详情-->
     <string name="bug_detail_title">缺陷详细信息</string>
+    <string name="bug_detail_opt">...</string>
     <string name="bug_detail_name">缺陷名称</string>
     <string name="bug_detail_project">项目</string>
     <string name="bug_detail_module">模块</string>
@@ -142,9 +144,44 @@
     <string name="bug_detail_introduce">注释</string>
     <string name="bug_detail_introduce_click"><u>点击此处查看</u></string>
     <string name="bug_detail_attachment">附件</string>
+    <string name="bug_detail_opt_solve">解决</string>
+    <string name="bug_detail_opt_modify">修改</string>
+    <string name="bug_detail_opt_active">激活</string>
+    <string name="bug_detail_opt_close">关闭</string>
+    <string name="bug_detail_opt_delete">删除</string>
 
 
     <!--bug简介introduce界面-->
     <string name="bug_introduce_title">缺陷注释</string>
+
+
+    <!--我提交的bug信息-->
+    <string name="my_submit_title">我提交的Bug</string>
+
+    <!--指派给我的bug信息-->
+    <string name="my_assign_title">指派给我的Bug</string>
+    <!--我操作过的Bug信息-->
+    <string name="my_opt_title">我操作过的Bug</string>
+
+
+    <!--用户管理列表界面信息-->
+    <string name="user_list_title">用户管理</string>
+    <string name="user_list_add">添加</string>
+    <string name="user_list_item_delete">删除</string>
+
+    <!--团队管理界面-->
+    <string name="group_list_title">团队管理</string>
+    <string name="group_list_item_delete">删除</string>
+
+    <!--项目管理界面-->
+    <string name="project_list_title">项目管理</string>
+
+    <!--添加用户界面-->
+    <string name="add_user_title">添加用户</string>
+    <string name="add_user_save">保存</string>
+    <string name="user_name">用户名称</string>
+    <string name="user_role">用户角色</string>
+    <string name="user_email">邮箱</string>
+
 
 </resources>

@@ -4,20 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.LocalInfo;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
-import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
-import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
+import com.gf.BugManagerMobile.view.SatelliteMenuLyt;
 import com.gf.BugManagerMobile.view.SlideView;
-
-import java.net.HttpURLConnection;
 
 /**
  * 所有缺陷管理界面的父类(除登录、设置、关于界面)
@@ -29,7 +22,7 @@ public class BaseActivity extends Activity {
     protected SlideView slideView;
     private ViewGroup mCenterContentLyt = null;
     private TextView slideLeftMenuUserNameTv, slideLeftMenuRoleNameTv;
-    private View mSatelliteMenuLyt;
+    private SatelliteMenuLyt mSatelliteMenuLyt;
 
     /**
      * 登录的用户信息
@@ -58,7 +51,8 @@ public class BaseActivity extends Activity {
         slideLeftMenuRoleNameTv = (TextView) findViewById(R.id.slide_left_role_name_tv);
         slideLeftMenuUserNameTv.setText(loginSuccessInfo.getUserName());
         slideLeftMenuRoleNameTv.setText(loginSuccessInfo.getRoleName());
-        mSatelliteMenuLyt = findViewById(R.id.satellite_menu_lyt);
+        mSatelliteMenuLyt = (SatelliteMenuLyt) findViewById(R.id.satellite_menu_lyt);
+        mSatelliteMenuLyt.setOnSatelliteMenuItemClickListener(onSatelliteMenuItemClickListener);
         if (loginSuccessInfo.getRoleId() == 0 || loginSuccessInfo.getRoleId() == 1) {
             mSatelliteMenuLyt.setVisibility(View.VISIBLE);
         } else {
@@ -138,6 +132,8 @@ public class BaseActivity extends Activity {
                     slideView.toggleMenu();
                     return;
                 }
+                Intent homeIntent = new Intent(this, HomeActivity.class);
+                startActivity(homeIntent);
                 break;
             case R.id.slide_left_menu_project_module:
                 if (this instanceof ProjectModuleActivity) {
@@ -148,10 +144,19 @@ public class BaseActivity extends Activity {
                 startActivity(projectModuleIntent);
                 break;
             case R.id.slide_left_menu_submit:
+                Intent submitIntent = new Intent(this, MyBugActivity.class);
+                submitIntent.putExtra(MyBugActivity.ACTIVITY_TYPE, MyBugActivity.TYPE_SUBMIT);
+                startActivity(submitIntent);
                 break;
             case R.id.slide_left_menu_assign:
+                Intent assignIntent = new Intent(this, MyBugActivity.class);
+                assignIntent.putExtra(MyBugActivity.ACTIVITY_TYPE, MyBugActivity.TYPE_ASSIGIN);
+                startActivity(assignIntent);
                 break;
             case R.id.slide_left_menu_opt:
+                Intent optIntent = new Intent(this, MyBugActivity.class);
+                optIntent.putExtra(MyBugActivity.ACTIVITY_TYPE, MyBugActivity.TYPE_OPT);
+                startActivity(optIntent);
                 break;
             case R.id.slide_left_menu_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
@@ -163,6 +168,25 @@ public class BaseActivity extends Activity {
                 break;
         }
     }
+
+    private SatelliteMenuLyt.OnSatelliteMenuItemClickListener onSatelliteMenuItemClickListener =
+        new SatelliteMenuLyt.OnSatelliteMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(int index, String tag, View childView) {
+                if ("user".equals(tag)) {
+                    Intent userIntent = new Intent(BaseActivity.this, UserListActivity.class);
+                    startActivity(userIntent);
+                } else if ("group".equals(tag)) {
+                    Intent groupIntent = new Intent(BaseActivity.this, GroupListActivity.class);
+                    startActivity(groupIntent);
+                } else if ("project".equals(tag)) {
+                    Intent projectIntent = new Intent(BaseActivity.this, ProjectListActivity.class);
+                    startActivity(projectIntent);
+                } else if ("setting".equals(tag)) {
+
+                }
+            }
+        };
 
     /**
      * 点击退出登录按钮

@@ -1,15 +1,17 @@
 package com.gf.BugManagerMobile.models;
 
+import java.util.List;
+
 /**
- * 项目信息封装
- * Created by Administrator on 5/15 0015.
+ * 用户团队信息
+ * Created by GuLang on 2015-05-20.
  */
-public class Project {
-    private static final String TAG = "Project";
+public class Group {
+    private static final String TAG = "Group";
 
     private int id;
     private String name;
-    private int group_id;
+    private List<User> member;
     private int creator;
     private String create_time;
     private String introduce;
@@ -30,12 +32,12 @@ public class Project {
         this.name = name;
     }
 
-    public int getGroup_id() {
-        return group_id;
+    public List<User> getMember() {
+        return member;
     }
 
-    public void setGroup_id(int group_id) {
-        this.group_id = group_id;
+    public void setMember(List<User> member) {
+        this.member = member;
     }
 
     public int getCreator() {
@@ -64,7 +66,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", name='" + name + '\'' + ", group_id=" + group_id + ", creator=" + creator
+        return "Group{" + "id=" + id + ", name='" + name + '\'' + ", member=" + member + ", creator=" + creator
             + ", create_time='" + create_time + '\'' + ", introduce='" + introduce + '\'' + '}';
     }
 }

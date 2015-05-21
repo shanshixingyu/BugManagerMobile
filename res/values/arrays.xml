@@ -23,5 +23,11 @@
         <item>重新激活</item>
         <item>其它</item>
     </string-array>
+    <string-array name="UserRole">
+        <!--<item>超级管理员</item>-->
+        <item>管理人员</item>
+        <item>开发人员</item>
+        <item>测试人员</item>
+    </string-array>
 
 </resources>

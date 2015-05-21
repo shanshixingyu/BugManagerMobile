@@ -12,14 +12,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.LocalInfo;
+import com.gf.BugManagerMobile.models.User;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.utils.RegexUtils;
 import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
 
-import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class LoginActivity extends Activity {
     private static final String TAG = "LoginActivity";
@@ -69,7 +70,6 @@ public class LoginActivity extends Activity {
                     passwordEt.setText("");
                     return;
                 }
-
                 // 看是否保存密码
                 if (rememberChk.isChecked()) {
                     SharedPreferenceUtils.save(this, MyConstant.SP_USER_NAME, userName);
@@ -77,54 +77,57 @@ public class LoginActivity extends Activity {
                 }
                 final String targetIp = SharedPreferenceUtils.queryString(this, MyConstant.SERVER_IP);
                 final String dataStr = "name=" + userName + "&password=" + password;
-
-                HttpVisitUtils.OnHttpFinishListener onHttpFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
-                    @Override
-                    public void onVisitFinish(HttpResult result) {
-                        if (result == null)
-                            throw new NullPointerException("网络访问时回调方法返回为空指针");
-                        // Log.i(TAG, result.toString());
-                        if (result.isVisitSuccess()) {
-                            LoginSuccessInfo loginSuccessInfo =
-                                JSON.parseObject(result.getResult(), LoginSuccessInfo.class);
-                            // 保存到配置文件中
-                            SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_USE_NAME,
-                                loginSuccessInfo.getUserName());
-                            SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_NAME,
-                                loginSuccessInfo.getRoleName());
-                            SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_PASSWORD,
-                                loginSuccessInfo.getPassword());
-                            SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_ID,
-                                loginSuccessInfo.getRoleId());
-
-                            LocalInfo.setLoginSuccessInfo(loginSuccessInfo);
-
-                            Log.i(TAG, "登录成功：" + loginSuccessInfo.toString());
-
-                            // 跳转到主页
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                            LoginActivity.this.finish();
-
-                        } else if (result.getCode() == MyConstant.VISIT_CODE_NO_OK) {
-                            /* 登录失败 */
-                            Toast.makeText(LoginActivity.this, R.string.login_failure, Toast.LENGTH_SHORT).show();
-                        } else if (result.getCode() == MyConstant.VISIT_CODE_CONNECT_TIME_OUT) {
-                            /* 连接超时 */
-                            Toast.makeText(LoginActivity.this, R.string.login_time_out, Toast.LENGTH_SHORT).show();
-                        } else {
-                            /* 连接错错误或者其它 */
-                            Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
-                Log.i(TAG, LocalInfo.getBaseUrl(LoginActivity.this) + "site/login");
                 HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(LoginActivity.this) + "site/login", dataStr,
                     true, getResources().getString(R.string.login_loading), onHttpFinishListener);
+
                 break;
             default:
         }
     }
+
+    private HttpVisitUtils.OnHttpFinishListener onHttpFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+        @Override
+        public void onVisitFinish(HttpResult result) {
+            if (result == null)
+                throw new NullPointerException("网络访问时回调方法返回为空指针");
+            if (result.isVisitSuccess()) {
+                try {
+                    LoginSuccessInfo loginSuccessInfo = JSON.parseObject(result.getResult(), LoginSuccessInfo.class);
+                    // 保存到配置文件中
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_USE_ID,
+                        loginSuccessInfo.getUserId());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_USE_NAME,
+                        loginSuccessInfo.getUserName());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_PASSWORD,
+                        loginSuccessInfo.getPassword());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_ID,
+                        loginSuccessInfo.getRoleId());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_NAME,
+                        loginSuccessInfo.getRoleName());
+
+                    LocalInfo.setLoginSuccessInfo(loginSuccessInfo);
+
+                    Log.i(TAG, "登录成功：" + loginSuccessInfo.toString());
+
+                    // 跳转到主页
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    LoginActivity.this.finish();
+                } catch (Exception e) {
+                    Toast.makeText(LoginActivity.this, R.string.login_parse_failure, Toast.LENGTH_SHORT).show();
+                }
+            } else if (result.getCode() == MyConstant.VISIT_CODE_NO_OK) {
+                /* 登录失败 */
+                Toast.makeText(LoginActivity.this, R.string.login_failure, Toast.LENGTH_SHORT).show();
+            } else if (result.getCode() == MyConstant.VISIT_CODE_CONNECT_TIME_OUT) {
+                /* 连接超时 */
+                Toast.makeText(LoginActivity.this, R.string.login_time_out, Toast.LENGTH_SHORT).show();
+            } else {
+                /* 连接错错误或者其它 */
+                Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

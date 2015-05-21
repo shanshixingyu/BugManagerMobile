@@ -18,8 +18,8 @@ public class PopWindowUtils {
 
     public static PopupWindow getHomeOptPopWindow(final Context context) {
         final PopupWindow popupWindow = new PopupWindow();
-        popupWindow.setWidth(275);
-        popupWindow.setHeight(200);
+        popupWindow.setWidth(SizeUtils.dp2px(context, 135));
+        popupWindow.setHeight(SizeUtils.dp2px(context, 100));
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -33,6 +33,12 @@ public class PopWindowUtils {
             }
         });
         popupWindow.setContentView(contentView);
+        return popupWindow;
+    }
+
+    public static PopupWindow getBugDetailOptPopWindow(final Context context) {
+        final PopupWindow popupWindow = new PopupWindow();
+
         return popupWindow;
     }
 

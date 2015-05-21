@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.LocalInfo;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.models.PimInfo;
 import com.gf.BugManagerMobile.models.User;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;

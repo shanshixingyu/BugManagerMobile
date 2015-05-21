@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gf.BugManagerMobile.view.SlideItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:overScrollMode="never"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/slide_item_first"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:clickable="true"
+            android:background="@drawable/list_item_selector"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/user_list_item_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="21dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/user_list_item_role_tv"
+                    android:layout_width="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="#555555"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/user_list_item_email_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15dp"
+                    android:text="shanshixingyu@qq.com"
+                    android:textColor="#555555" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/slide_item_second"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_item_delete"
+            android:gravity="center"
+            android:clickable="true"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            android:text="@string/user_list_item_delete" />
+    </LinearLayout>
+
+</com.gf.BugManagerMobile.view.SlideItemView>

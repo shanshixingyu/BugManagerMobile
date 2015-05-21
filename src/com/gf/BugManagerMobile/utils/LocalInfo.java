@@ -1,11 +1,12 @@
-package com.gf.BugManagerMobile.models;
+package com.gf.BugManagerMobile.utils;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
-import com.gf.BugManagerMobile.utils.MyConstant;
-import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
+import android.widget.Toast;
+import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 
-import java.util.Observable;
+import java.io.File;
 
 /**
  * 本次运行系统需要的静态变量
@@ -46,12 +47,13 @@ public class LocalInfo {
                 if (mLoginSuccessInfo == null) {
                     // 从配置文件中获取
                     mLoginSuccessInfo = new LoginSuccessInfo();
+                    mLoginSuccessInfo.setUserId(SharedPreferenceUtils.queryInt(context, MyConstant.SP_LOGIN_USE_ID));
                     mLoginSuccessInfo.setUserName(SharedPreferenceUtils.queryString(context,
-                            MyConstant.SP_LOGIN_USE_NAME));
+                        MyConstant.SP_LOGIN_USE_NAME));
                     mLoginSuccessInfo.setRoleName(SharedPreferenceUtils.queryString(context,
-                            MyConstant.SP_LOGIN_ROLE_NAME));
+                        MyConstant.SP_LOGIN_ROLE_NAME));
                     mLoginSuccessInfo.setPassword(SharedPreferenceUtils.queryString(context,
-                            MyConstant.SP_LOGIN_PASSWORD));
+                        MyConstant.SP_LOGIN_PASSWORD));
                     mLoginSuccessInfo.setRoleId(SharedPreferenceUtils.queryInt(context, MyConstant.SP_LOGIN_ROLE_ID));
                 }
             }
@@ -132,6 +134,16 @@ public class LocalInfo {
 
     /**
      * 获得附件路径
+     * @param context
+     * @return
+     */
+    public static String getAttachmentFileUrl(Context context) {
+        String baseWebPath = getWebUrl(context);
+        return baseWebPath + "BufferFile/attachments/";
+    }
+
+    /**
+     * 获得附件路径
      *
      * @param context
      * @return
@@ -141,5 +153,21 @@ public class LocalInfo {
         return baseWebPath + "BufferFile/attachments/";
     }
 
-
+    /**
+     * 获得下载附件在本地的保存路径
+     * @return
+     * @throws IllegalStateException 
+     */
+    public static String getAttachmentSavePath()
+        throws IllegalStateException {
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+            throw new IllegalStateException("存储出现问题");
+        String dirPath = Environment.getExternalStorageDirectory() + "/BugManagerMobile/download/attachment/";
+        File directionFile = new File(dirPath);
+        if (!directionFile.exists()) {
+            boolean success = directionFile.mkdirs();
+            Log.i(TAG, "目录不存在，并且创建目录结果为：" + success);
+        }
+        return dirPath;
+    }
 }

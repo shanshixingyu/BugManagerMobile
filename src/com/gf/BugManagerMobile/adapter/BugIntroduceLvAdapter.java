@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.gf.BugManagerMobile.R;
 import com.gf.BugManagerMobile.models.BugIntroduceItem;
-import com.gf.BugManagerMobile.models.LocalInfo;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 import java.util.ArrayList;
 import java.util.List;

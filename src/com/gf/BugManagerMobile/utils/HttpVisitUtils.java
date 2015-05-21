@@ -1,16 +1,17 @@
 package com.gf.BugManagerMobile.utils;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
+import com.gf.BugManagerMobile.view.ConfirmDialog;
 import com.gf.BugManagerMobile.view.DotProgressDialog;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
@@ -99,15 +100,23 @@ public class HttpVisitUtils {
                         while ((len = inputStream.read(buffer)) != -1) {
                             byteArrayOutputStream.write(buffer, 0, len);
                         }
-                        String resultData = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
-                        byteArrayOutputStream.close();
                         /* 成功，保存Cookie */
                         saveCookie(context, httpConnection);
+                        String resultData = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
+                        byteArrayOutputStream.close();
+                        inputStream.close();
+
                         Log.i(TAG, "post返回的结果:" + resultData);
-                        HttpResult httpResult = JSON.parseObject(resultData, HttpResult.class);
-                        httpResult.setHttpResponseCode(responseCode);
-                        /* 访问正常，需回调返回结果 */
-                        httpFinishMessage.obj = new DataHolder(httpResult, listener, dialog);
+                        try {
+                            HttpResult httpResult = JSON.parseObject(resultData, HttpResult.class);
+                            httpResult.setHttpResponseCode(responseCode);
+                            /* 访问正常，需回调返回结果 */
+                            httpFinishMessage.obj = new DataHolder(httpResult, listener, dialog);
+                        } catch (Exception e) {
+                            httpFinishMessage.obj =
+                                new DataHolder(new HttpResult(MyConstant.VISIT_CODE_NO_OK, responseCode, "解析失败", ""),
+                                    listener, dialog);
+                        }
                     } else {
                         httpFinishMessage.obj =
                             new DataHolder(new HttpResult(MyConstant.VISIT_CODE_NO_OK, responseCode, "状态码不为200", ""),
@@ -169,10 +178,12 @@ public class HttpVisitUtils {
                         while ((len = inputStream.read(buffer)) != -1) {
                             byteArrayOutputStream.write(buffer, 0, len);
                         }
-                        String resultData = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
-                        byteArrayOutputStream.close();
                         /* 成功，保存Cookie */
                         saveCookie(context, httpConnection);
+                        String resultData = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
+                        byteArrayOutputStream.close();
+                        inputStream.close();
+
                         HttpResult httpResult = JSON.parseObject(resultData, HttpResult.class);
                         httpResult.setHttpResponseCode(httpResponseCode);
                         /* 访问正常，需回调返回结果 */
@@ -197,6 +208,78 @@ public class HttpVisitUtils {
             }
         };
         threadPool.execute(runnable);
+    }
+
+    public static void downloadFile(final Context context, final String urlPath, final String fileName,
+        final boolean isShowDialog, final String dialogMessage) {
+        if (urlPath == null || "".equals(urlPath.trim()))
+            throw new IllegalArgumentException("URL地址不能为空");
+        Log.i(TAG, "文件名称:" + fileName + ",url地址：" + urlPath);
+        final File saveFile = new File(LocalInfo.getAttachmentSavePath() + fileName);
+        DotProgressDialog dotProgressDialog = null;
+        if (isShowDialog) {
+            dotProgressDialog = new DotProgressDialog(context);
+            dotProgressDialog.setMessage(dialogMessage);
+            dotProgressDialog.show();
+        }
+        final DotProgressDialog dialog = dotProgressDialog;
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+                try {
+                    URL loginUrl = new URL(urlPath);
+                    HttpURLConnection httpConnection = (HttpURLConnection) loginUrl.openConnection();
+                    httpConnection.setDoInput(true);
+                    httpConnection.setUseCaches(false);
+                    httpConnection.setConnectTimeout(5000);
+                    httpConnection.setRequestMethod("GET");
+                    // 使用Cookie
+                    useCookie(context, httpConnection);
+                    httpConnection.setRequestProperty("Charset", "UTF-8");
+                    httpConnection.setRequestProperty("Connection", "Keep-Alive");
+                    httpConnection.setRequestProperty("Accept",
+                        "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+                    httpConnection.setRequestProperty("Accept-Encoding", "gzip, deflate");
+
+                    int httpResponseCode = httpConnection.getResponseCode();
+                    Log.i(TAG, "得到响应码" + httpResponseCode);
+                    if (httpResponseCode == HttpURLConnection.HTTP_OK) {
+                        InputStream inputStream = httpConnection.getInputStream();
+                        if (!saveFile.exists())
+                            saveFile.createNewFile();
+                        FileOutputStream fileOutputStream = new FileOutputStream(saveFile);
+                        byte[] buffer = new byte[1024];
+                        int len;
+                        while ((len = inputStream.read(buffer)) != -1) {
+                            fileOutputStream.write(buffer, 0, len);
+                        }
+                        /* 成功，保存Cookie */
+                        saveCookie(context, httpConnection);
+                        fileOutputStream.close();
+                        inputStream.close();
+
+                        /* 访问正常，需回调返回结果 */
+                        return "下载完成";
+                    } else {
+                        return "状态码不是200";
+                    }
+                } catch (SocketTimeoutException e) {
+                    return "网络连接超时";
+                } catch (Exception e) {
+                    return "网络连接问题";
+                } finally {
+                    if (dialog != null)
+                        dialog.dismiss();
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                Toast.makeText(context, "" + s, Toast.LENGTH_SHORT).show();
+            }
+        }.execute();
+
     }
 
     /**

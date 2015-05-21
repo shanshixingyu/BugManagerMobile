@@ -11,6 +11,7 @@ import com.gf.BugManagerMobile.adapter.ModuleSpinnerAdapter;
 import com.gf.BugManagerMobile.models.*;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import org.json.JSONObject;
 
@@ -42,7 +43,7 @@ public class SearchBugActivity extends BaseActivity {
         initComponent();
 
         HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/get-module-member&projectId=" + projectId,
-                true, "正在加载模块..", loadModuleFinishListener);
+            true, "正在加载模块..", loadModuleFinishListener);
 
     }
 
@@ -94,8 +95,8 @@ public class SearchBugActivity extends BaseActivity {
                 return;
             // Log.i(TAG, "点击后得到的值:" + module.toString());
             String url =
-                    LocalInfo.getBaseUrl(SearchBugActivity.this) + "bug/get-assign&projectId=" + projectId + "&moduleId="
-                            + module.getId();
+                LocalInfo.getBaseUrl(SearchBugActivity.this) + "bug/get-assign&projectId=" + projectId + "&moduleId="
+                    + module.getId();
             HttpVisitUtils.getHttpVisit(SearchBugActivity.this, url, true, "加载指派人..", onGetAssignFinishListener);
         }
 
@@ -135,7 +136,7 @@ public class SearchBugActivity extends BaseActivity {
                 SpinnerAdapter moduleSpinnerAdapter = moduleSpinner.getAdapter();
                 if (moduleSpinnerAdapter != null) {
                     final Module module =
-                            (Module) moduleSpinnerAdapter.getItem(moduleSpinner.getSelectedItemPosition());
+                        (Module) moduleSpinnerAdapter.getItem(moduleSpinner.getSelectedItemPosition());
                     if (module == null)
                         searchBugCondition.setModuleId(-1);
                     else
@@ -143,20 +144,23 @@ public class SearchBugActivity extends BaseActivity {
                 }
                 searchBugCondition.setPriority(prioritySpinner.getSelectedItemPosition());
                 searchBugCondition.setSerious(seriousSpinner.getSelectedItemPosition());
-                final User assign = (User) assignSpinner.getAdapter().getItem(assignSpinner.getSelectedItemPosition());
-                if (assign == null)
-                    searchBugCondition.setAssign(-1);
-                else
-                    searchBugCondition.setAssign(assign.getId());
+                SpinnerAdapter assignAdapter = assignSpinner.getAdapter();
+                if (assignAdapter != null) {
+                    final User assign = (User) assignAdapter.getItem(assignSpinner.getSelectedItemPosition());
+                    if (assign == null)
+                        searchBugCondition.setAssign(-1);
+                    else
+                        searchBugCondition.setAssign(assign.getId());
+                }
                 searchBugCondition.setSubmit(submitEt.getText().toString());
                 searchBugCondition.setStatus(statusSpinner.getSelectedItemPosition());
                 searchBugCondition.setKeyWord(keyWordEt.getText().toString());
 
-//                Log.i(TAG, "查询条件：" + searchBugCondition.getRequestCondition());
+                // Log.i(TAG, "查询条件：" + searchBugCondition.getRequestCondition());
 
                 Intent bugListIntent = new Intent(this, BugListActivity.class);
                 bugListIntent.putExtra(MyConstant.SEARCH_BUG_2_BUG_LIST_CONDITION,
-                        searchBugCondition.getRequestCondition());
+                    searchBugCondition.getRequestCondition());
                 startActivity(bugListIntent);
                 break;
             default:

@@ -23,6 +23,12 @@ public class SlideItemView extends HorizontalScrollView {
     private Scroller mScroller;
     private boolean once = true;
 
+    public enum SlideItemState {
+        Open, Close
+    }
+
+    private SlideItemState mSlideItemState = SlideItemState.Close;
+
     public SlideItemView(Context context) {
         this(context, null);
     }
@@ -66,9 +72,11 @@ public class SlideItemView extends HorizontalScrollView {
             if (scrollX > secondWidth / 2) {
                 mScroller.startScroll(scrollX, 0, secondWidth - scrollX, 0);
                 invalidate();
+                mSlideItemState = SlideItemState.Open;
             } else {
                 mScroller.startScroll(scrollX, 0, -scrollX, 0);
                 invalidate();
+                mSlideItemState = SlideItemState.Close;
             }
 
         }
@@ -82,4 +90,55 @@ public class SlideItemView extends HorizontalScrollView {
             postInvalidate();
         }
     }
+
+    /**
+     * 关闭
+     */
+    public void smoothCloseItem() {
+        if (mSlideItemState == SlideItemState.Open) {
+            if (mScroller == null)
+                mScroller = new Scroller(getContext());
+            if (!mScroller.isFinished())
+                mScroller.forceFinished(true);
+            int scrollX = getScrollX();
+            mScroller.startScroll(scrollX, 0, -scrollX, 0);
+            invalidate();
+            mSlideItemState = SlideItemState.Close;
+        }
+    }
+
+    /**
+     * 关闭
+     */
+    public void closeItem() {
+        if (mSlideItemState == SlideItemState.Open) {
+            scrollTo(0, 0);
+        }
+    }
+
+    /**
+     * 打开
+     */
+    public void smoothOpenItem() {
+        if (mSlideItemState == SlideItemState.Close) {
+            if (mScroller == null)
+                mScroller = new Scroller(getContext());
+            if (!mScroller.isFinished())
+                mScroller.forceFinished(true);
+            int scrollX = getScrollX();
+            mScroller.startScroll(scrollX, 0, mSecondChildView.getMeasuredWidth() - scrollX, 0);
+            invalidate();
+            mSlideItemState = SlideItemState.Close;
+        }
+    }
+
+    /**
+     * 打开
+     */
+    public void openItem() {
+        if (mSlideItemState == SlideItemState.Close) {
+            scrollTo(mSecondChildView.getMeasuredWidth(), 0);
+        }
+    }
+
 }

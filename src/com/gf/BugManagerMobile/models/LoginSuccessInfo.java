@@ -10,10 +10,19 @@ import android.os.Parcelable;
 public class LoginSuccessInfo implements Parcelable {
     private static final String TAG = "LoginSucessInfo";
 
+    private int userId;
     private String userName;
     private String roleName;
     private String password;
     private int roleId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -54,6 +63,7 @@ public class LoginSuccessInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(userId);
         dest.writeString(userName);
         dest.writeString(roleName);
         dest.writeString(password);
@@ -69,6 +79,7 @@ public class LoginSuccessInfo implements Parcelable {
         @Override
         public LoginSuccessInfo createFromParcel(Parcel source) {
             LoginSuccessInfo loginSuccessInfo = new LoginSuccessInfo();
+            loginSuccessInfo.setUserId(source.readInt());
             loginSuccessInfo.setUserName(source.readString());
             loginSuccessInfo.setRoleName(source.readString());
             loginSuccessInfo.setPassword(source.readString());
@@ -79,7 +90,7 @@ public class LoginSuccessInfo implements Parcelable {
 
     @Override
     public String toString() {
-        return "LoginSucessInfo{" + "userName='" + userName + '\'' + ", roleName='" + roleName + '\'' + ", password='"
-            + password + '\'' + ", roleId=" + roleId + '}';
+        return "LoginSuccessInfo{" + "userId=" + userId + ", userName='" + userName + '\'' + ", roleName='" + roleName
+            + '\'' + ", password='" + password + '\'' + ", roleId=" + roleId + ", CREATOR=" + CREATOR + '}';
     }
 }

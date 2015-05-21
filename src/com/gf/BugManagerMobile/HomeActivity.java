@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.HomeBugOverLvAdapter;
 import com.gf.BugManagerMobile.models.ProjectBugOverview;
 import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.LocalInfo;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;

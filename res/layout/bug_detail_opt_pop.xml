@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="#00000000"
+              android:paddingRight="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <View
+        android:layout_width="20dp"
+        android:layout_height="16dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_opt_triangle"/>
+
+    <TextView
+        android:id="@+id/bug_detail_opt_solve_tv"
+        android:background="@drawable/bug_detail_opt_top_selector"
+        android:text="@string/bug_detail_opt_solve"
+        style="@style/BugDetailOptItem"/>
+
+    <TextView
+        android:id="@+id/bug_detail_opt_modify_tv"
+        android:background="@drawable/bug_detail_opt_middle_selector"
+        android:text="@string/bug_detail_opt_modify"
+        style="@style/BugDetailOptItem"/>
+
+    <TextView
+        android:id="@+id/bug_detail_opt_active_tv"
+        android:background="@drawable/bug_detail_opt_middle_selector"
+        android:text="@string/bug_detail_opt_active"
+        style="@style/BugDetailOptItem"/>
+
+    <TextView
+        android:id="@+id/bug_detail_opt_close_tv"
+        android:background="@drawable/bug_detail_opt_middle_selector"
+        android:text="@string/bug_detail_opt_close"
+        style="@style/BugDetailOptItem"/>
+
+    <TextView
+        android:id="@+id/bug_detail_opt_delete_tv"
+        android:background="@drawable/bug_detail_opt_bottom_selector"
+        android:text="@string/bug_detail_opt_delete"
+        style="@style/BugDetailOptItem"/>
+
+</LinearLayout>

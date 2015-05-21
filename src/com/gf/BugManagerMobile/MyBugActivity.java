@@ -7,88 +7,91 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.BugListAdapter;
 import com.gf.BugManagerMobile.models.Bug;
 import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import org.json.JSONObject;
+
 import java.util.List;
 
 /**
- * 项目缺陷列表
- * Created by Administrator on 5/15 0015.
+ * 我提交的Bug信息列表
+ * Created by GuLang on 2015-05-18.
  */
-public class BugListActivity extends Activity {
-    private static final String TAG = "BugListActivity";
+public class MyBugActivity extends Activity {
+    private static final String TAG = "MySubmitActivity";
+
+    public static final String ACTIVITY_TYPE = "ActivityTyp";
+    public static final String TYPE_SUBMIT = "Submit";
+    public static final String TYPE_ASSIGIN = "Assign";
+    public static final String TYPE_OPT = "Opt";
+
+    private String activityType;
 
     private static final int MSG_REFRESH_CLOSE = 0x011;
 
-    private String mSearchBugCondition;
     private PullToRefreshListView bugPullToRefreshListLv;
     private BugListAdapter mBugListAdapter;
+    private TextView titleTv;
+    private String mVisitUrl = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_bug_list);
-        // setCenterContentLyt(R.layout.page_bug_list);
+        setContentView(R.layout.activity_my_person_bug_list);
 
-        bugPullToRefreshListLv = (PullToRefreshListView) findViewById(R.id.bug_list_lv);
+        titleTv = (TextView) findViewById(R.id.bug_list_title_tv);
+
+        activityType = getIntent().getStringExtra(ACTIVITY_TYPE);
+        if (activityType == null || TYPE_SUBMIT.equals(activityType)) {
+            activityType = TYPE_SUBMIT;
+            titleTv.setText(R.string.my_submit_title);
+            mVisitUrl = LocalInfo.getBaseUrl(this) + "person/submit";
+        } else if (TYPE_ASSIGIN.equals(activityType)) {
+            titleTv.setText(R.string.my_assign_title);
+            mVisitUrl = LocalInfo.getBaseUrl(this) + "person/assign";
+        } else {
+            titleTv.setText(R.string.my_opt_title);
+            mVisitUrl = LocalInfo.getBaseUrl(this) + "person/opt";
+        }
+
+        bugPullToRefreshListLv = (PullToRefreshListView) findViewById(R.id.my_submit_lv);
         bugPullToRefreshListLv.setMode(PullToRefreshBase.Mode.BOTH);
         mBugListAdapter = new BugListAdapter(this, null);
         bugPullToRefreshListLv.setAdapter(mBugListAdapter);
+        bugPullToRefreshListLv.setMode(PullToRefreshBase.Mode.BOTH);
         bugPullToRefreshListLv.setOnRefreshListener(onRefreshListener2);
         bugPullToRefreshListLv.setOnItemClickListener(onItemClickListener);
 
-        mSearchBugCondition = getIntent().getStringExtra(MyConstant.SEARCH_BUG_2_BUG_LIST_CONDITION);
-        if (mSearchBugCondition == null) {
-            Toast.makeText(this, "传递查询条件的时候出现异常", Toast.LENGTH_SHORT).show();
-        } else {
-            Log.i(TAG, TAG + "查询条件：" + mSearchBugCondition);
-            HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/search-bug", mSearchBugCondition,
-                true, "加载数据中...", onResetFinishListener);
-        }
+        HttpVisitUtils.getHttpVisit(this, mVisitUrl, true, "加载数据中...", onResetFinishListener);
     }
 
     private PullToRefreshBase.OnRefreshListener2 onRefreshListener2 = new PullToRefreshBase.OnRefreshListener2() {
         @Override
         public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-            if (mSearchBugCondition == null) {
-                Toast.makeText(BugListActivity.this, "查询条件为空", Toast.LENGTH_SHORT).show();
-                mHander.obtainMessage(MSG_REFRESH_CLOSE).sendToTarget();
-                return;
-            }
-            // Log.i(TAG, TAG + "查询条件：" + mSearchBugCondition);
-            // Log.i(TAG, "从顶部拉动");
-            HttpVisitUtils.postHttpVisit(BugListActivity.this, LocalInfo.getBaseUrl(BugListActivity.this)
-                + "bug/search-bug", mSearchBugCondition, true, "加载数据中...", onResetFinishListener);
+            HttpVisitUtils.getHttpVisit(MyBugActivity.this, mVisitUrl, true, "加载数据中...", onResetFinishListener);
         }
 
         @Override
         public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-            if (mSearchBugCondition == null) {
-                Toast.makeText(BugListActivity.this, "查询条件为空", Toast.LENGTH_SHORT).show();
-                mHander.obtainMessage(MSG_REFRESH_CLOSE).sendToTarget();
-                return;
-            }
-            // Log.i(TAG, TAG + "查询条件：" + mSearchBugCondition);
-            // Log.i(TAG, "从底部拉动");
             int currentPage = mBugListAdapter.getCurrentPage();
             if (currentPage >= mBugListAdapter.getPageCount()) {
-                Toast.makeText(BugListActivity.this, "已经是最后一页了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyBugActivity.this, "已经是最后一页了", Toast.LENGTH_SHORT).show();
                 mHander.obtainMessage(MSG_REFRESH_CLOSE).sendToTarget();
                 return;
             }
-            HttpVisitUtils.postHttpVisit(BugListActivity.this, LocalInfo.getBaseUrl(BugListActivity.this)
-                + "bug/search-bug&page=" + (currentPage + 1) + "&per-page=10", mSearchBugCondition, true, "加载数据中...",
-                onAddFinishListener);
+            HttpVisitUtils.getHttpVisit(MyBugActivity.this, mVisitUrl + "&page=" + (currentPage + 1) + "&per-page=10",
+                true, "加载数据中...", onAddFinishListener);
         }
     };
 
@@ -97,6 +100,18 @@ public class BugListActivity extends Activity {
         public void handleMessage(Message msg) {
             if (msg.what == MSG_REFRESH_CLOSE)
                 bugPullToRefreshListLv.onRefreshComplete();
+        }
+    };
+
+    private AbsListView.OnScrollListener onScrollListener = new AbsListView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(AbsListView absListView, int i) {
+            Log.i(TAG, "onScrollStateChanged" + i);
+        }
+
+        @Override
+        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+            Log.i(TAG, "onScroll" + i);
         }
     };
 
@@ -113,10 +128,10 @@ public class BugListActivity extends Activity {
                         mBugListAdapter.setPageCount(jsonObject.getInt("pageCount"));
                         mBugListAdapter.setCurrentPage(jsonObject.getInt("currentPage"));
                     } catch (Exception e) {
-                        Toast.makeText(BugListActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(BugListActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyBugActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             bugPullToRefreshListLv.onRefreshComplete();
@@ -137,10 +152,10 @@ public class BugListActivity extends Activity {
                         mBugListAdapter.setPageCount(jsonObject.getInt("pageCount"));
                         mBugListAdapter.setCurrentPage(jsonObject.getInt("currentPage"));
                     } catch (Exception e) {
-                        Toast.makeText(BugListActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(BugListActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyBugActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             bugPullToRefreshListLv.onRefreshComplete();
@@ -163,13 +178,12 @@ public class BugListActivity extends Activity {
             Log.i(TAG, "position=" + position);
             final Bug bug = (Bug) mBugListAdapter.getItem(position - 1);
             if (bug == null) {
-                Toast.makeText(BugListActivity.this, "获取选中项数据失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyBugActivity.this, "获取选中项数据失败", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Intent intent = new Intent(BugListActivity.this, BugDetailActivity.class);
+            Intent intent = new Intent(MyBugActivity.this, BugDetailActivity.class);
             intent.putExtra(MyConstant.BUG_LIST_2_BUG_DETAIL_BUG_ID, bug.getId());
             startActivity(intent);
-
         }
     };
 

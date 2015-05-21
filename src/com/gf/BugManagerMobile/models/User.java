@@ -12,7 +12,7 @@ public class User {
     private String email;
     private String name;
     private String create_time;
-    private String creator;
+    private int creator;
 
     public int getId() {
         return id;
@@ -54,13 +54,21 @@ public class User {
         this.create_time = create_time;
     }
 
-    public String getCreator() {
+    public int getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(int creator) {
         this.creator = creator;
     }
+
+    // public String getCreator() {
+    // return creator;
+    // }
+    //
+    // public void setCreator(String creator) {
+    // this.creator = creator;
+    // }
 
     @Override
     public String toString() {

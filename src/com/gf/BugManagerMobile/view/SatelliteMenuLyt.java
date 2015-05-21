@@ -106,7 +106,7 @@ public class SatelliteMenuLyt extends ViewGroup {
             drawHeightBottom = getMeasuredHeight() - getPaddingBottom() - distanceBottom;
 
             // 获得主按钮的宽高
-//            centerView = getChildAt(0);
+            // centerView = getChildAt(0);
             int centerImgvWidth = centerView.getMeasuredWidth();
             int centerImgvHeight = centerView.getMeasuredHeight();
             centerViewLeft = drawWidthRight - centerImgvWidth;
@@ -136,7 +136,7 @@ public class SatelliteMenuLyt extends ViewGroup {
             Point point = new Point();
             point.x = tempRight - childView.getMeasuredWidth();
             point.y = tempBottom - childView.getMeasuredHeight();
-            childView.setTag(new MenuItemViewHolder(i, point));
+            childView.setTag(new MenuItemViewHolder(i, point, childView.getTag().toString()));
             childView.setOnClickListener(otherItemOnClickListener);
 
             /* 初始显示位置 */
@@ -167,7 +167,7 @@ public class SatelliteMenuLyt extends ViewGroup {
      */
     private OnClickListener otherItemOnClickListener = new OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if (status == Status.CLOSE)
                 return;
 
@@ -185,10 +185,15 @@ public class SatelliteMenuLyt extends ViewGroup {
             animatorSet.setDuration(200);
             animatorSet.start();
             /* 回调 */
-            if (onSatelliteMenuItemClickListener != null) {
-                MenuItemViewHolder itemViewHolder = (MenuItemViewHolder) v.getTag();
-                onSatelliteMenuItemClickListener.onMenuItemClick(itemViewHolder.index, v);
-            }
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (onSatelliteMenuItemClickListener != null) {
+                        MenuItemViewHolder itemViewHolder = (MenuItemViewHolder) v.getTag();
+                        onSatelliteMenuItemClickListener.onMenuItemClick(itemViewHolder.index, itemViewHolder.tag, v);
+                    }
+                }
+            }, 775);
             /* 收回菜单 */
             // toggleMenu();
             closeMenu(400);
@@ -255,15 +260,17 @@ public class SatelliteMenuLyt extends ViewGroup {
     private class MenuItemViewHolder {
         public int index;
         public Point openLocation;
+        public String tag;
 
-        public MenuItemViewHolder(int index, Point location) {
+        public MenuItemViewHolder(int index, Point location, String tag) {
             this.index = index;
             this.openLocation = location;
+            this.tag = tag;
         }
     }
 
     public interface OnSatelliteMenuItemClickListener {
-        public void onMenuItemClick(int index, View childView);
+        public void onMenuItemClick(int index, String tag, View childView);
     }
 
     /**

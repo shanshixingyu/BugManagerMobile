@@ -14,14 +14,17 @@ import com.gf.BugManagerMobile.adapter.ImageRlvAdapter;
 import com.gf.BugManagerMobile.models.*;
 import com.gf.BugManagerMobile.utils.BugUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
+import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.MyConstant;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.gf.BugManagerMobile.view.BugDetailOptPopWindow;
+import com.gf.BugManagerMobile.view.ConfirmDialog;
+import org.apache.http.util.EncodingUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +40,12 @@ public class BugDetailActivity extends Activity {
     private TextView nameTv, projectTv, moduleTv, statusTv, assignTv, priorityTv, creatorTv, createTimeTv, activeTv,
         closeTimeTv, imageTv, introduceTv, attachmentTv;
     private List<BugIntroduceItem> mBugIntroduceItems;
+    private String attachmentName = null;
+    private boolean solveItemStatus = false;
+    private boolean modifyItemStatus = false;
+    private boolean activeItemStatus = false;
+    private boolean closeItemStatus = false;
+    private boolean deleteItemStatus = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -147,14 +156,15 @@ public class BugDetailActivity extends Activity {
                         }
 
                     }
-                    String attachment = bug.getFile_path();
-                    if (attachment == null || "".equals(attachment.trim())) {
+                    attachmentName = bug.getFile_path();
+                    if (attachmentName == null || "".equals(attachmentName.trim())) {
                         attachmentTv.setVisibility(View.GONE);
                     } else {
                         attachmentTv.setVisibility(View.VISIBLE);
-                        attachmentTv.setText(bug.getFile_path());
+                        attachmentTv.setText(attachmentName);
                     }
 
+                    resetOptPopStatus(bug.getStatus(), creatorName);
                 } catch (JSONException e) {
                     Toast.makeText(BugDetailActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                 }
@@ -166,12 +176,72 @@ public class BugDetailActivity extends Activity {
 
     };
 
+    /**
+     * 重新设置操作弹窗的状态
+     * @param status
+     * @param creatorName
+     */
+    private void resetOptPopStatus(int status, String creatorName) {
+        /* 解决操作项：任何人 bug状态为未解决和重新激活时可操作 */
+        if (status == 1 || status == 3)
+            solveItemStatus = true;
+        else
+            solveItemStatus = false;
+
+        if (LocalInfo.getLoginSuccessInfo(this).getUserName().equals(creatorName)) {
+            /* 修改操作项：提交者 bug状态为除关闭外的所有状态可操作 */
+            if (status != 0)
+                modifyItemStatus = true;
+            else
+                modifyItemStatus = false;
+            /* 激活操作项：提交者 bug状态为已解决、关闭、其它状态是可操作 */
+            if (status == 0 || status == 2 || status == 4)
+                activeItemStatus = true;
+            else
+                activeItemStatus = false;
+            /* 关闭操作项：提交者 bug状态为已解决、其它状态可操作 */
+            if (status == 2 || status == 4)
+                closeItemStatus = true;
+            else
+                closeItemStatus = false;
+            /* 删除操作项：提交者 bug状态为任何状态下可操作 */
+            deleteItemStatus = true;
+        } else {
+            modifyItemStatus = false;
+            activeItemStatus = false;
+            closeItemStatus = false;
+            deleteItemStatus = false;
+        }
+        initOptPopWindow();
+    }
+
+    private BugDetailOptPopWindow mBugDetailOptPopWindow;
+
     public void onOptClick(View v) {
         switch (v.getId()) {
             case R.id.bug_detail_back_imgv:
                 this.finish();
                 break;
+            case R.id.bug_detail_opt:
+                initOptPopWindow();
+                mBugDetailOptPopWindow.showAsDropDown(v);
+                break;
         }
+    }
+
+    /**
+     * 设置操作弹窗的状态
+     */
+    private void initOptPopWindow() {
+        if (mBugDetailOptPopWindow == null) {
+            mBugDetailOptPopWindow = new BugDetailOptPopWindow(this);
+        }
+
+        mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Solve, solveItemStatus);
+        mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Modify, modifyItemStatus);
+        mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Active, activeItemStatus);
+        mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Close, closeItemStatus);
+        mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Delete, deleteItemStatus);
     }
 
     /**
@@ -184,14 +254,57 @@ public class BugDetailActivity extends Activity {
             Toast.makeText(this, "没有本缺陷的注释", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, BugIntroduceActivity.class);
-            // int count = mBugIntroduceItems.size();
-            // ArrayList<BugIntroduceItem> introduces = new ArrayList<BugIntroduceItem>();
-            // for (int i = count - 1; i >= 0; i--) {
-            // introduces.add(mBugIntroduceItems.get(i));
-            // }
             intent.putParcelableArrayListExtra(MyConstant.BUG_DETAIL_2_BUG_INTRODUCE,
                 (ArrayList<BugIntroduceItem>) mBugIntroduceItems);
             startActivity(intent);
         }
+    }
+
+    public void onAttachmentClick(View v) {
+        if (attachmentName == null || "".equals(attachmentName.trim())) {
+            Toast.makeText(this, "没有附件", Toast.LENGTH_SHORT).show();
+            attachmentTv.setVisibility(View.GONE);
+        } else {
+            final File saveFile = new File(LocalInfo.getAttachmentSavePath() + attachmentName);
+            if (saveFile.exists()) {
+                ConfirmDialog confirmDialog = new ConfirmDialog(this);
+                confirmDialog.setMessageTvText("保存的文件已经存在，继续下载将覆盖，是否继续？");
+                confirmDialog.setLeftBtnText("取消");
+                confirmDialog.setRightBtnText("继续");
+                confirmDialog.setOnConfirmDialogListener(onConfirmDialogListener);
+                confirmDialog.show();
+            } else {
+                downloadAttachmentFile();
+            }
+
+        }
+    }
+
+    private ConfirmDialog.OnConfirmDialogListener onConfirmDialogListener =
+        new ConfirmDialog.OnConfirmDialogListener() {
+            @Override
+            public void onLeftBtnClick(ConfirmDialog dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onRightBtnClick(ConfirmDialog dialog) {
+                dialog.dismiss();
+                downloadAttachmentFile();
+            }
+        };
+
+    /**
+     * 下载附件
+     */
+    private void downloadAttachmentFile() {
+        String name = null;
+        try {
+            name = URLEncoder.encode(attachmentName, "UTF-8");
+        } catch (Exception e) {
+            name = attachmentName;
+        }
+        String url = LocalInfo.getBaseUrl(this) + "bug/download&fileName=" + name;
+        HttpVisitUtils.downloadFile(this, url, attachmentName, true, "正在下载");
     }
 }
