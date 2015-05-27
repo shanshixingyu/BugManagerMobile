@@ -103,5 +103,6 @@ public class MyConstant {
     public static final String SEARCH_BUG_2_BUG_LIST_CONDITION = "search_bug_2_bug_list_condition";
     public static final String BUG_LIST_2_BUG_DETAIL_BUG_ID = "bug_list_2_bug_detail_bug_id";
     public static final String BUG_DETAIL_2_BUG_INTRODUCE = "bug_detail_2_bug_introduce";
+    public static final String USER_LIST_2_USER_MODIFY = "user_list_2_user_modify";
 
 }

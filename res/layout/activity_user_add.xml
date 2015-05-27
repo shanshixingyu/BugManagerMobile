@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/add_user_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:text="@string/add_user_title"
+            style="@style/TopOptTitleTheme" />
+
+        <Button
+            android:id="@+id/add_user_save_btn"
+            android:text="@string/add_user_save"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/user_name"
+            style="@style/UserItemTitle" />
+
+        <EditText
+            android:id="@+id/add_user_name_et"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/user_role"
+            style="@style/UserItemTitle" />
+
+        <Spinner
+            android:id="@+id/add_user_role_sp"
+            android:entries="@array/UserRole"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/user_email"
+            style="@style/UserItemTitle" />
+
+        <EditText
+            android:id="@+id/add_user_email_et"
+            android:inputType="textEmailAddress"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+
+</LinearLayout>

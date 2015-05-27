@@ -27,7 +27,7 @@ public class AddUserActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_user);
+        setContentView(R.layout.activity_user_add);
 
         userNameEt = (EditText) findViewById(R.id.add_user_name_et);
         userRoleSpinner = (Spinner) findViewById(R.id.add_user_role_sp);

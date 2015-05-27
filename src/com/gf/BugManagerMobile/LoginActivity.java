@@ -143,15 +143,22 @@ public class LoginActivity extends Activity {
                 startActivity(settingIntent);
                 break;
             case R.id.menu_about:
-                Intent testIntent = new Intent(this, TestActivity.class);
-                startActivity(testIntent);
+//                Intent testIntent = new Intent(this, TestActivity.class);
+//                startActivity(testIntent);
 
-                // Intent aboutIntent = new Intent(this, AboutActivity.class);
-                // startActivity(aboutIntent);
+                Intent aboutIntent = new Intent(this, AboutActivity.class);
+                startActivity(aboutIntent);
                 break;
             default:
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onTvClick(View v) {
+        if (v.getId() == R.id.login_reset_password) {
+            Intent intent = new Intent(this, ResetPasswordActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

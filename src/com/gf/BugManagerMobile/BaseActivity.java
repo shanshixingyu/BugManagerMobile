@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
+import com.gf.BugManagerMobile.models.HttpResult;
+import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 import com.gf.BugManagerMobile.utils.MyConstant;
@@ -194,30 +196,18 @@ public class BaseActivity extends Activity {
      * @param v
      */
     public void onExitClick(View v) {
+        // 返回结果如何都无关紧要了，但是必须在删除本地cookie前
+        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "site/logout", false, "", null);
+
         // 直接删除本地的Cookie
         SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.COOKIE);
+        SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.SP_LOGIN_USE_NAME);
+        SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.SP_LOGIN_USE_ID);
+        SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.SP_LOGIN_ROLE_ID);
+        SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.SP_LOGIN_ROLE_NAME);
+        SharedPreferenceUtils.delete(BaseActivity.this, MyConstant.SP_LOGIN_PASSWORD);
         Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
         startActivity(intent);
-
-        // HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "site/logout", true, "正在退出...",
-        // new HttpVisitUtils.OnHttpFinishListener() {
-        // @Override
-        // public void onVisitFinish(HttpResult result) {
-        // if (result == null)
-        // throw new NullPointerException("退出返回结果是空指针");
-        // if (result.getHttpResponseCode() == HttpURLConnection.HTTP_OK) {
-        // if (result.getCode() == MyConstant.VISIT_CODE_SUCCESS) {
-        // Toast.makeText(BaseActivity.this, "退出成功!", Toast.LENGTH_SHORT).show();
-        // Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
-        // startActivity(intent);
-        // } else {
-        // Toast.makeText(BaseActivity.this, "退出失败!", Toast.LENGTH_SHORT).show();
-        // }
-        // } else {
-        // HttpConnectResultUtils.optFailure(BaseActivity.this, result);
-        // }
-        // }
-        // });
     }
 
 }

@@ -6,17 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.UserListAdapter;
-import com.gf.BugManagerMobile.models.Bug;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.User;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.LocalInfo;
+import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.view.ConfirmDialog;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -147,6 +145,15 @@ public class UserListActivity extends Activity {
             @Override
             public void onItemClick(int position, int userId) {
                 Log.i(TAG, "onItemClick position=" + position + ",userId=" + userId);
+                // 超级用户不允许进入修改个人信息界面
+                final User user = (User) mUserListAdapter.getItem(position);
+                if (user != null && user.getRole_id() != 0) {
+                    Intent intent = new Intent(UserListActivity.this, ModifyUserActivity.class);
+                    intent.putExtra(MyConstant.USER_LIST_2_USER_MODIFY, userId);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(UserListActivity.this, "超级管理员不能修改信息", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
