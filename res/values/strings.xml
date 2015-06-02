@@ -175,6 +175,8 @@
 
     <!--项目管理界面-->
     <string name="project_list_title">项目管理</string>
+    <string name="project_list_item_module">模块</string>
+    <string name="project_list_item_delete">删除</string>
 
     <!--添加用户界面-->
     <string name="add_user_title">添加用户</string>
@@ -218,5 +220,20 @@
     <string name="group_modify_title">修改团队信息</string>
     <string name="group_modify_save">保存</string>
     <string name="group_modify_member"><u>点击选择</u></string>
+
+    <!--项目相关界面-->
+    <string name="project_name">项目名称</string>
+    <string name="project_group">负责团队</string>
+    <string name="project_introduce">项目简介</string>
+    <string name="project_creator">创建者</string>
+    <string name="project_create_time">创建时间</string>
+
+    <!--添加项目界面-->
+    <string name="project_add_title">添加项目</string>
+    <string name="project_add_save">保存</string>
+
+    <!--修改项目界面-->
+    <string name="project_modify_title">修改项目信息</string>
+    <string name="project_modify_save">保存</string>
 
 </resources>

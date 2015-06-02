@@ -11,6 +11,7 @@ import com.gf.BugManagerMobile.R;
 import com.gf.BugManagerMobile.models.Group;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 import com.gf.BugManagerMobile.utils.LocalInfo;
+import com.gf.BugManagerMobile.utils.MyConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class GroupListAdapter extends BaseAdapter {
         else
             mGroupDataList = data;
         loginSuccessInfo = LocalInfo.getLoginSuccessInfo(context);
-        notEnableColor = Color.parseColor("#ffbcbcbe");
+        notEnableColor = MyConstant.NOT_ENABLE_TEXT_COLOR;
     }
 
     @Override
@@ -88,7 +89,8 @@ public class GroupListAdapter extends BaseAdapter {
             viewHolder.nameTv.setText(group.getName());
             viewHolder.introduceTv.setText(group.getIntroduce());
 
-            if (group.getCreator() == loginSuccessInfo.getUserId()) {
+            if (loginSuccessInfo != null
+                && (loginSuccessInfo.getRoleId() == 0 || group.getCreator() == loginSuccessInfo.getUserId())) {
                 viewHolder.deleteTv.setTextColor(Color.WHITE);
                 viewHolder.deleteTv.setEnabled(true);
             } else {
@@ -164,6 +166,8 @@ public class GroupListAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             Object positionObj = view.getTag();
+            if (positionObj == null)
+                return;
             try {
                 int position = Integer.parseInt(positionObj.toString());
                 if (onSlideItemClickListener != null) {
@@ -174,7 +178,7 @@ public class GroupListAdapter extends BaseAdapter {
                         onSlideItemClickListener.onItemClick(position, group.getId());
                     }
                 }
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
             }
         }
     };
@@ -183,6 +187,8 @@ public class GroupListAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             Object positionObj = view.getTag();
+            if (positionObj == null)
+                return;
             try {
                 int position = Integer.parseInt(positionObj.toString());
                 if (onSlideItemClickListener != null) {
@@ -193,7 +199,7 @@ public class GroupListAdapter extends BaseAdapter {
                         onSlideItemClickListener.onDeleteClick(position, group.getId());
                     }
                 }
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
             }
         }
     };

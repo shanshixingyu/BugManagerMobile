@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/project_add_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:text="@string/project_add_title"
+            style="@style/TopOptTitleTheme" />
+
+        <Button
+            android:id="@+id/project_add_save_btn"
+            android:text="@string/project_add_save"
+            android:visibility="invisible"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/project_name"
+            style="@style/UserItemTitle" />
+
+        <EditText
+            android:id="@+id/project_add_name_et"
+            android:inputType="text"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/project_group"
+            style="@style/UserItemTitle" />
+
+        <Spinner
+            android:id="@+id/project_add_group_sp"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/project_introduce"
+            style="@style/UserItemTitle"
+            android:layout_marginTop="8dp"
+            android:gravity="top" />
+
+        <EditText
+            android:id="@+id/project_add_introduce_et"
+            style="@style/UserItemContent"
+            android:inputType="textMultiLine"
+            android:gravity="top|left"
+            android:layout_marginLeft="5dp"
+            android:lines="5" />
+    </LinearLayout>
+
+</LinearLayout>

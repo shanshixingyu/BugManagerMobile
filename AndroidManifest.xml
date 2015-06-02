@@ -106,5 +106,13 @@
             android:name=".ModifyGroupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".AddProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".ModifyProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
     </application>
 </manifest> 

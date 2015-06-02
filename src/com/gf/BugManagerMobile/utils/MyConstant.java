@@ -1,5 +1,7 @@
 package com.gf.BugManagerMobile.utils;
 
+import android.graphics.Color;
+
 /**
  * 常量类
  * Created by Administrator on 5/9 0009.
@@ -142,5 +144,11 @@ public class MyConstant {
     public static final String BUG_DETAIL_2_BUG_INTRODUCE = "bug_detail_2_bug_introduce";
     public static final String USER_LIST_2_USER_MODIFY = "user_list_2_user_modify";
     public static final String GROUP_LIST_2_GROUP_MODIFY = "group_list_2_group_modify";
+    public static final String PROJECT_LIST_2_PROJECT_MODIFY = "project_list_2_project_modify";
+
+    /**
+     * 当不使能的的时候的字体颜色
+     */
+    public static final int NOT_ENABLE_TEXT_COLOR = Color.parseColor("#ffbcbcbe");
 
 }

@@ -1,29 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+<com.gf.BugManagerMobile.view.SlideItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:overScrollMode="never"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/project_list_item_name_tv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="21dp" />
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/project_list_item_introduce_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textSize="15dp"
-        android:textColor="#555555" />
+        <LinearLayout
+            android:id="@+id/slide_item_first"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/list_item_selector"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/project_list_item_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="21dp" />
+
+            <TextView
+                android:id="@+id/project_list_item_introduce_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textColor="#555555" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slide_item_second"
+            android:layout_width="150dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/project_list_item_module_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_item_module"
+                android:gravity="center"
+                android:clickable="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:text="@string/project_list_item_module" />
+
+            <TextView
+                android:id="@+id/project_list_item_delete_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_item_delete"
+                android:gravity="center"
+                android:clickable="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="normal"
+                android:text="@string/project_list_item_delete" />
+        </LinearLayout>
+
+    </LinearLayout>
+</com.gf.BugManagerMobile.view.SlideItemView>

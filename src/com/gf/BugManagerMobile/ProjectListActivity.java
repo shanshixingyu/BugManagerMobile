@@ -1,6 +1,7 @@
 package com.gf.BugManagerMobile;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,8 +13,11 @@ import com.gf.BugManagerMobile.adapter.ProjectListAdapter;
 import com.gf.BugManagerMobile.models.Group;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.Project;
+import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.LocalInfo;
+import com.gf.BugManagerMobile.utils.MyConstant;
+import com.gf.BugManagerMobile.view.ConfirmDialog;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -41,6 +45,7 @@ public class ProjectListActivity extends Activity {
         mPullToRefreshListView = (PullToRefreshListView) findViewById(R.id.project_list_lv);
         mPullToRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
         mProjectListAdapter = new ProjectListAdapter(this, null);
+        mProjectListAdapter.setOnItemOptListener(onItemOptListener);
         mPullToRefreshListView.setAdapter(mProjectListAdapter);
         mPullToRefreshListView.setOnRefreshListener(onRefreshListener2);
         ILoadingLayout footLoadingLayout = mPullToRefreshListView.getLoadingLayoutProxy(false, true);
@@ -130,7 +135,76 @@ public class ProjectListActivity extends Activity {
                 this.finish();
                 break;
             case R.id.project_list_opt_btn:
+                Intent intent = new Intent(this, AddProjectActivity.class);
+                startActivity(intent);
                 break;
         }
     }
+
+    private ProjectListAdapter.OnItemOptListener onItemOptListener = new ProjectListAdapter.OnItemOptListener() {
+        @Override
+        public void onItemClick(int position, int projectId) {
+            // Log.i(TAG, "onItemClick position=" + position + ",projectId=" + projectId);
+            Intent intent = new Intent(ProjectListActivity.this, ModifyProjectActivity.class);
+            intent.putExtra(MyConstant.PROJECT_LIST_2_PROJECT_MODIFY, projectId);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onModuleClick(int position, int projectId) {
+            Log.i(TAG, "onModuleClick position=" + position + ",projectId=" + projectId);
+        }
+
+        @Override
+        public void onDeleteClick(int position, int projectId) {
+            // Log.i(TAG, "onDeleteClick position=" + position + ",projectId=" + projectId);
+            optPosition = position;
+            optProjectId = projectId;
+            initDeleteConfirmDialog();
+            mDeleteConfirmDialog.show();
+        }
+    };
+
+    private int optPosition;
+    private int optProjectId;
+
+    private ConfirmDialog mDeleteConfirmDialog = null;
+
+    private void initDeleteConfirmDialog() {
+        if (mDeleteConfirmDialog == null) {
+            mDeleteConfirmDialog = new ConfirmDialog(this);
+            mDeleteConfirmDialog.setMessageTvText("删除项目信息将会删除以及相关的所有缺陷信息和项目模块信息，是否确认删除？");
+            mDeleteConfirmDialog.setLeftBtnText("取消");
+            mDeleteConfirmDialog.setRightBtnText("确认");
+            mDeleteConfirmDialog.setOnConfirmDialogListener(new ConfirmDialog.OnConfirmDialogListener() {
+                @Override
+                public void onLeftBtnClick(ConfirmDialog dialog) {
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onRightBtnClick(ConfirmDialog dialog) {
+                    dialog.dismiss();
+                    HttpVisitUtils.getHttpVisit(ProjectListActivity.this,
+                        LocalInfo.getBaseUrl(ProjectListActivity.this) + "project/delete-project&projectId="
+                            + optProjectId, true, "删除中...", onDeleteFinishListener);
+                }
+            });
+        }
+    }
+
+    private HttpVisitUtils.OnHttpFinishListener onDeleteFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+        @Override
+        public void onVisitFinish(HttpResult result) {
+            if (result == null)
+                return;
+            if (result.isVisitSuccess()) {
+                mProjectListAdapter.deleteItem(optPosition);
+                Toast.makeText(ProjectListActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+            } else {
+                HttpConnectResultUtils.optFailure(ProjectListActivity.this, result);
+            }
+        }
+    };
+
 }
