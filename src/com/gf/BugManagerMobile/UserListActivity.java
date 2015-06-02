@@ -145,14 +145,14 @@ public class UserListActivity extends Activity {
             @Override
             public void onItemClick(int position, int userId) {
                 Log.i(TAG, "onItemClick position=" + position + ",userId=" + userId);
-                // 超级用户不允许进入修改个人信息界面
+                // 不允许修改超级用户信息
                 final User user = (User) mUserListAdapter.getItem(position);
                 if (user != null && user.getRole_id() != 0) {
                     Intent intent = new Intent(UserListActivity.this, ModifyUserActivity.class);
                     intent.putExtra(MyConstant.USER_LIST_2_USER_MODIFY, userId);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(UserListActivity.this, "超级管理员不能修改信息", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserListActivity.this, "超级管理员信息不能修改", Toast.LENGTH_SHORT).show();
                 }
             }
 

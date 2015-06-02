@@ -11,7 +11,7 @@ public class Group {
 
     private int id;
     private String name;
-    private List<User> member;
+    private String member;
     private int creator;
     private String create_time;
     private String introduce;
@@ -32,11 +32,11 @@ public class Group {
         this.name = name;
     }
 
-    public List<User> getMember() {
+    public String getMember() {
         return member;
     }
 
-    public void setMember(List<User> member) {
+    public void setMember(String member) {
         this.member = member;
     }
 

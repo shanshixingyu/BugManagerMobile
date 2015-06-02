@@ -47,7 +47,7 @@ public class AddUserActivity extends Activity {
                     userNameEt.setError("用户名称必填", null);
                     return;
                 }
-                if (!RegexUtils.isMatch(MyConstant.USER_NAME_PATTERN, nameStr)) {
+                if (!RegexUtils.isMatch(MyConstant.NAME_PATTERN, nameStr)) {
                     userNameEt.requestFocus();
                     userNameEt.setError("只能中文、英文、数字字符、下划线");
                     return;

@@ -64,7 +64,7 @@ public class LoginActivity extends Activity {
                 String password = passwordEt.getText().toString().trim();
                 Log.i(TAG, "userName=" + userName + ",length=" + userName.length());
                 // 对输入内容进行验证
-                if (!RegexUtils.isMatch(MyConstant.USER_NAME_PATTERN, userName)) {
+                if (!RegexUtils.isMatch(MyConstant.NAME_PATTERN, userName)) {
                     Toast.makeText(this, R.string.login_user_name_pattern, Toast.LENGTH_SHORT).show();
                     userNameEt.setText("");
                     passwordEt.setText("");

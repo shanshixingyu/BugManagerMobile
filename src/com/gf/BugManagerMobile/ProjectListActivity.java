@@ -14,6 +14,7 @@ import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.Project;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.LocalInfo;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import org.json.JSONObject;
@@ -42,7 +43,10 @@ public class ProjectListActivity extends Activity {
         mProjectListAdapter = new ProjectListAdapter(this, null);
         mPullToRefreshListView.setAdapter(mProjectListAdapter);
         mPullToRefreshListView.setOnRefreshListener(onRefreshListener2);
-
+        ILoadingLayout footLoadingLayout = mPullToRefreshListView.getLoadingLayoutProxy(false, true);
+        footLoadingLayout.setPullLabel("上拉加载下一页");
+        footLoadingLayout.setReleaseLabel("放开以加载下一页...");
+        footLoadingLayout.setRefreshingLabel("正在加载...");
         HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "project/index", true, "加载数据中...",
             resetOnHttpFinishListener);
     }

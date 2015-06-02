@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/group_modify_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:text="@string/group_modify_title"
+            style="@style/TopOptTitleTheme" />
+
+        <Button
+            android:id="@+id/group_modify_save_btn"
+            android:text="@string/group_modify_save"
+            style="@style/TopOptBtnTheme"
+            android:textColor="#ffc5c5c5"
+            android:enabled="false" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/group_name"
+            style="@style/UserItemTitle" />
+
+        <EditText
+            android:id="@+id/group_modify_name_et"
+            android:inputType="text"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/group_member"
+            style="@style/UserItemTitle" />
+
+        <TextView
+            android:id="@+id/group_modify_member_tv"
+            style="@style/UserItemContent"
+            android:text="@string/group_member_click"
+            android:visibility="gone"
+            android:clickable="true"
+            android:onClick="onSelectMemberClick"
+            android:textSize="16dp"
+            android:textColor="@color/group_member_selector"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/group_introduce"
+            style="@style/UserItemTitle"
+            android:layout_marginTop="8dp"
+            android:gravity="top" />
+
+        <EditText
+            android:id="@+id/group_modify_introduce_et"
+            style="@style/UserItemContent"
+            android:inputType="textMultiLine"
+            android:gravity="top|left"
+            android:layout_marginLeft="5dp"
+            android:lines="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/group_creator"
+            style="@style/UserItemTitle" />
+
+        <TextView
+            android:id="@+id/group_modify_creator_tv"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/group_create_time"
+            style="@style/UserItemTitle" />
+
+        <TextView
+            android:id="@+id/group_modify_create_time_tv"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+</LinearLayout>

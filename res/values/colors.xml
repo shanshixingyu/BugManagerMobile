@@ -3,6 +3,9 @@
     <!--所有界面上的顶部操作栏-->
     <color name="bg_top_opt">#0076CD</color>
 
+    <!--对话框第二种样式的外面的背景色-->
+    <color name="dialog_bg">#bd000000</color>
+
     <!--登录界面-->
     <color name="bg_login">#0076CD</color>
 

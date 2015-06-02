@@ -13,7 +13,7 @@ public class MyConstant {
     /**
      * 输入用户名匹配正则表达式
      */
-    public static final String USER_NAME_PATTERN = "[\\x{4e00}-\\x{9fa5}A-Za-z0-9_]+";
+    public static final String NAME_PATTERN = "[\\x{4e00}-\\x{9fa5}A-Za-z0-9_]+";
     /**
      * SharedPreferences中的用户名
      */
@@ -62,11 +62,47 @@ public class MyConstant {
      * Htt网络访问结束消息
      */
     public static final int MSG_HTTP_FINISH = 0x123;
+    /**
+     * 没有登录
+     */
+    public static final int VISIT_CODE_NO_LOGIN = 1100;
+    /**
+     * 不是post请求
+     */
+    public static final int VISIT_CODE_NO_POST = 1000;
+    /**
+     * 用户不存在
+     */
+    public static final int VISIT_CODE_NO_USER = 900;
+    /**
+     * 没有缺陷
+     */
+    public static final int VISIT_CODE_NOT_PERMISSION = 800;
+    /**
+     * 不在日期范围内
+     */
+    public static final int VISIT_CODE_OUT_DATE = 700;
+    /**
+     * 用户还没有登录
+     */
+    public static final int VISIT_CODE_NOT_LOGIN = 600;
+    /**
+     * 已经存在
+     */
+    public static final int VISIT_CODE_HAS_EXIST = 500;
+    /**
+     * 不存在
+     */
+    public static final int VISIT_CODE_NOT_EXIST = 400;
 
     /**
      * 密码错误
      */
     public static final int VISIT_CODE_WRONG_PASSWORD = 300;
+    /**
+     * 失败
+     */
+    public static final int VISIT_CODE_FAILURE = 200;
     /**
      * 响应状态码不是200
      */
@@ -83,6 +119,7 @@ public class MyConstant {
      * 连接错误
      */
     public static final int VISIT_CODE_CONNECT_ERROR = -200;
+
     // /**
     // * 从登录界面
     // */
@@ -104,5 +141,6 @@ public class MyConstant {
     public static final String BUG_LIST_2_BUG_DETAIL_BUG_ID = "bug_list_2_bug_detail_bug_id";
     public static final String BUG_DETAIL_2_BUG_INTRODUCE = "bug_detail_2_bug_introduce";
     public static final String USER_LIST_2_USER_MODIFY = "user_list_2_user_modify";
+    public static final String GROUP_LIST_2_GROUP_MODIFY = "group_list_2_group_modify";
 
 }

@@ -28,6 +28,7 @@ public class GroupListAdapter extends BaseAdapter {
     private int mCurrentPage;
     private LoginSuccessInfo loginSuccessInfo;
     private int notEnableColor;
+    private OnSlideItemClickListener onSlideItemClickListener;
 
     public GroupListAdapter(Context context, List<Group> data) {
         this.lytInflater = LayoutInflater.from(context);
@@ -69,10 +70,18 @@ public class GroupListAdapter extends BaseAdapter {
             viewHolder.nameTv = (TextView) convertView.findViewById(R.id.group_list_item_name_tv);
             viewHolder.introduceTv = (TextView) convertView.findViewById(R.id.group_list_item_introduce_tv);
             viewHolder.deleteTv = (TextView) convertView.findViewById(R.id.slide_item_second);
+            viewHolder.itemView = convertView.findViewById(R.id.slide_item_first);
+            viewHolder.itemView.setOnClickListener(onItemClickListener);
+            viewHolder.deleteTv = (TextView) convertView.findViewById(R.id.slide_item_second);
+            viewHolder.deleteTv.setOnClickListener(onDeleteClickListener);
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        viewHolder.itemView.setTag(position);
+        viewHolder.deleteTv.setTag(position);
 
         final Group group = (Group) getItem(position);
         if (group != null) {
@@ -135,9 +144,66 @@ public class GroupListAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
+        public View itemView;
         public TextView nameTv;
         public TextView introduceTv;
         public TextView deleteTv;
     }
 
+    public interface OnSlideItemClickListener {
+        public void onItemClick(int position, int groupId);
+
+        public void onDeleteClick(int position, int groupId);
+    }
+
+    public void setOnSlideItemClickListener(OnSlideItemClickListener listener) {
+        this.onSlideItemClickListener = listener;
+    }
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Object positionObj = view.getTag();
+            try {
+                int position = Integer.parseInt(positionObj.toString());
+                if (onSlideItemClickListener != null) {
+                    Group group = (Group) getItem(position);
+                    if (group == null) {
+                        onSlideItemClickListener.onItemClick(position, -1);
+                    } else {
+                        onSlideItemClickListener.onItemClick(position, group.getId());
+                    }
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+    };
+
+    private View.OnClickListener onDeleteClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Object positionObj = view.getTag();
+            try {
+                int position = Integer.parseInt(positionObj.toString());
+                if (onSlideItemClickListener != null) {
+                    Group group = (Group) getItem(position);
+                    if (group == null) {
+                        onSlideItemClickListener.onDeleteClick(position, -1);
+                    } else {
+                        onSlideItemClickListener.onDeleteClick(position, group.getId());
+                    }
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+    };
+
+    /* 删除指定项 */
+    public void deleteItem(int position) {
+        if (this.mGroupDataList == null)
+            this.mGroupDataList = new ArrayList<Group>();
+        if (0 <= position && position < this.mGroupDataList.size())
+            this.mGroupDataList.remove(position);
+        notifyDataSetChanged();
+    }
 }

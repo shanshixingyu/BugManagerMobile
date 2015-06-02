@@ -32,10 +32,10 @@ public class HttpVisitUtils {
             if (msg.what == MyConstant.MSG_HTTP_FINISH) {
                 DataHolder dataHolder = (DataHolder) msg.obj;
                 if (dataHolder != null) {
-                    if (dataHolder.dotProgressDialog != null)
-                        dataHolder.dotProgressDialog.dismiss();
                     if (dataHolder.onHttpFinishListener != null)
                         dataHolder.onHttpFinishListener.onVisitFinish(dataHolder.httpResult);
+                    if (dataHolder.dotProgressDialog != null)
+                        dataHolder.dotProgressDialog.dismiss();
                 }
             }
         }

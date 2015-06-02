@@ -198,4 +198,25 @@
     <string name="reset_message_title">请注意：</string>
     <string name="reset_message_content">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;当您点击重置密码后，所指定的用户绑定的邮箱会收到系统发送的重置密码的邮件，请在24小时内进入绑定邮箱点击邮件内的链接进行密码重置，否则此次重置无效！</string>
 
+    <!--团队相关界面-->
+    <string name="group_name">团队名称</string>
+    <string name="group_member">团队成员</string>
+    <string name="group_introduce">团队简介</string>
+    <string name="group_member_click"><u>点击选择</u></string>
+    <string name="group_creator">创建者</string>
+    <string name="group_create_time">创建时间</string>
+
+    <!--添加团队界面-->
+    <string name="add_group_title">添加团队</string>
+    <string name="add_group_save">保存</string>
+
+    <!--添加团队弹窗界面-->
+    <string name="select_group_member_sure">确定</string>
+    <string name="select_group_member_cancel">取消</string>
+
+    <!--修改团队界面-->
+    <string name="group_modify_title">修改团队信息</string>
+    <string name="group_modify_save">保存</string>
+    <string name="group_modify_member"><u>点击选择</u></string>
+
 </resources>
