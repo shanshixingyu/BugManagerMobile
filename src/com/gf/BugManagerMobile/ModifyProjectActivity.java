@@ -11,10 +11,7 @@ import com.gf.BugManagerMobile.adapter.GroupSpinnerAdapter;
 import com.gf.BugManagerMobile.models.Group;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.Project;
-import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
-import com.gf.BugManagerMobile.utils.HttpVisitUtils;
-import com.gf.BugManagerMobile.utils.LocalInfo;
-import com.gf.BugManagerMobile.utils.MyConstant;
+import com.gf.BugManagerMobile.utils.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -119,8 +116,92 @@ public class ModifyProjectActivity extends Activity {
                 this.finish();
                 break;
             case R.id.project_modify_save_btn:
-
+                modifyProjectInfo();
                 break;
         }
     }
+
+    private void modifyProjectInfo() {
+        /* 项目名称 */
+        String projectName = projectNameEt.getText().toString().trim();
+        if ("".equals(projectName)) {
+            projectNameEt.setError("项目名称必填");
+            return;
+        }
+        if (!RegexUtils.isMatch(MyConstant.NAME_PATTERN, projectName)) {
+            projectNameEt.setError("只能输入中文、英文、数字和下划线");
+            return;
+        }
+
+        /* 负责团队 */
+        int selectedPosition = projectGroupSp.getSelectedItemPosition();
+        if (selectedPosition == Spinner.INVALID_POSITION) {
+            Toast.makeText(this, "请先添加团队信息", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        int groupId;
+        if (mGroupSpinnerAdapter != null) {
+            Group group = mGroupSpinnerAdapter.getItem(selectedPosition);
+            if (group == null) {
+                Toast.makeText(this, "获取的索引有错", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                groupId = group.getId();
+            }
+        } else {
+            Toast.makeText(this, "没有团队信息", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        /* 项目简介 */
+        String projectIntroduce = projectIntroduceEt.getText().toString().trim();
+
+        Log.i(TAG, "项目名称：" + projectName);
+        Log.i(TAG, "负责团队：" + groupId);
+        Log.i(TAG, "项目简介：" + projectIntroduce);
+
+        if (!isChanged(projectName, groupId, projectIntroduce)) {
+            Toast.makeText(this, "项目信息未发生任何修改", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String postData = "name=" + projectName + "&groupId=" + groupId + "&introduce=" + projectIntroduce;
+        HttpVisitUtils.postHttpVisit(this,
+            LocalInfo.getBaseUrl(this) + "project/modify-project&projectId=" + projectId, postData, true, "修改中...",
+            onModifyProjectFinishListener);
+    }
+
+    private HttpVisitUtils.OnHttpFinishListener onModifyProjectFinishListener =
+        new HttpVisitUtils.OnHttpFinishListener() {
+            @Override
+            public void onVisitFinish(HttpResult result) {
+                if (result == null)
+                    return;
+                if (result.isVisitSuccess()) {
+                    Toast.makeText(ModifyProjectActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    HttpConnectResultUtils.optFailure(ModifyProjectActivity.this, result);
+                }
+            }
+        };
+
+    /**
+     * 判断用户输入是否发生改变
+     * @param name
+     * @param groupId
+     * @param introduce
+     * @return
+     */
+    private boolean isChanged(String name, int groupId, String introduce) {
+        if (mProject == null)
+            return false;
+        if (name != null && !name.equals(mProject.getName()))
+            return true;
+        if (groupId != mProject.getGroup_id())
+            return true;
+        if (introduce != null && !introduce.equals(mProject.getIntroduce()))
+            return true;
+        return false;
+    }
+
 }

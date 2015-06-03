@@ -153,6 +153,9 @@ public class ProjectListActivity extends Activity {
         @Override
         public void onModuleClick(int position, int projectId) {
             Log.i(TAG, "onModuleClick position=" + position + ",projectId=" + projectId);
+            Intent intent = new Intent(ProjectListActivity.this, ModuleListActivity.class);
+            intent.putExtra(MyConstant.PROJECT_LIST_2_MODULE_LIST, projectId);
+            startActivity(intent);
         }
 
         @Override

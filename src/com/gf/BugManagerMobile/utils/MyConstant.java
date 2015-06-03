@@ -145,6 +145,8 @@ public class MyConstant {
     public static final String USER_LIST_2_USER_MODIFY = "user_list_2_user_modify";
     public static final String GROUP_LIST_2_GROUP_MODIFY = "group_list_2_group_modify";
     public static final String PROJECT_LIST_2_PROJECT_MODIFY = "project_list_2_project_modify";
+    public static final String PROJECT_LIST_2_MODULE_LIST = "project_list_2_module_list";
+    public static final String MODULE_LIST_2_MODULE_ADD = "module_list_2_module_add";
 
     /**
      * 当不使能的的时候的字体颜色

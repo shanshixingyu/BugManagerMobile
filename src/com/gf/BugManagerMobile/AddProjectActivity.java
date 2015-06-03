@@ -111,9 +111,9 @@ public class AddProjectActivity extends Activity {
         }
 
         /* 项目简介 */
-        String projectIntroduc = projectIntroduceEt.getText().toString().trim();
+        String projectIntroduce = projectIntroduceEt.getText().toString().trim();
 
-        String postData = "name=" + projectName + "&groupId=" + groupId + "&introduce=" + projectIntroduc;
+        String postData = "name=" + projectName + "&groupId=" + groupId + "&introduce=" + projectIntroduce;
 
         HttpVisitUtils.postHttpVisit(AddProjectActivity.this, LocalInfo.getBaseUrl(AddProjectActivity.this)
             + "project/add-project", postData, true, "添加中...", onAddProjectFinishListener);
