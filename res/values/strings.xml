@@ -242,15 +242,21 @@
     <string name="module_list_item_delete">删除</string>
 
 
-    <!--模块相关界面-->
+    <!--模块信息相关界面-->
     <string name="module_name">模块名称</string>
     <string name="module_project_name">项目名称</string>
     <string name="module_fzr">负责人</string>
     <string name="module_introduce">模块简介</string>
+    <string name="module_fzr_click"><u>点击选择</u></string>
+    <string name="module_creator">创建者</string>
+    <string name="module_create_time">创建时间</string>
 
-    <!--添加模块界面-->
+    <!--添加模块信息界面-->
     <string name="module_add_title">添加项目模块</string>
     <string name="module_add_top_save">保存</string>
-    <string name="module_add_fzr_click"><u>点击选择</u></string>
+
+    <!--模块信息界面-->
+    <string name="module_modify_title">修改项目模块</string>
+    <string name="module_modify_top_save">保存</string>
 
 </resources>

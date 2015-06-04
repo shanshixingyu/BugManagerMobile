@@ -18,7 +18,6 @@ import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.view.BugDetailOptPopWindow;
 import com.gf.BugManagerMobile.view.ConfirmDialog;
-import org.apache.http.util.EncodingUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,7 +33,7 @@ import java.util.List;
 public class BugDetailActivity extends Activity {
     private static final String TAG = "BugDetailActivity";
 
-    private RecyclerView mImageRecylerView;
+    private RecyclerView mImageRecyclerView;
     private ImageRlvAdapter mImageRlvAdapter;
     private int bugId;
     private TextView nameTv, projectTv, moduleTv, statusTv, assignTv, priorityTv, creatorTv, createTimeTv, activeTv,
@@ -67,11 +66,11 @@ public class BugDetailActivity extends Activity {
     }
 
     private void initComponent() {
-        mImageRecylerView = (RecyclerView) findViewById(R.id.bug_detail_image_rlv);
-        mImageRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mImageRecylerView.setVisibility(View.GONE);
+        mImageRecyclerView = (RecyclerView) findViewById(R.id.bug_detail_image_rlv);
+        mImageRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mImageRecyclerView.setVisibility(View.GONE);
         mImageRlvAdapter = new ImageRlvAdapter(this, null);
-        mImageRecylerView.setAdapter(mImageRlvAdapter);
+        mImageRecyclerView.setAdapter(mImageRlvAdapter);
 
         nameTv = (TextView) findViewById(R.id.bug_detail_name_tv);
         projectTv = (TextView) findViewById(R.id.bug_detail_project_tv);
@@ -130,15 +129,15 @@ public class BugDetailActivity extends Activity {
                         List<String> imagePaths = JSON.parseArray(bug.getImg_path(), String.class);
                         if (imagePaths.size() <= 0) {
                             imageTv.setVisibility(View.VISIBLE);
-                            mImageRecylerView.setVisibility(View.GONE);
+                            mImageRecyclerView.setVisibility(View.GONE);
                         } else {
                             imageTv.setVisibility(View.GONE);
-                            mImageRecylerView.setVisibility(View.VISIBLE);
+                            mImageRecyclerView.setVisibility(View.VISIBLE);
                             mImageRlvAdapter.resetData(imagePaths);
                         }
                     } catch (Exception e) {
                         imageTv.setVisibility(View.VISIBLE);
-                        mImageRecylerView.setVisibility(View.GONE);
+                        mImageRecyclerView.setVisibility(View.GONE);
                     }
                     String introduce = bug.getIntroduce();
                     if (introduce == null || introduce.trim().equals("")) {

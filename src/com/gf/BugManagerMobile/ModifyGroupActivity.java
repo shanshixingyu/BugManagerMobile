@@ -158,7 +158,7 @@ public class ModifyGroupActivity extends Activity {
         }
 
         String postData =
-            "name=" + groupName + "&memberIds=" + JSON.toJSON(selectedUserIdData.toString()) + "&introduce="
+            "name=" + groupName + "&memberIds=" + JSON.toJSON(selectedUserIdData) + "&introduce="
                 + groupIntroduce;
 
         HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "group/modify&groupId=" + groupId, postData,
@@ -173,6 +173,9 @@ public class ModifyGroupActivity extends Activity {
                     return;
                 if (result.isVisitSuccess()) {
                     Toast.makeText(ModifyGroupActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                    /* 需要更新选中的团队成员信息，不然下次保存判断是否修改了的时候就会出错 */
+                    if (mGroupMemberSelectDialog != null)
+                        mSelectedUserIds = mGroupMemberSelectDialog.getSelectUserIdData();
                 } else {
                     HttpConnectResultUtils.optFailure(ModifyGroupActivity.this, result);
                 }

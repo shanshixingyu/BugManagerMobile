@@ -177,13 +177,15 @@ public class ModuleListActivity extends Activity {
     private ModuleListAdapter.OnItemOptListener onItemOptListener = new ModuleListAdapter.OnItemOptListener() {
         @Override
         public void onItemClick(int position, int moduleId) {
-            Log.i(TAG, "onItemClick position=" + position + ",projectId=" + moduleId);
-
+            Log.i(TAG, "onItemClick position=" + position + ",moduleId=" + moduleId);
+            Intent intent = new Intent(ModuleListActivity.this, ModifyModuleActivity.class);
+            intent.putExtra(MyConstant.MODULE_LIST_2_MODULE_MODIFY, moduleId);
+            startActivity(intent);
         }
 
         @Override
         public void onDeleteClick(int position, int moduleId) {
-            Log.i(TAG, "onDeleteClick position=" + position + ",projectId=" + moduleId);
+            Log.i(TAG, "onDeleteClick position=" + position + ",moduleId=" + moduleId);
             optPosition = position;
             optModuleId = moduleId;
             initDeleteConfirmDialog();

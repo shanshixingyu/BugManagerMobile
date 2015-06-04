@@ -8,16 +8,16 @@
     <RelativeLayout style="@style/TopOptTheme">
 
         <ImageView
-            android:id="@+id/module_add_back_imgv"
+            android:id="@+id/module_modify_back_imgv"
             style="@style/TopOptBackTheme" />
 
         <TextView
-            android:text="@string/module_add_title"
+            android:text="@string/module_modify_title"
             style="@style/TopOptTitleTheme" />
 
         <Button
-            android:id="@+id/module_add_save_btn"
-            android:text="@string/module_add_top_save"
+            android:id="@+id/module_modify_save_btn"
+            android:text="@string/module_modify_top_save"
             android:visibility="invisible"
             style="@style/TopOptBtnTheme" />
 
@@ -33,7 +33,7 @@
             style="@style/UserItemTitle" />
 
         <EditText
-            android:id="@+id/module_add_name_et"
+            android:id="@+id/module_modify_name_et"
             android:inputType="text"
             style="@style/UserItemContent" />
     </LinearLayout>
@@ -47,7 +47,7 @@
             style="@style/UserItemTitle" />
 
         <TextView
-            android:id="@+id/module_add_project_name_tv"
+            android:id="@+id/module_modify_project_name_tv"
             style="@style/UserItemContent" />
     </LinearLayout>
 
@@ -60,13 +60,12 @@
             style="@style/UserItemTitle" />
 
         <TextView
-            android:id="@+id/module_add_fzr_tv"
+            android:id="@+id/module_modify_fzr_tv"
             style="@style/UserItemContent"
             android:text="@string/module_fzr_click"
             android:clickable="true"
             android:onClick="onSelectMemberClick"
             android:textSize="16dp"
-            android:visibility="invisible"
             android:textColor="@color/group_member_selector"
             android:gravity="center_vertical" />
     </LinearLayout>
@@ -85,12 +84,38 @@
             android:gravity="top" />
 
         <EditText
-            android:id="@+id/module_add_introduce_et"
+            android:id="@+id/module_modify_introduce_et"
             style="@style/UserItemContent"
             android:inputType="textMultiLine"
             android:gravity="top|left"
             android:layout_marginLeft="5dp"
             android:lines="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/module_creator"
+            style="@style/UserItemTitle" />
+
+        <TextView
+            android:id="@+id/module_modify_creator_tv"
+            style="@style/UserItemContent" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/UserItemRow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="@string/module_create_time"
+            style="@style/UserItemTitle" />
+
+        <TextView
+            android:id="@+id/module_modify_create_time_tv"
+            style="@style/UserItemContent" />
     </LinearLayout>
 
 </LinearLayout>
