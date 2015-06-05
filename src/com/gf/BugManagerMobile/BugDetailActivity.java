@@ -1,6 +1,7 @@
 package com.gf.BugManagerMobile;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +13,8 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.ImageRlvAdapter;
 import com.gf.BugManagerMobile.models.*;
-import com.gf.BugManagerMobile.utils.BugUtils;
-import com.gf.BugManagerMobile.utils.HttpVisitUtils;
-import com.gf.BugManagerMobile.utils.LocalInfo;
-import com.gf.BugManagerMobile.utils.MyConstant;
-import com.gf.BugManagerMobile.view.BugDetailOptPopWindow;
-import com.gf.BugManagerMobile.view.ConfirmDialog;
+import com.gf.BugManagerMobile.utils.*;
+import com.gf.BugManagerMobile.view.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -108,62 +105,64 @@ public class BugDetailActivity extends Activity {
                         Toast.makeText(BugDetailActivity.this, "数据过期", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Bug bug = JSON.parseObject(jsonObject.getString("bug"), Bug.class);
-                    Log.i(TAG, "解析后的bug信息:" + bug.toString());
                     String projectName = jsonObject.getString("projectName");
                     String moduleName = jsonObject.getString("moduleName");
                     String assignName = jsonObject.getString("assignName");
                     String creatorName = jsonObject.getString("creatorName");
-                    Log.i(TAG, "name=" + bug.getName());
-                    nameTv.setText(bug.getName());
-                    projectTv.setText(projectName);
-                    moduleTv.setText(moduleName);
-                    statusTv.setText(BugUtils.getStatusStr(bug.getStatus()));
-                    assignTv.setText(assignName);
-                    priorityTv.setText(BugUtils.getPriorityStr(bug.getPriority()));
-                    creatorTv.setText(creatorName);
-                    createTimeTv.setText(bug.getCreate_time());
-                    activeTv.setText("" + bug.getActive_num());
-                    closeTimeTv.setText(bug.getClose_time());
-                    try {
-                        List<String> imagePaths = JSON.parseArray(bug.getImg_path(), String.class);
-                        if (imagePaths.size() <= 0) {
-                            imageTv.setVisibility(View.VISIBLE);
-                            mImageRecyclerView.setVisibility(View.GONE);
-                        } else {
-                            imageTv.setVisibility(View.GONE);
-                            mImageRecyclerView.setVisibility(View.VISIBLE);
-                            mImageRlvAdapter.resetData(imagePaths);
-                        }
-                    } catch (Exception e) {
-                        imageTv.setVisibility(View.VISIBLE);
-                        mImageRecyclerView.setVisibility(View.GONE);
-                    }
-                    String introduce = bug.getIntroduce();
-                    if (introduce == null || introduce.trim().equals("")) {
-                        introduceTv.setVisibility(View.GONE);
-                    } else {
+                    Bug bug = JSON.parseObject(jsonObject.getString("bug"), Bug.class);
+                    if (bug != null) {
+                        Log.i(TAG, "解析后的bug信息:" + bug.toString());
+                        Log.i(TAG, "name=" + bug.getName());
+                        nameTv.setText(bug.getName());
+                        projectTv.setText(projectName);
+                        moduleTv.setText(moduleName);
+                        statusTv.setText(BugUtils.getStatusStr(bug.getStatus()));
+                        assignTv.setText(assignName);
+                        priorityTv.setText(BugUtils.getPriorityStr(bug.getPriority()));
+                        creatorTv.setText(creatorName);
+                        createTimeTv.setText(bug.getCreate_time());
+                        activeTv.setText("" + bug.getActive_num());
+                        closeTimeTv.setText(bug.getClose_time());
                         try {
-                            mBugIntroduceItems = JSON.parseArray(introduce, BugIntroduceItem.class);
-                            if (mBugIntroduceItems.size() <= 0) {
-                                introduceTv.setVisibility(View.GONE);
+                            List<String> imagePaths = JSON.parseArray(bug.getImg_path(), String.class);
+                            if (imagePaths.size() <= 0) {
+                                imageTv.setVisibility(View.VISIBLE);
+                                mImageRecyclerView.setVisibility(View.GONE);
                             } else {
-                                introduceTv.setVisibility(View.VISIBLE);
+                                imageTv.setVisibility(View.GONE);
+                                mImageRecyclerView.setVisibility(View.VISIBLE);
+                                mImageRlvAdapter.resetData(imagePaths);
                             }
                         } catch (Exception e) {
+                            imageTv.setVisibility(View.VISIBLE);
+                            mImageRecyclerView.setVisibility(View.GONE);
+                        }
+                        String introduce = bug.getIntroduce();
+                        if (introduce == null || introduce.trim().equals("")) {
                             introduceTv.setVisibility(View.GONE);
+                        } else {
+                            try {
+                                mBugIntroduceItems = JSON.parseArray(introduce, BugIntroduceItem.class);
+                                if (mBugIntroduceItems.size() <= 0) {
+                                    introduceTv.setVisibility(View.GONE);
+                                } else {
+                                    introduceTv.setVisibility(View.VISIBLE);
+                                }
+                            } catch (Exception e) {
+                                introduceTv.setVisibility(View.GONE);
+                            }
+
+                        }
+                        attachmentName = bug.getFile_path();
+                        if (attachmentName == null || "".equals(attachmentName.trim())) {
+                            attachmentTv.setVisibility(View.GONE);
+                        } else {
+                            attachmentTv.setVisibility(View.VISIBLE);
+                            attachmentTv.setText(attachmentName);
                         }
 
+                        resetOptPopStatus(bug.getStatus(), bug.getCreator_id());
                     }
-                    attachmentName = bug.getFile_path();
-                    if (attachmentName == null || "".equals(attachmentName.trim())) {
-                        attachmentTv.setVisibility(View.GONE);
-                    } else {
-                        attachmentTv.setVisibility(View.VISIBLE);
-                        attachmentTv.setText(attachmentName);
-                    }
-
-                    resetOptPopStatus(bug.getStatus(), creatorName);
                 } catch (JSONException e) {
                     Toast.makeText(BugDetailActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                 }
@@ -178,16 +177,18 @@ public class BugDetailActivity extends Activity {
     /**
      * 重新设置操作弹窗的状态
      * @param status
-     * @param creatorName
+     * @param creatorId
      */
-    private void resetOptPopStatus(int status, String creatorName) {
+    private void resetOptPopStatus(int status, int creatorId) {
         /* 解决操作项：任何人 bug状态为未解决和重新激活时可操作 */
         if (status == 1 || status == 3)
             solveItemStatus = true;
         else
             solveItemStatus = false;
 
-        if (LocalInfo.getLoginSuccessInfo(this).getUserName().equals(creatorName)) {
+        LoginSuccessInfo mLoginSuccessInfo = LocalInfo.getLoginSuccessInfo(this);
+
+        if (mLoginSuccessInfo.getRoleId() == 0 || mLoginSuccessInfo.getUserId() == creatorId) {
             /* 修改操作项：提交者 bug状态为除关闭外的所有状态可操作 */
             if (status != 0)
                 modifyItemStatus = true;
@@ -234,6 +235,7 @@ public class BugDetailActivity extends Activity {
     private void initOptPopWindow() {
         if (mBugDetailOptPopWindow == null) {
             mBugDetailOptPopWindow = new BugDetailOptPopWindow(this);
+            mBugDetailOptPopWindow.setOnOptItemClickListener(onOptItemClickListener);
         }
 
         mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Solve, solveItemStatus);
@@ -242,6 +244,54 @@ public class BugDetailActivity extends Activity {
         mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Close, closeItemStatus);
         mBugDetailOptPopWindow.setPopItemStatus(BugDetailOptPopWindow.ItemType.Delete, deleteItemStatus);
     }
+
+    private BugSolveDialog mBugSolveDialog = null;
+    private BugActiveDialog mBugActiveDialog = null;
+    private BugCloseDialog mBugCloseDialog = null;
+
+    private BugDetailOptPopWindow.OnOptItemClickListener onOptItemClickListener =
+        new BugDetailOptPopWindow.OnOptItemClickListener() {
+            @Override
+            public void onClick(BugDetailOptPopWindow.ItemType itemType) {
+                Log.i(TAG, "" + itemType);
+                if (itemType == BugDetailOptPopWindow.ItemType.Solve) {
+                    if (mBugSolveDialog == null) {
+                        mBugSolveDialog = new BugSolveDialog(BugDetailActivity.this);
+                        mBugSolveDialog.setBugId(bugId);
+                        mBugSolveDialog.setOnBugOptInterface(onBugOptListener);
+                    }
+                    mBugSolveDialog.show();
+                } else if (itemType == BugDetailOptPopWindow.ItemType.Modify) {
+
+                } else if (itemType == BugDetailOptPopWindow.ItemType.Active) {
+                    if (mBugActiveDialog == null) {
+                        mBugActiveDialog = new BugActiveDialog(BugDetailActivity.this);
+                        mBugActiveDialog.setBugId(bugId);
+                        mBugActiveDialog.setOnBugOptListener(onBugOptListener);
+                    }
+                    mBugActiveDialog.show();
+                } else if (itemType == BugDetailOptPopWindow.ItemType.Close) {
+                    if (mBugCloseDialog == null) {
+                        mBugCloseDialog = new BugCloseDialog(BugDetailActivity.this);
+                        mBugCloseDialog.setBugId(bugId);
+                        mBugCloseDialog.setOnBugOptListener(onBugOptListener);
+                    }
+                    mBugCloseDialog.show();
+                } else if (itemType == BugDetailOptPopWindow.ItemType.Delete) {
+                    initDeleteConfirmDialog();
+                    mDeleteConfirmDialog.show();
+                }
+            }
+        };
+
+    private OnBugOptListener onBugOptListener = new OnBugOptListener() {
+        @Override
+        public void onSaveSuccessFinish() {
+            Log.i(TAG, "onSaveSuccessFinish");
+            HttpVisitUtils.getHttpVisit(BugDetailActivity.this, LocalInfo.getBaseUrl(BugDetailActivity.this)
+                + "bug/detail&bugId=" + bugId, true, "数据更新中...", onHttpFinishListener);
+        }
+    };
 
     /**
      * 处理点击查看bug注释事件
@@ -278,6 +328,44 @@ public class BugDetailActivity extends Activity {
 
         }
     }
+
+    private ConfirmDialog mDeleteConfirmDialog = null;
+
+    private void initDeleteConfirmDialog() {
+        if (mDeleteConfirmDialog == null) {
+            mDeleteConfirmDialog = new ConfirmDialog(this);
+            mDeleteConfirmDialog.setMessageTvText(R.string.bug_delete_message);
+            mDeleteConfirmDialog.setLeftBtnText(R.string.bug_delete_cancel);
+            mDeleteConfirmDialog.setRightBtnText(R.string.bug_delete_sure);
+            mDeleteConfirmDialog.setOnConfirmDialogListener(new ConfirmDialog.OnConfirmDialogListener() {
+                @Override
+                public void onLeftBtnClick(ConfirmDialog dialog) {
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onRightBtnClick(ConfirmDialog dialog) {
+                    dialog.dismiss();
+                    HttpVisitUtils.getHttpVisit(BugDetailActivity.this, LocalInfo.getBaseUrl(BugDetailActivity.this)
+                        + "bug/delete&bugId=" + bugId, true, "删除中...", onDeleteFinishListener);
+                }
+            });
+        }
+    }
+
+    private HttpVisitUtils.OnHttpFinishListener onDeleteFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+        @Override
+        public void onVisitFinish(HttpResult result) {
+            if (result == null)
+                return;
+            if (result.isVisitSuccess()) {
+                Toast.makeText(BugDetailActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                BugDetailActivity.this.finish();
+            } else {
+                HttpConnectResultUtils.optFailure(BugDetailActivity.this, result);
+            }
+        }
+    };
 
     private ConfirmDialog.OnConfirmDialogListener onConfirmDialogListener =
         new ConfirmDialog.OnConfirmDialogListener() {

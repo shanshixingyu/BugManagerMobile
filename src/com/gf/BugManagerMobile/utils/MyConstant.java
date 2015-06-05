@@ -154,4 +154,9 @@ public class MyConstant {
      */
     public static final int NOT_ENABLE_TEXT_COLOR = Color.parseColor("#ffbcbcbe");
 
+    /**
+     * 主页面再按一次退出的时间长度
+     */
+    public static final long NEXT_EXIT_TIME_LENGTH = 2000L;
+
 }

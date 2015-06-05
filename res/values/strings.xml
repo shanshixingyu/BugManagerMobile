@@ -259,4 +259,28 @@
     <string name="module_modify_title">修改项目模块</string>
     <string name="module_modify_top_save">保存</string>
 
+    <!--解决缺陷对话框-->
+    <string name="bug_solve_type">类型</string>
+    <string name="bug_solve_solve">解决</string>
+    <string name="bug_solve_other">其它</string>
+    <string name="bug_solve_reason">解决注释</string>
+    <string name="bug_solve_sure">解决</string>
+    <string name="bug_solve_cancel">取消</string>
+
+    <!--激活缺陷对话框-->
+    <string name="bug_active_reason">激活原因</string>
+    <string name="bug_active_sure">激活</string>
+    <string name="bug_active_cancel">取消</string>
+
+    <!--激活缺陷对话框-->
+    <string name="bug_close_reason">关闭原因</string>
+    <string name="bug_close_sure">关闭</string>
+    <string name="bug_close_cancel">取消</string>
+
+    <!--删除缺陷对话框-->
+    <string name="bug_delete_message">删除后将不能够恢复，确定删除？</string>
+    <string name="bug_delete_sure">删除</string>
+    <string name="bug_delete_cancel">取消</string>
+
+
 </resources>

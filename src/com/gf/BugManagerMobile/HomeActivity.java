@@ -95,4 +95,20 @@ public class HomeActivity extends BaseActivity {
         popupWindow.showAsDropDown(v);
     }
 
+    /**
+     * 上次按的时间
+     */
+    private long preBackPressTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - preBackPressTime <= MyConstant.NEXT_EXIT_TIME_LENGTH) {
+            super.onBackPressed();
+            System.exit(0);
+        } else {
+            preBackPressTime = currentTime;
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

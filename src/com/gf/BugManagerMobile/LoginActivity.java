@@ -13,12 +13,8 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.User;
-import com.gf.BugManagerMobile.utils.LocalInfo;
+import com.gf.BugManagerMobile.utils.*;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
-import com.gf.BugManagerMobile.utils.HttpVisitUtils;
-import com.gf.BugManagerMobile.utils.MyConstant;
-import com.gf.BugManagerMobile.utils.RegexUtils;
-import com.gf.BugManagerMobile.utils.SharedPreferenceUtils;
 
 import java.net.URLEncoder;
 
@@ -36,7 +32,46 @@ public class LoginActivity extends Activity {
 
         initComponent();
 
+        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "site/auto-login", true, "自动登录中...",
+            onAutoLoginFinishListener);
     }
+
+    private HttpVisitUtils.OnHttpFinishListener onAutoLoginFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+        @Override
+        public void onVisitFinish(HttpResult result) {
+            if (result == null)
+                return;
+            if (result.isVisitSuccess()) {
+                try {
+                    LoginSuccessInfo loginSuccessInfo = JSON.parseObject(result.getResult(), LoginSuccessInfo.class);
+                    // 保存到配置文件中
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_USE_ID,
+                        loginSuccessInfo.getUserId());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_USE_NAME,
+                        loginSuccessInfo.getUserName());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_PASSWORD,
+                        loginSuccessInfo.getPassword());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_ID,
+                        loginSuccessInfo.getRoleId());
+                    SharedPreferenceUtils.save(LoginActivity.this, MyConstant.SP_LOGIN_ROLE_NAME,
+                        loginSuccessInfo.getRoleName());
+
+                    LocalInfo.setLoginSuccessInfo(loginSuccessInfo);
+
+                    Log.i(TAG, "自动登录成功：" + loginSuccessInfo.toString());
+
+                    // 跳转到主页
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    LoginActivity.this.finish();
+                } catch (Exception e) {
+                    // Toast.makeText(LoginActivity.this, R.string.login_parse_failure, Toast.LENGTH_SHORT).show();
+                }
+                // } else {
+                // HttpConnectResultUtils.optFailure(LoginActivity.this, result);
+            }
+        }
+    };
 
     /**
      * 初始化控件
@@ -143,8 +178,8 @@ public class LoginActivity extends Activity {
                 startActivity(settingIntent);
                 break;
             case R.id.menu_about:
-//                Intent testIntent = new Intent(this, TestActivity.class);
-//                startActivity(testIntent);
+                // Intent testIntent = new Intent(this, TestActivity.class);
+                // startActivity(testIntent);
 
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
