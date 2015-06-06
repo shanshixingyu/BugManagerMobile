@@ -126,5 +126,13 @@
             android:name=".ModifyModuleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".ChartsSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".ChartsShowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
     </application>
 </manifest> 

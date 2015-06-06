@@ -17,6 +17,10 @@ public class MyConstant {
      */
     public static final String NAME_PATTERN = "[\\x{4e00}-\\x{9fa5}A-Za-z0-9_]+";
     /**
+     * 日期正则表达式
+     */
+    public static final String DATE_PATTERN = "\\d{4}[0-1][1-9][0-3]\\d";
+    /**
      * SharedPreferences中的用户名
      */
     public static final String SP_USER_NAME = "user_name";
@@ -148,6 +152,9 @@ public class MyConstant {
     public static final String PROJECT_LIST_2_MODULE_LIST = "project_list_2_module_list";
     public static final String MODULE_LIST_2_MODULE_ADD = "module_list_2_module_add";
     public static final String MODULE_LIST_2_MODULE_MODIFY = "module_list_2_module_modify";
+    public static final String CHARTS_SEARCH_2_CHARTS_SHOW_PROJECT_ID = "charts_search_2_charts_show_project_id";
+    public static final String CHARTS_SEARCH_2_CHARTS_SHOW_START_TIME = "charts_search_2_charts_show_start_time";
+    public static final String CHARTS_SEARCH_2_CHARTS_SHOW_END_TIME = "charts_search_2_charts_show_end_time";
 
     /**
      * 当不使能的的时候的字体颜色
@@ -158,5 +165,39 @@ public class MyConstant {
      * 主页面再按一次退出的时间长度
      */
     public static final long NEXT_EXIT_TIME_LENGTH = 2000L;
+    /**
+     * 7天的时长（毫秒）
+     */
+    public static final long SEVEN_DAY_MILLISECOND_LENGTH = 7 * 24 * 60 * 60 * 1000;
+
+
+    /**
+     * 图表类型：项目缺陷提交情况（天）
+     */
+    public static final String  ECHART_TYPE_SUBMIT_DAY = "ECHART_TYPE_SUBMIT_DAY";
+    /**
+     * 图表类型：项目缺陷提交情况（月）
+     */
+    public static final String  ECHART_TYPE_SUBMIT_MONTH = "ECHART_TYPE_SUBMIT_MONTH";
+    /**
+     * 图表类型：项目缺陷总量走势（天）
+     */
+    public static final String  ECHART_TYPE_TOTAL_DAY = "ECHART_TYPE_TOTAL_DAY";
+    /**
+     * 图表类型：项目缺陷总量走势（月）
+     */
+    public static final String  ECHART_TYPE_TOTAL_MONTH = "ECHART_TYPE_TOTAL_MONTH";
+    /**
+     * 图表类型：项目各模块缺陷比例
+     */
+    public static final String  ECHART_TYPE_MODULE = "ECHART_TYPE_MODULE";
+    /**
+     * 图表类型：项目缺陷优先级比例
+     */
+    public static final String  ECHART_TYPE_PRIORITY = "ECHART_TYPE_PRIORITY";
+    /**
+     * 图表类型：项目缺陷状态比例
+     */
+    public static final String  ECHART_TYPE_STATUS = "ECHART_TYPE_STATUS";
 
 }

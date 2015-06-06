@@ -142,10 +142,16 @@ public class SlideView extends HorizontalScrollView {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        optTouchEvent(ev);
-        return super.dispatchTouchEvent(ev);
+    public boolean onTouchEvent(MotionEvent ev) {
+        return true;
     }
+
+    // @Override
+    // public boolean dispatchTouchEvent(MotionEvent ev) {
+    // optTouchEvent(ev);
+    // return super.dispatchTouchEvent(ev);
+    // return true;
+    // }
 
     /**
      * 处理触摸事件

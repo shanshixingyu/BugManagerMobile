@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/charts_show_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:text="@string/charts_show_title"
+            style="@style/TopOptTitleTheme" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_day_submit_title" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/charts_show_day_submit_bar"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_month_submit_title" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/charts_show_month_submit_bar"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_day_total_title" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/charts_show_day_total_bar"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_month_total_title" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/charts_show_month_total_bar"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_module_title" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/charts_show_module_pie"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_priority_title" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/charts_show_priority_pie"
+                style="@style/ChartsContentTheme" />
+
+            <TextView
+                style="@style/ChartsTitleTheme"
+                android:text="@string/charts_show_status_title" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/charts_show_status_pie"
+                style="@style/ChartsContentTheme" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

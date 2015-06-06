@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/charts_search_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            style="@style/TopOptTitleTheme"
+            android:text="@string/charts_search_title" />
+
+        <Button
+            android:id="@+id/charts_search_top_btn"
+            android:text="@string/charts_search_top_btn"
+            android:visibility="invisible"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/charts_search_project"
+            style="@style/SearchBugItemTitle" />
+
+        <Spinner
+            android:id="@+id/charts_search_project_sp"
+            style="@style/SearchBugItemContent" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/charts_search_start_date"
+            style="@style/SearchBugItemTitle" />
+
+        <EditText
+            android:id="@+id/charts_search_start_date_et"
+            android:hint="@string/charts_search_date_format"
+            style="@style/SearchBugItemContent"
+            android:textSize="19dp"
+            android:inputType="date"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/SearchBugItemRow">
+
+        <TextView
+            android:text="@string/charts_search_end_date"
+            style="@style/SearchBugItemTitle" />
+
+        <EditText
+            android:id="@+id/charts_search_end_date_et"
+            android:hint="@string/charts_search_date_format"
+            android:inputType="date"
+            style="@style/SearchBugItemContent"
+            android:textSize="19dp"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -94,6 +94,11 @@
                 android:text="@string/slide_left_menu_opt" />
 
             <TextView
+                android:id="@+id/slide_left_menu_charts"
+                style="@style/SlideLeftMenuItem"
+                android:text="@string/slide_left_menu_charts" />
+
+            <TextView
                 android:id="@+id/slide_left_menu_setting"
                 style="@style/SlideLeftMenuItem"
                 android:text="@string/slide_left_menu_setting" />

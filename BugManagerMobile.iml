@@ -16,5 +16,6 @@
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="pulltorefresh_library" />
     <orderEntry type="library" name="universal-image-loader-1.9.3-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="MPChartLib" />
   </component>
 </module>

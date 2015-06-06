@@ -160,6 +160,10 @@ public class BaseActivity extends Activity {
                 optIntent.putExtra(MyBugActivity.ACTIVITY_TYPE, MyBugActivity.TYPE_OPT);
                 startActivity(optIntent);
                 break;
+            case R.id.slide_left_menu_charts:
+                Intent chartsSearchIntent = new Intent(this, ChartsSearchActivity.class);
+                startActivity(chartsSearchIntent);
+                break;
             case R.id.slide_left_menu_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);

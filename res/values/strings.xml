@@ -41,6 +41,7 @@
     <string name="slide_left_menu_assign">指派给我的Bug</string>
     <string name="slide_left_menu_opt">操作过的Bug</string>
     <string name="slide_left_menu_project_module">项目与模块</string>
+    <string name="slide_left_menu_charts">缺陷报表</string>
     <string name="slide_left_menu_setting">设置</string>
     <string name="slide_left_menu_about">关于</string>
     <string name="slide_left_menu_exit">退出登录</string>
@@ -55,7 +56,7 @@
     <string name="about_overright">Copyright 2014&#8211;2015 GuLang All Rights Reserved</string>
 
     <!--首页-->
-    <string name="home_title">Bug概况</string>
+    <string name="home_title">缺陷概况</string>
     <string name="home_opt">...</string>
     <string name="home_submit">提交新BUG</string>
     <string name="home_bug_item_total">总数:</string>
@@ -63,7 +64,6 @@
     <string name="home_bug_item_active">激活:</string>
     <string name="home_bug_item_solved">已解决:</string>
     <string name="home_bug_item_closed">已关闭:</string>
-
 
     <!--提交新Bug-->
     <string name="submit_bug_title">提交新BUG</string>
@@ -111,7 +111,7 @@
 
 
     <!--bug查询条件-->
-    <string name="search_bug_title">Bug查询条件</string>
+    <string name="search_bug_title">缺陷查询条件</string>
     <string name="search_bug_btn">查询</string>
     <string name="search_bug_project">项目</string>
     <string name="search_bug_module">模块</string>
@@ -281,6 +281,24 @@
     <string name="bug_delete_message">删除后将不能够恢复，确定删除？</string>
     <string name="bug_delete_sure">删除</string>
     <string name="bug_delete_cancel">取消</string>
+
+    <!--报表查询界面-->
+    <string name="charts_search_title">报表查询条件</string>
+    <string name="charts_search_top_btn">查询</string>
+    <string name="charts_search_project">项目名称</string>
+    <string name="charts_search_start_date">开始日期</string>
+    <string name="charts_search_end_date">结束日期</string>
+    <string name="charts_search_date_format">日期格式如20150523</string>
+
+    <!--显示缺陷图表-->
+    <string name="charts_show_title">缺陷报表</string>
+    <string name="charts_show_day_submit_title">缺陷提交日期分布表（天）</string>
+    <string name="charts_show_month_submit_title">缺陷提交日期分布表（月）</string>
+    <string name="charts_show_day_total_title">缺陷总量走势图（天）</string>
+    <string name="charts_show_month_total_title">缺陷总量走势图（月）</string>
+    <string name="charts_show_module_title">各模块缺陷数饼图</string>
+    <string name="charts_show_priority_title">缺陷优先级饼图</string>
+    <string name="charts_show_status_title">缺陷状态饼图</string>
 
 
 </resources>

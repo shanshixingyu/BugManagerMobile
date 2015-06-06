@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
@@ -17,6 +16,8 @@ import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;
 import com.gf.BugManagerMobile.utils.PopWindowUtils;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * 主页（Bug概况）
@@ -25,7 +26,7 @@ import com.gf.BugManagerMobile.utils.PopWindowUtils;
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
 
-    private ListView mBugOverviewLv;
+    private PullToRefreshListView mBugOverviewLv;
     private HomeBugOverLvAdapter mHomeBugOverLvAdapter;
 
     @Override
@@ -37,13 +38,14 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initComponent() {
-        mBugOverviewLv = (ListView) findViewById(R.id.home_bug_overview_lv);
+        mBugOverviewLv = (PullToRefreshListView) findViewById(R.id.home_bug_overview_lv);
         mHomeBugOverLvAdapter = new HomeBugOverLvAdapter(this);
         mBugOverviewLv.setAdapter(mHomeBugOverLvAdapter);
         mBugOverviewLv.setOnItemClickListener(onItemClickListener);
+        mBugOverviewLv.setMode(PullToRefreshBase.Mode.BOTH);
 
         HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/index", true, "正在加载...",
-            onHttpFinishListener);
+            onResetFinishListener);
     }
 
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
@@ -62,7 +64,7 @@ public class HomeActivity extends BaseActivity {
         }
     };
 
-    private HttpVisitUtils.OnHttpFinishListener onHttpFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+    private HttpVisitUtils.OnHttpFinishListener onResetFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
         @Override
         public void onVisitFinish(HttpResult result) {
             Log.i(TAG, "解析前：" + result.toString());
