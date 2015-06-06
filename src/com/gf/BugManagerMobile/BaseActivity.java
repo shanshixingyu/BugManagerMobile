@@ -138,10 +138,6 @@ public class BaseActivity extends Activity {
                 startActivity(homeIntent);
                 break;
             case R.id.slide_left_menu_project_module:
-                if (this instanceof ProjectModuleActivity) {
-                    slideView.toggleMenu();
-                    return;
-                }
                 Intent projectModuleIntent = new Intent(this, ProjectModuleActivity.class);
                 startActivity(projectModuleIntent);
                 break;

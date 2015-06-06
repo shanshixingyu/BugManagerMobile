@@ -24,70 +24,73 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/user_name"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/modify_user_name_et"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/user_role"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/modify_user_role_sp"
             android:entries="@array/UserRole"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/user_email"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/modify_user_email_et"
             android:inputType="textEmailAddress"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/user_creator"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/modify_user_creator_tv"
-            style="@style/UserItemContent" />
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/user_create_time"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/modify_user_create_time_tv"
-            style="@style/UserItemContent" />
+            style="@style/OptItemContent" />
     </LinearLayout>
 
 

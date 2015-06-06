@@ -11,7 +11,7 @@
 
     <!--设置界面-->
     <color name="setting_group_bg">#D5D5D5</color>
-    <color name="setting_group_item_divider">#C0C0C0</color>
+    <color name="setting_group_item_divider">#CCCCCC</color>
     <color name="setting_group_item_bg_pressed">#BBBBBB</color>
     <color name="setting_pop_btn">#707070</color>
     <color name="setting_pop_btn_pressed">#883399FF</color>

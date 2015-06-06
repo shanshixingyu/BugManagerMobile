@@ -4,28 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.gf.BugManagerMobile.view.SlideItemView
+    <Spinner
+        android:id="@+id/test_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/slide_item_first"
-                android:layout_width="match_parent"
-                android:background="#FF0000"
-                android:layout_height="45dp" />
-
-            <View
-                android:id="@+id/slide_item_second"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:background="#00FF00" />
-        </LinearLayout>
-    </com.gf.BugManagerMobile.view.SlideItemView>
+        android:entries="@array/BugPriority"
+        android:layout_margin="15dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/bg_spinner_selector"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
 

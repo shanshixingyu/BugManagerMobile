@@ -14,7 +14,7 @@ public class SubmitBugActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCenterContentLyt(R.layout.page_submit_bug);
+        setCenterContentLyt(R.layout.activity_bug_submit);
 
     }
 

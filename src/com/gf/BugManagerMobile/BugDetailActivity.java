@@ -1,7 +1,6 @@
 package com.gf.BugManagerMobile;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,8 +45,7 @@ public class BugDetailActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_bug_detail);
-        // setCenterContentLyt(R.layout.page_bug_detail);
+        setContentView(R.layout.activity_bug_detail);
 
         initComponent();
 

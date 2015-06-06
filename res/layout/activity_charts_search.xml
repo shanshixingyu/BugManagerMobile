@@ -25,45 +25,44 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        style="@style/SearchBugItemRow">
+        style="@style/OptItemRow">
 
         <TextView
             android:text="@string/charts_search_project"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/charts_search_project_sp"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/charts_search_start_date"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/charts_search_start_date_et"
             android:hint="@string/charts_search_date_format"
-            style="@style/SearchBugItemContent"
-            android:textSize="19dp"
             android:inputType="date"
-            android:gravity="center_vertical" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/charts_search_end_date"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/charts_search_end_date_et"
             android:hint="@string/charts_search_date_format"
             android:inputType="date"
-            style="@style/SearchBugItemContent"
-            android:textSize="19dp"
-            android:gravity="center_vertical" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
 </LinearLayout>

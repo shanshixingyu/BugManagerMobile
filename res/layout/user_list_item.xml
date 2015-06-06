@@ -26,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:textSize="21dp" />
+                android:layout_marginBottom="3dp"
+                android:textSize="18dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                 <TextView
                     android:id="@+id/user_list_item_role_tv"
                     android:layout_width="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="14dp"
                     android:textColor="#555555"
                     android:layout_height="wrap_content" />
 
@@ -47,7 +48,7 @@
                     android:gravity="right"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="15dp"
+                    android:textSize="14dp"
                     android:text="shanshixingyu@qq.com"
                     android:textColor="#555555" />
             </LinearLayout>

@@ -26,35 +26,35 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/group_name"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/group_modify_name_et"
             android:inputType="text"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/group_member"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/group_modify_member_tv"
-            style="@style/UserItemContent"
+            style="@style/OptItemContent"
             android:text="@string/group_member_click"
-            android:visibility="gone"
             android:clickable="true"
             android:onClick="onSelectMemberClick"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="@color/group_member_selector"
             android:gravity="center_vertical" />
     </LinearLayout>
@@ -68,43 +68,44 @@
 
         <TextView
             android:text="@string/group_introduce"
-            style="@style/UserItemTitle"
+            style="@style/OptItemTitle"
             android:layout_marginTop="8dp"
             android:gravity="top" />
 
         <EditText
             android:id="@+id/group_modify_introduce_et"
-            style="@style/UserItemContent"
+            style="@style/OptItemContent"
             android:inputType="textMultiLine"
             android:gravity="top|left"
             android:layout_marginLeft="5dp"
+            android:background="@drawable/bg_edit_text_selector"
             android:lines="5" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/group_creator"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/group_modify_creator_tv"
-            style="@style/UserItemContent" />
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/group_create_time"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/group_modify_create_time_tv"
-            style="@style/UserItemContent" />
+            style="@style/OptItemContent" />
     </LinearLayout>
 
 </LinearLayout>

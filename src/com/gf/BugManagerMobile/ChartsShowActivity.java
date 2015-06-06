@@ -44,6 +44,7 @@ public class ChartsShowActivity extends Activity {
     private PieChart mStatusChart;
 
     private List<ChartDataItem> mChartDataItemList;
+    private List<Integer> mPieColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,20 @@ public class ChartsShowActivity extends Activity {
         pieChart.setRotationAngle(0);
         pieChart.setRotationEnabled(true);
         pieChart.animateY(1500, Easing.EasingOption.EaseInOutQuad);
+
+        mPieColors = new ArrayList<Integer>();
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            mPieColors.add(c);
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            mPieColors.add(c);
+        for (int c : ColorTemplate.COLORFUL_COLORS)
+            mPieColors.add(c);
+        for (int c : ColorTemplate.LIBERTY_COLORS)
+            mPieColors.add(c);
+        for (int c : ColorTemplate.PASTEL_COLORS)
+            mPieColors.add(c);
+        mPieColors.add(ColorTemplate.getHoloBlue());
+
     }
 
     private HttpVisitUtils.OnHttpFinishListener onSearchFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
@@ -215,26 +230,8 @@ public class ChartsShowActivity extends Activity {
             }
 
             PieDataSet dataSet = new PieDataSet(yValDataList, "");
-            ArrayList<Integer> colors = new ArrayList<Integer>();
 
-            for (int c : ColorTemplate.VORDIPLOM_COLORS)
-                colors.add(c);
-
-            for (int c : ColorTemplate.JOYFUL_COLORS)
-                colors.add(c);
-
-            for (int c : ColorTemplate.COLORFUL_COLORS)
-                colors.add(c);
-
-            for (int c : ColorTemplate.LIBERTY_COLORS)
-                colors.add(c);
-
-            for (int c : ColorTemplate.PASTEL_COLORS)
-                colors.add(c);
-
-            colors.add(ColorTemplate.getHoloBlue());
-
-            dataSet.setColors(colors);
+            dataSet.setColors(mPieColors);
             PieData data = new PieData(xValDataList, dataSet);
             pieChart.setData(data);
         }

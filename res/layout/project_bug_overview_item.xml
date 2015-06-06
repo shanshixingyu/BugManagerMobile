@@ -16,7 +16,7 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="#000000"
             android:gravity="center_vertical"
             tools:text="神农地方弄"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:gravity="center_vertical"
             tools:text="总数:1235"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="#555555"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -40,7 +40,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         tools:text="未解决:50  |  激活:23  |  已解决:123  |  关闭:36"
-        android:textSize="15dp"
+        android:textSize="14dp"
         android:textColor="#555555" />
 
 </LinearLayout>

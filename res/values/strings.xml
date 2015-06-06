@@ -50,6 +50,7 @@
     <string name="about_title">关于</string>
     <string name="about_version_name_pre">版本名：</string>
     <string name="about_version_code_pre">版本号：</string>
+    <string name="about_graduation">基于Web和Android客户端的软件缺陷管理系统</string>
     <string name="about_msg">福州大学 软件工程专业2班\n黄文忠  毕业设计</string>
     <string name="about_privaty">使用条款和隐私政策</string>
     <string name="about_owner">孤狼软件  版权所有</string>

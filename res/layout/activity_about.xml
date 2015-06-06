@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:background="#E0F3FF"
         android:orientation="vertical"
-        android:paddingTop="45dp">
+        android:paddingTop="10dp">
 
         <ImageView
             android:id="@+id/about_imgv"
@@ -40,7 +40,7 @@
             android:layout_marginTop="20dp"
             android:text="版本名：1.0"
             android:textColor="@android:color/black"
-            android:textSize="15dp" />
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/about_version_code"
@@ -50,7 +50,19 @@
             android:layout_marginTop="5dp"
             android:text="版本号：1.0"
             android:textColor="@android:color/black"
-            android:textSize="15dp" />
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="@string/about_graduation"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +72,7 @@
             android:gravity="center"
             android:text="@string/about_msg"
             android:textColor="@android:color/black"
-            android:textSize="20dp" />
+            android:textSize="14dp"/>
     </LinearLayout>
 
     <TextView
@@ -69,7 +81,7 @@
         android:gravity="center"
         android:text="@string/about_privaty"
         android:textColor="#0000FF"
-        android:textSize="13dp" />
+        android:textSize="12dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -77,7 +89,7 @@
         android:gravity="center"
         android:text="@string/about_owner"
         android:textColor="@android:color/black"
-        android:textSize="13dp" />
+        android:textSize="12dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -86,7 +98,7 @@
         android:gravity="center"
         android:text="@string/about_overright"
         android:textColor="@android:color/black"
-        android:textSize="13dp"
+        android:textSize="12dp"
         android:textStyle="italic" />
 
 </LinearLayout>

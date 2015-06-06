@@ -73,7 +73,7 @@
 
     <style name="RadiusGroupItemTextBase">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">17dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
 
@@ -137,7 +137,7 @@
         <item name="android:layout_centerInParent">true</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">25dp</item>
+        <item name="android:textSize">21dp</item>
     </style>
 
     <style name="TopOptBtnTheme">
@@ -149,7 +149,7 @@
         <!--<item name="android:paddingBottom">5dp</item>-->
         <!--<item name="android:paddingTop">5dp</item>-->
         <item name="android:layout_marginRight">10dp</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
@@ -176,35 +176,9 @@
     <!--<item name="android:textColor">#333333</item>-->
     <!--</style>-->
 
-    <!--bug搜索界面-->
-    <style name="SearchBugItemRow">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-    </style>
-
-    <style name="SearchBugItemTitle">
-        <item name="android:layout_width">110dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">#000000</item>
-        <item name="android:padding">5dp</item>
-    </style>
-
-    <style name="SearchBugItemContent">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">right|center_vertical</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textColor">#000000</item>
-        <item name="android:padding">5dp</item>
-    </style>
-
     <style name="BugListItemInfo">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">14dp</item>
         <item name="android:textColor">#ff494949</item>
     </style>
 
@@ -222,7 +196,7 @@
     <style name="BugDetailItemTitle">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:ellipsize">end</item>
@@ -236,7 +210,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <!--<item name="android:singleLine">true</item>-->
         <!--<item name="android:ellipsize">end</item>-->
         <item name="android:textColor">#ff575a57</item>
@@ -246,7 +220,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -257,30 +231,39 @@
 
 
     <!--添加用户-->
-    <style name="UserItemRow">
+    <style name="OptItemRow">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
+        <!--<item name="android:background">#ffa7fdff</item>-->
     </style>
 
-    <style name="UserItemTitle">
-        <item name="android:layout_width">110dp</item>
+    <style name="OptItemTitle">
+        <item name="android:layout_width">95dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">#000000</item>
         <item name="android:padding">5dp</item>
+        <!--<item name="android:background">#FFFF00</item>-->
     </style>
 
-    <style name="UserItemContent">
+    <style name="OptItemContent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">#000000</item>
         <item name="android:padding">5dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
         <item name="android:gravity">center_vertical</item>
+        <!--<item name="android:background">#FF00FF</item>-->
+    </style>
+
+    <style name="OptItemContent2" parent="OptItemContent">
+        <item name="android:gravity">right|center_vertical</item>
     </style>
 
     <style name="ChartsTitleTheme">

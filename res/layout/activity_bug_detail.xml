@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:background="#FFFFFF"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout style="@style/TopOptTheme">
 
         <ImageView
             android:id="@+id/bug_detail_back_imgv"
-            style="@style/TopOptBackTheme"/>
+            style="@style/TopOptBackTheme" />
 
         <TextView
             style="@style/TopOptTitleTheme"
-            android:text="@string/bug_detail_title"/>
+            android:text="@string/bug_detail_title" />
 
         <Button
             android:id="@+id/bug_detail_opt"
             style="@style/TopOptBtnTheme"
             android:text="@string/bug_detail_opt"
             android:paddingLeft="18dp"
-            android:paddingRight="18dp"/>
+            android:paddingRight="18dp" />
 
     </RelativeLayout>
 
@@ -41,12 +41,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_name"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_name_tv"
                     tools:text="是的弄死"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -54,12 +54,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_project"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_project_tv"
                     tools:text="测试项目"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -67,12 +67,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_module"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_module_tv"
                     tools:text="测试模块"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -80,12 +80,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_status"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_status_tv"
                     tools:text="未解决"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -93,12 +93,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_assign"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_assgin_tv"
                     tools:text="root"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -106,12 +106,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_priority"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_priority_tv"
                     tools:text="低"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -119,12 +119,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_creator"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_creator_tv"
                     tools:text="孤狼"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -132,12 +132,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_create_time"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_create_time_tv"
                     tools:text="2015-05-01 22:05:48"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -145,12 +145,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_active"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_active_tv"
                     tools:text="0"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -158,12 +158,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_close_time"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_close_time_tv"
                     tools:text="2015-05-05 16:44:07"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -171,12 +171,12 @@
 
                 <TextView
                     android:text="@string/bug_detail_image"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_image_tv"
                     tools:text="暂无"
-                    style="@style/BugDetailItemContent"/>
+                    style="@style/BugDetailItemContent" />
 
             </LinearLayout>
 
@@ -187,22 +187,23 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_height="120dp"/>
+                android:layout_height="120dp" />
 
             <LinearLayout style="@style/BugDetailItemTheme">
 
                 <TextView
                     android:text="@string/bug_detail_introduce"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_introduce_tv"
                     android:text="@string/bug_detail_introduce_click"
                     style="@style/BugDetailItemContent"
+                    android:textSize="14dp"
                     android:clickable="true"
                     android:visibility="gone"
                     android:onClick="onIntroduceClick"
-                    android:textColor="@color/bug_detail_introduce_selector"/>
+                    android:textColor="@color/bug_detail_introduce_selector" />
 
             </LinearLayout>
 
@@ -210,7 +211,7 @@
 
                 <TextView
                     android:text="@string/bug_detail_attachment"
-                    style="@style/BugDetailItemTitle"/>
+                    style="@style/BugDetailItemTitle" />
 
                 <TextView
                     android:id="@+id/bug_detail_attachment_tv"
@@ -222,7 +223,7 @@
                     android:textSize="14dp"
                     android:visibility="gone"
                     android:onClick="onAttachmentClick"
-                    android:background="@drawable/bg_attachment_selector"/>
+                    android:background="@drawable/bg_attachment_selector" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

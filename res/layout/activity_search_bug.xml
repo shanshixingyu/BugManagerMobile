@@ -25,94 +25,101 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        style="@style/SearchBugItemRow">
+        style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_project"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <TextView
             android:id="@+id/search_bug_project_name_tv"
-            style="@style/SearchBugItemContent" />
+            style="@style/OptItemContent2" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_module"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/search_bug_module_sp"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_priority"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/search_bug_priority_sp"
             android:entries="@array/BugPriority"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_serious"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/search_bug_serious_sp"
             android:entries="@array/BugSerious"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_assign"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/search_bug_assign_sp"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
-            style="@style/SearchBugItemTitle"
+            style="@style/OptItemTitle"
             android:text="@string/search_bug_submit" />
 
         <EditText
             android:id="@+id/search_bug_submit_et"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent2" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
-            style="@style/SearchBugItemTitle"
+            style="@style/OptItemTitle"
             android:text="@string/search_bug_status" />
 
         <Spinner
             android:id="@+id/search_bug_status_sp"
             android:entries="@array/BugStatus"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
-    <LinearLayout style="@style/SearchBugItemRow">
+    <LinearLayout style="@style/OptItemRow">
 
         <TextView
             android:text="@string/search_bug_key_word"
-            style="@style/SearchBugItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/search_bug_key_word_et"
-            style="@style/SearchBugItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent2" />
     </LinearLayout>
 </LinearLayout>

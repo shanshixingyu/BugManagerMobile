@@ -23,7 +23,7 @@
             android:singleLine="true"
             android:gravity="center_vertical"
             android:textColor="#ff0a0a0a"
-            android:textSize="21dp"
+            android:textSize="18dp"
             tools:text="山东三农的烦恼山东份内"
             android:layout_height="wrap_content" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/bug_list_item_status_tv"
             android:layout_width="wrap_content"
             tools:text="未解决"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:padding="5dp"
             android:textColor="#ff494949"
             android:gravity="center_vertical"

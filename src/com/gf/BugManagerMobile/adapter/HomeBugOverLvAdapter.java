@@ -44,7 +44,7 @@ public class HomeBugOverLvAdapter extends BaseAdapter {
         if (dataList == null) {
             dataList = new ArrayList<ProjectBugOverview.ProjectBugInfo>();
         }
-        if (position < 0 || position > dataList.size())
+        if (position < 0 || position >= dataList.size())
             return null;
         return dataList.get(position);
     }

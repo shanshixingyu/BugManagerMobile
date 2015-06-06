@@ -51,8 +51,10 @@ public class HomeActivity extends BaseActivity {
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // 注意：此地的position是从1开始的，所以要减1
+            Log.i(TAG, "position=" + position);
             final ProjectBugOverview.ProjectBugInfo projectBugInfo =
-                (ProjectBugOverview.ProjectBugInfo) mHomeBugOverLvAdapter.getItem(position);
+                (ProjectBugOverview.ProjectBugInfo) mHomeBugOverLvAdapter.getItem(position - 1);
             if (projectBugInfo == null) {
                 Toast.makeText(HomeActivity.this, "获取数据错误", Toast.LENGTH_SHORT).show();
                 return;

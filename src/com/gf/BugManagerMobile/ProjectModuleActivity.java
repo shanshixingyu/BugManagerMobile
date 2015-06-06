@@ -1,5 +1,6 @@
 package com.gf.BugManagerMobile;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.List;
  * 显示项目模块信息
  * Created by Administrator on 5/14 0014.
  */
-public class ProjectModuleActivity extends BaseActivity {
+public class ProjectModuleActivity extends Activity {
     private static final String TAG = "ProjectModuleActivity";
 
     private ExpandableListView projectModuleXlv;
@@ -30,7 +31,7 @@ public class ProjectModuleActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCenterContentLyt(R.layout.page_project_module);
+        setContentView(R.layout.activity_project_module);
 
         projectModuleXlv = (ExpandableListView) findViewById(R.id.project_module_xlv);
         projectModuleAdapter = new ProjectModuleAdapter(this);

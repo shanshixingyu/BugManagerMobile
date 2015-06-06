@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bug_active_dialog_root_lyt"
     android:orientation="vertical"
-    android:background="@drawable/bg_bug_opt"
+    android:background="@drawable/bg_white_opt"
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_margin="15dp"
@@ -24,7 +24,10 @@
         android:id="@+id/bug_active_reason_et"
         android:layout_width="match_parent"
         android:lines="5"
+        android:padding="8dp"
+        android:layout_marginBottom="10dp"
         android:gravity="top|left"
+        android:background="@drawable/bg_edit_text_selector"
         android:layout_height="wrap_content" />
 
     <LinearLayout
@@ -41,7 +44,7 @@
             android:onClick="onBtnClick"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:background="@drawable/bg_bug_opt_btn"
+            android:background="@drawable/bg_opt_btn"
             android:text="@string/bug_active_cancel" />
 
         <Button
@@ -54,7 +57,7 @@
             android:layout_marginLeft="5dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
-            android:background="@drawable/bg_bug_opt_btn"
+            android:background="@drawable/bg_opt_btn"
             android:text="@string/bug_active_sure" />
     </LinearLayout>
 

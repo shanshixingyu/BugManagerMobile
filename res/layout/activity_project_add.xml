@@ -25,30 +25,32 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/project_name"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <EditText
             android:id="@+id/project_add_name_et"
             android:inputType="text"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_edit_text_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/UserItemRow"
+        style="@style/OptItemRow"
         android:orientation="horizontal">
 
         <TextView
             android:text="@string/project_group"
-            style="@style/UserItemTitle" />
+            style="@style/OptItemTitle" />
 
         <Spinner
             android:id="@+id/project_add_group_sp"
-            style="@style/UserItemContent" />
+            android:background="@drawable/bg_spinner_selector"
+            style="@style/OptItemContent" />
     </LinearLayout>
 
     <LinearLayout
@@ -60,16 +62,17 @@
 
         <TextView
             android:text="@string/project_introduce"
-            style="@style/UserItemTitle"
+            style="@style/OptItemTitle"
             android:layout_marginTop="8dp"
             android:gravity="top" />
 
         <EditText
             android:id="@+id/project_add_introduce_et"
-            style="@style/UserItemContent"
+            style="@style/OptItemContent"
             android:inputType="textMultiLine"
             android:gravity="top|left"
             android:layout_marginLeft="5dp"
+            android:background="@drawable/bg_edit_text_selector"
             android:lines="5" />
     </LinearLayout>
 

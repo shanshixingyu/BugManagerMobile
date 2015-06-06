@@ -25,7 +25,8 @@
                 android:id="@+id/group_list_item_name_tv"
                 android:layout_width="match_parent"
                 android:textColor="#000000"
-                android:textSize="21dp"
+                android:textSize="18dp"
+                android:layout_marginBottom="3dp"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -36,7 +37,7 @@
                 android:layout_marginRight="5dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:textColor="#555555" />
         </LinearLayout>
 

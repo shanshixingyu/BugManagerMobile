@@ -37,8 +37,7 @@ public class BugListActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_bug_list);
-        // setCenterContentLyt(R.layout.page_bug_list);
+        setContentView(R.layout.activity_bug_list);
 
         bugPullToRefreshListLv = (PullToRefreshListView) findViewById(R.id.bug_list_lv);
         bugPullToRefreshListLv.setMode(PullToRefreshBase.Mode.BOTH);

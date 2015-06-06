@@ -31,7 +31,7 @@ public class BugDetailOptPopWindow extends PopupWindow {
 
     public BugDetailOptPopWindow(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setWidth(SizeUtils.dp2px(context, 110));
+        setWidth(SizeUtils.dp2px(context, 90));
         setHeight(SizeUtils.dp2px(context, 230));
         View convertView = LayoutInflater.from(context).inflate(R.layout.bug_detail_opt_pop, null, false);
         setContentView(convertView);
