@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.HomeBugOverLvAdapter;
