@@ -23,6 +23,7 @@ public class HttpConnectResultUtils {
         Toast.makeText(context, result.getMessage(), Toast.LENGTH_SHORT).show();
         if (result.getCode() == MyConstant.VISIT_CODE_NO_LOGIN) {
             Intent intent = new Intent(context, LoginActivity.class);
+            intent.putExtra(MyConstant.OTHER_ACTIVITY_2_LOGIN_SHOULD_AUTO, false);
             context.startActivity(intent);
         }
     }

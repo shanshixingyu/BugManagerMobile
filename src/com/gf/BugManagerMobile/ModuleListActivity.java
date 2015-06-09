@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +30,7 @@ import java.util.List;
  * 项目的模块列表界面
  * Created by GuLang on 2015-06-03.
  */
-public class ModuleListActivity extends Activity {
+public class ModuleListActivity extends BaseActivity {
     private static final String TAG = "ModuleListActivity";
 
     private static final int MSG_REFRESH_CLOSE = 0x123;

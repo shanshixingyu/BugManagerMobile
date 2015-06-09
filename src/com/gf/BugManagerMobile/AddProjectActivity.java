@@ -1,8 +1,6 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +18,7 @@ import java.util.List;
  * 添加项目界面
  * Created by GuLang on 2015-06-02.
  */
-public class AddProjectActivity extends Activity {
+public class AddProjectActivity extends BaseActivity {
     private static final String TAG = "AddProjectActivity";
 
     private Button topSaveBtn;

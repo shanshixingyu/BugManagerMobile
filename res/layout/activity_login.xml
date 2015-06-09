@@ -8,13 +8,15 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp">
 
-    <ImageView
+    <TextView
+        android:id="@+id/login_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="-20dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_logo" />
+        android:textSize="75dp"
+        android:layout_marginBottom="75dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="@string/login_title" />
 
     <EditText
         android:id="@+id/login_username_et"

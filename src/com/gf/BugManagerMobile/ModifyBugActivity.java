@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.ModuleSpinnerAdapter;
 import com.gf.BugManagerMobile.adapter.ProjectSpinnerAdapter;
 import com.gf.BugManagerMobile.adapter.UserSpinnerAdapter;
-import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.Module;
-import com.gf.BugManagerMobile.models.Project;
-import com.gf.BugManagerMobile.models.User;
+import com.gf.BugManagerMobile.models.*;
 import com.gf.BugManagerMobile.utils.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,11 +16,11 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * 提交新bug界面
+ * 修改bug界面
  * Created by Administrator on 5/11 0011.
  */
-public class SubmitBugActivity extends BaseActivity {
-    private static final String TAG = "SubmitBugActivity";
+public class ModifyBugActivity extends BaseActivity {
+    private static final String TAG = "ModifyBugActivity";
 
     private TextView mSubmitTitleTv;
     private Button mSubmitSaveBtn;
@@ -34,6 +30,7 @@ public class SubmitBugActivity extends BaseActivity {
     private Spinner mAssignSp;
     private Spinner mPrioritySp;
     private Spinner mSeriousSp;
+    private TextView mIntroduceTv;
     private EditText mIntroduceEt;
     private EditText mReappearEt;
 
@@ -41,10 +38,13 @@ public class SubmitBugActivity extends BaseActivity {
     private ModuleSpinnerAdapter mModuleSpAdapter;
     private UserSpinnerAdapter mMemberSpAdapter;
 
+    private Bug mBug;
     private List<Project> mProjectData;
     private List<Module> mModuleData;
     private Module mAllInfoModule;
     private List<User> mMemberData;
+
+    private int mBugId;
 
     // 以下这两个变量的目的是为了避免重新设置spinner内容的时候导致其选中的回调
     private int mProjectResetCount = -1;
@@ -55,20 +55,28 @@ public class SubmitBugActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bug_edit);
 
+        mBugId = getIntent().getIntExtra(MyConstant.BUG_DETAIL_2_BUG_MODIFY, -1);
+        if (mBugId < 0) {
+            Toast.makeText(this, "缺陷ID传递出错", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         initComponent();
         initData();
 
         mProjectResetCount = -1;
         mModuleResetCount = -1;
-        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/get-bug-add", true, "数据加载中...",
-            onLoadFinishListener);
+        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/get-bug-modify&bugId=" + mBugId, true,
+            "数据加载中...", onLoadFinishListener);
     }
 
     private void initComponent() {
         mSubmitTitleTv = (TextView) findViewById(R.id.bug_edit_title_tv);
-        mSubmitTitleTv.setText(R.string.bug_submit_title);
+        mSubmitTitleTv.setText(R.string.bug_modify_title);
         mSubmitSaveBtn = (Button) findViewById(R.id.bug_edit_save_btn);
-        mSubmitSaveBtn.setText(R.string.bug_submit_add);
+        mSubmitSaveBtn.setText(R.string.bug_modify_save);
+        mIntroduceTv = (TextView) findViewById(R.id.bug_edit_introduce_tv);
+        mIntroduceTv.setText(R.string.bug_modify_introduce);
 
         mBugNameEt = (EditText) findViewById(R.id.bug_edit_name_et);
         mProjectSp = (Spinner) findViewById(R.id.bug_edit_project_sp);
@@ -81,7 +89,6 @@ public class SubmitBugActivity extends BaseActivity {
 
         mProjectSp.setOnItemSelectedListener(onProjectItemSelectedListener);
         mModuleSp.setOnItemSelectedListener(onModuleItemSelectedListener);
-
     }
 
     private void initData() {
@@ -99,26 +106,56 @@ public class SubmitBugActivity extends BaseActivity {
                 Log.i(TAG, result.getResult());
                 try {
                     JSONObject jsonObject = new JSONObject(result.getResult());
+                    mBug = JSON.parseObject(jsonObject.getString("bug"), Bug.class);
                     mProjectData = JSON.parseArray(jsonObject.getString("projects"), Project.class);
                     mModuleData = JSON.parseArray(jsonObject.getString("modules"), Module.class);
                     mMemberData = JSON.parseArray(jsonObject.getString("members"), User.class);
                     if (mProjectData != null) {
-                        mProjectSpAdapter = new ProjectSpinnerAdapter(SubmitBugActivity.this, mProjectData);
+                        mProjectSpAdapter = new ProjectSpinnerAdapter(ModifyBugActivity.this, mProjectData);
                         mProjectSp.setAdapter(mProjectSpAdapter);
 
-                        mModuleSpAdapter = new ModuleSpinnerAdapter(SubmitBugActivity.this, mModuleData);
+                        mModuleSpAdapter = new ModuleSpinnerAdapter(ModifyBugActivity.this, mModuleData);
                         mModuleSp.setAdapter(mModuleSpAdapter);
 
-                        mMemberSpAdapter = new UserSpinnerAdapter(SubmitBugActivity.this, mMemberData);
+                        mMemberSpAdapter = new UserSpinnerAdapter(ModifyBugActivity.this, mMemberData);
                         mAssignSp.setAdapter(mMemberSpAdapter);
+
+                        if (mBug != null) {
+                            mBugNameEt.setText(mBug.getName());
+                            int projectCount = mProjectSpAdapter.getCount();
+                            for (int i = 0; i < projectCount; i++) {
+                                if (mProjectSpAdapter.getItem(i).getId() == mBug.getProject_id()) {
+                                    mProjectSp.setSelection(i);
+                                    break;
+                                }
+                            }
+                            int moduleCount = mModuleSpAdapter.getCount();
+                            for (int i = 0; i < moduleCount; i++) {
+                                if (mModuleSpAdapter.getItem(i).getId() == mBug.getModule_id()) {
+                                    mModuleSp.setSelection(i);
+                                    break;
+                                }
+                            }
+                            int memberCount = mMemberSpAdapter.getCount();
+                            for (int i = 0; i < memberCount; i++) {
+                                if (mMemberSpAdapter.getItem(i).getId() == mBug.getAssign_id()) {
+                                    mAssignSp.setSelection(i);
+                                    break;
+                                }
+                            }
+                            mPrioritySp.setSelection(mBug.getPriority());
+                            mSeriousSp.setSelection(mBug.getSerious_id());
+                            // mIntroduceEt.setText(mBug.getIntroduce());
+                            mReappearEt.setText(mBug.getReappear());
+                        }
 
                         mSubmitSaveBtn.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(SubmitBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifyBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                HttpConnectResultUtils.optFailure(SubmitBugActivity.this, result);
+                HttpConnectResultUtils.optFailure(ModifyBugActivity.this, result);
             }
         }
     };
@@ -136,7 +173,7 @@ public class SubmitBugActivity extends BaseActivity {
                 Project selectedProject = mProjectSpAdapter.getItem(position);
                 if (selectedProject != null) {
                     mModuleResetCount = -1;
-                    HttpVisitUtils.getHttpVisit(SubmitBugActivity.this, LocalInfo.getBaseUrl(SubmitBugActivity.this)
+                    HttpVisitUtils.getHttpVisit(ModifyBugActivity.this, LocalInfo.getBaseUrl(ModifyBugActivity.this)
                         + "bug/get-project-edit&projectId=" + selectedProject.getId(), true, "数据加载中...",
                         onProjectFinishListener);
                 }
@@ -160,16 +197,16 @@ public class SubmitBugActivity extends BaseActivity {
                     mModuleData = JSON.parseArray(jsonObject.getString("modules"), Module.class);
                     mMemberData = JSON.parseArray(jsonObject.getString("members"), User.class);
 
-                    mModuleSpAdapter = new ModuleSpinnerAdapter(SubmitBugActivity.this, mModuleData);
+                    mModuleSpAdapter = new ModuleSpinnerAdapter(ModifyBugActivity.this, mModuleData);
                     mModuleSp.setAdapter(mModuleSpAdapter);
 
-                    mMemberSpAdapter = new UserSpinnerAdapter(SubmitBugActivity.this, mMemberData);
+                    mMemberSpAdapter = new UserSpinnerAdapter(ModifyBugActivity.this, mMemberData);
                     mAssignSp.setAdapter(mMemberSpAdapter);
                 } catch (JSONException e) {
-                    Toast.makeText(SubmitBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifyBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                HttpConnectResultUtils.optFailure(SubmitBugActivity.this, result);
+                HttpConnectResultUtils.optFailure(ModifyBugActivity.this, result);
             }
         }
     };
@@ -186,7 +223,7 @@ public class SubmitBugActivity extends BaseActivity {
                 return;
             Module selectedModule = mModuleSpAdapter.getItem(position);
             if (selectedModule != null) {
-                HttpVisitUtils.getHttpVisit(SubmitBugActivity.this, LocalInfo.getBaseUrl(SubmitBugActivity.this)
+                HttpVisitUtils.getHttpVisit(ModifyBugActivity.this, LocalInfo.getBaseUrl(ModifyBugActivity.this)
                     + "bug/get-module-edit&moduleId=" + selectedModule.getId(), true, "数据加载中...",
                     onModuleFinishListener);
             }
@@ -206,13 +243,13 @@ public class SubmitBugActivity extends BaseActivity {
                 Log.i(TAG, result.getResult());
                 try {
                     mMemberData = JSON.parseArray(result.getResult(), User.class);
-                    mMemberSpAdapter = new UserSpinnerAdapter(SubmitBugActivity.this, mMemberData);
+                    mMemberSpAdapter = new UserSpinnerAdapter(ModifyBugActivity.this, mMemberData);
                     mAssignSp.setAdapter(mMemberSpAdapter);
                 } catch (Exception e) {
-                    Toast.makeText(SubmitBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifyBugActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                HttpConnectResultUtils.optFailure(SubmitBugActivity.this, result);
+                HttpConnectResultUtils.optFailure(ModifyBugActivity.this, result);
             }
         }
     };
@@ -223,14 +260,14 @@ public class SubmitBugActivity extends BaseActivity {
                 this.finish();
                 break;
             case R.id.bug_edit_save_btn:
-                submitNewBug();
+                modifyBug();
                 break;
             default:
 
         }
     }
 
-    private void submitNewBug() {
+    private void modifyBug() {
         /* 缺陷名称 */
         String bugName = mBugNameEt.getText().toString().trim();
         if ("".equals(bugName)) {
@@ -323,24 +360,19 @@ public class SubmitBugActivity extends BaseActivity {
 
         Log.i(TAG, postData);
 
-        HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/add", postData, true, "提交中...",
-            onSubmitFinishListener);
+        HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/modify&bugId=" + mBugId, postData, true,
+            "修改中...", onModifyFinishListener);
     }
 
-    private HttpVisitUtils.OnHttpFinishListener onSubmitFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
+    private HttpVisitUtils.OnHttpFinishListener onModifyFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
         @Override
         public void onVisitFinish(HttpResult result) {
             if (result == null)
                 return;
             if (result.isVisitSuccess()) {
-                mBugNameEt.setText("");
-                mIntroduceEt.setText("");
-                mPrioritySp.setSelection(0);
-                mSeriousSp.setSelection(0);
-                mReappearEt.setText("");
-                Toast.makeText(SubmitBugActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ModifyBugActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
             } else {
-                HttpConnectResultUtils.optFailure(SubmitBugActivity.this, result);
+                HttpConnectResultUtils.optFailure(ModifyBugActivity.this, result);
             }
         }
     };
@@ -351,8 +383,7 @@ public class SubmitBugActivity extends BaseActivity {
 
                 break;
             case R.id.bug_edit_attachment_tv:
-                Intent intent = new Intent(this, AttachmentSelectActivity.class);
-                startActivity(intent);
+
                 break;
         }
     }

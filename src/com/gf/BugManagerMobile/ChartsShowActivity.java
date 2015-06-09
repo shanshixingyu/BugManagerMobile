@@ -1,8 +1,6 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +27,7 @@ import java.util.*;
  * 显示缺陷报表
  * Created by GuLang on 2015-06-05.
  */
-public class ChartsShowActivity extends Activity {
+public class ChartsShowActivity extends BaseActivity {
     private static final String TAG = "ChartsShowActivity";
 
     private int mProjectId;

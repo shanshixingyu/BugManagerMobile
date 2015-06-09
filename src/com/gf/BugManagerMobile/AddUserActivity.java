@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,7 @@ import com.gf.BugManagerMobile.utils.RegexUtils;
  * 添加用户界面
  * Created by GuLang on 2015-05-20.
  */
-public class AddUserActivity extends Activity {
+public class AddUserActivity extends BaseActivity {
     private static final String TAG = "AddUser";
 
     private EditText userNameEt;

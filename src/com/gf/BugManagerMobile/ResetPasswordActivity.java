@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +16,7 @@ import java.net.URLEncoder;
  * 重置用户密码界面
  * Created by GuLang on 2015-05-24.
  */
-public class ResetPasswordActivity extends Activity {
+public class ResetPasswordActivity extends BaseActivity {
     private static final String TAG = "ResetPasswordActivity";
 
     private EditText userNameEt;

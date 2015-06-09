@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
+ * 关于界面
  * Created by GuLang on 2014/12/28.
  */
-public class AboutActivity extends Activity {
+public class AboutActivity extends BaseActivity {
 
     private TextView versionNameTv, versionCodeTv;
     private ImageView aboutImgv = null;

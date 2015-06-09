@@ -87,7 +87,6 @@ public class HomeBugOverLvAdapter extends BaseAdapter {
         public TextView nameTv;
         public TextView totalTv;
         public TextView otherTv;
-
     }
 
 }

@@ -1,7 +1,7 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,18 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.models.HttpResult;
-import com.gf.BugManagerMobile.models.User;
 import com.gf.BugManagerMobile.utils.*;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 
-import java.net.URLEncoder;
-
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
     private static final String TAG = "LoginActivity";
 
+    private TextView titleTv;
     private EditText userNameEt, passwordEt;
 
     private CheckBox rememberChk;
@@ -31,9 +30,16 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         initComponent();
+        /**
+         * 设置为true或者没有设置（默认为true）时表示需要自动登录,从其它界面跳转过来且为false时表示不需要
+         */
+        if(getIntent().getBooleanExtra(MyConstant.OTHER_ACTIVITY_2_LOGIN_SHOULD_AUTO, true)){
+            HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "site/auto-login", true, "自动登录中...",
+                    onAutoLoginFinishListener);
+        }
 
-        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "site/auto-login", true, "自动登录中...",
-            onAutoLoginFinishListener);
+        Intent finishOtherIntent = new Intent(FINISH_EXCEPT_LOGIN);
+        sendBroadcast(finishOtherIntent);
     }
 
     private HttpVisitUtils.OnHttpFinishListener onAutoLoginFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
@@ -77,6 +83,10 @@ public class LoginActivity extends Activity {
      * 初始化控件
      */
     private void initComponent() {
+        titleTv = (TextView) findViewById(R.id.login_title_tv);
+        Typeface titleTypeface = Typeface.createFromAsset(getAssets(), "fonts/ygyxsziti2.ttf");
+        titleTv.setTypeface(titleTypeface);
+
         userNameEt = (EditText) findViewById(R.id.login_username_et);
         passwordEt = (EditText) findViewById(R.id.login_password_et);
         rememberChk = (CheckBox) findViewById(R.id.login_remember);
@@ -193,6 +203,23 @@ public class LoginActivity extends Activity {
         if (v.getId() == R.id.login_reset_password) {
             Intent intent = new Intent(this, ResetPasswordActivity.class);
             startActivity(intent);
+        }
+    }
+
+    /**
+     * 上次按的时间
+     */
+    private long preBackPressTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - preBackPressTime <= MyConstant.NEXT_EXIT_TIME_LENGTH) {
+            super.onBackPressed();
+            System.exit(0);
+        } else {
+            preBackPressTime = currentTime;
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
         }
     }
 

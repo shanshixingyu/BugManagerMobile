@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,7 @@ import java.util.List;
  * 修改项目信息界面
  * Created by GuLang on 2015-06-03.
  */
-public class ModifyProjectActivity extends Activity {
+public class ModifyProjectActivity extends BaseActivity {
     private static final String TAG = "ModifyProjectActivity";
 
     private int projectId;

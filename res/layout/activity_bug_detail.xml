@@ -27,12 +27,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_marginBottom="20dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -118,6 +120,19 @@
             <LinearLayout style="@style/BugDetailItemTheme">
 
                 <TextView
+                    android:text="@string/bug_detail_serious"
+                    style="@style/BugDetailItemTitle" />
+
+                <TextView
+                    android:id="@+id/bug_detail_serious_tv"
+                    tools:text="不影响"
+                    style="@style/BugDetailItemContent" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/BugDetailItemTheme">
+
+                <TextView
                     android:text="@string/bug_detail_creator"
                     style="@style/BugDetailItemTitle" />
 
@@ -187,7 +202,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_height="120dp" />
+                android:layout_height="130dp" />
 
             <LinearLayout style="@style/BugDetailItemTheme">
 

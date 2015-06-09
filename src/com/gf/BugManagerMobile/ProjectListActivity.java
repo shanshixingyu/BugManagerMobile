@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.gf.BugManagerMobile.adapter.ProjectListAdapter;
-import com.gf.BugManagerMobile.models.Group;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.Project;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
@@ -29,7 +27,7 @@ import java.util.List;
  * 项目管理界面
  * Created by GuLang on 2015-05-20.
  */
-public class ProjectListActivity extends Activity {
+public class ProjectListActivity extends BaseActivity {
     private static final String TAG = "ProjectListActivity";
 
     private static final int MSG_REFRESH_CLOSE = 0x123;

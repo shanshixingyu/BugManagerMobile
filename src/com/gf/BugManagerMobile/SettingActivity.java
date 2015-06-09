@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -12,7 +11,7 @@ import com.gf.BugManagerMobile.view.SettingInputDialog;
  * 设置界面
  * Created by GuLang on 2015/05/09.
  */
-public class SettingActivity extends Activity {
+public class SettingActivity extends BaseActivity {
 
     private TextView serverIpTv;
     private TextView serverPortTv;

@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +27,7 @@ import java.util.List;
  * 团队管理界面
  * Created by GuLang on 2015-05-20.
  */
-public class GroupListActivity extends Activity {
+public class GroupListActivity extends BaseActivity {
     private static final String TAG = "GroupListActivity";
 
     private static final int MSG_REFRESH_CLOSE = 0x123;

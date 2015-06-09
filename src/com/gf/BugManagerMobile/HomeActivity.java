@@ -15,7 +15,7 @@ import com.gf.BugManagerMobile.utils.LocalInfo;
 import com.gf.BugManagerMobile.utils.HttpConnectResultUtils;
 import com.gf.BugManagerMobile.utils.HttpVisitUtils;
 import com.gf.BugManagerMobile.utils.MyConstant;
-import com.gf.BugManagerMobile.utils.PopWindowUtils;
+import com.gf.BugManagerMobile.view.BugSubmitPopWindow;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -23,7 +23,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
  * 主页（Bug概况）
  * Created by Administrator on 5/10 0010.
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseHomeActivity {
     private static final String TAG = "HomeActivity";
 
     private PullToRefreshListView mBugOverviewLv;
@@ -74,7 +74,7 @@ public class HomeActivity extends BaseActivity {
                 ProjectBugOverview bugOverviewResult = null;
                 try {
                     bugOverviewResult = JSON.parseObject(result.getResult(), ProjectBugOverview.class);
-                    if (mBugOverviewLv != null && mBugOverviewLv != null) {
+                    if (mBugOverviewLv != null) {
                         Log.i(TAG, "解析后：" + bugOverviewResult.toString());
                         mHomeBugOverLvAdapter.addProjectBugInfo(bugOverviewResult.getData());
                     }
@@ -90,13 +90,24 @@ public class HomeActivity extends BaseActivity {
         }
     };
 
+    private BugSubmitPopWindow mBugSubmitPopWindow = null;
+
     /**
      * 处理顶部栏点击事件
      * @param v
      */
     public void onOptClick(View v) {
-        PopupWindow popupWindow = PopWindowUtils.getHomeOptPopWindow(this);
-        popupWindow.showAsDropDown(v);
+        if (mBugSubmitPopWindow == null) {
+            mBugSubmitPopWindow = new BugSubmitPopWindow(this);
+            mBugSubmitPopWindow.setOnItemClickListener(new BugSubmitPopWindow.OnItemClickListener() {
+                @Override
+                public void onItemClick() {
+                    Intent submitBugIntent = new Intent(HomeActivity.this, SubmitBugActivity.class);
+                    HomeActivity.this.startActivity(submitBugIntent);
+                }
+            });
+        }
+        mBugSubmitPopWindow.showAsDropDown(v);
     }
 
     /**

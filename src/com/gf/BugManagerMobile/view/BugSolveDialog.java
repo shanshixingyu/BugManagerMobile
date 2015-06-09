@@ -125,7 +125,7 @@ public class BugSolveDialog extends Dialog {
         this.bugId = bugId;
     }
 
-    public void setOnBugOptInterface(OnBugOptListener listener) {
+    public void setOnBugOptListener(OnBugOptListener listener) {
         this.onBugOptListener = listener;
     }
 

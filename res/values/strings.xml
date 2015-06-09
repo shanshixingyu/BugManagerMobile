@@ -2,6 +2,7 @@
 <resources>
     <!--登录界面-->
     <string name="app_name">BugManagerMobile</string>
+    <string name="login_title">缺陷管理</string>
     <string name="login_username">账号</string>
     <string name="login_password">密码</string>
     <string name="login_btn">登录</string>
@@ -59,7 +60,7 @@
     <!--首页-->
     <string name="home_title">缺陷概况</string>
     <string name="home_opt">...</string>
-    <string name="home_submit">提交新BUG</string>
+    <string name="home_submit">提交新缺陷</string>
     <string name="home_bug_item_total">总数:</string>
     <string name="home_bug_item_unsolved">未解决:</string>
     <string name="home_bug_item_active">激活:</string>
@@ -137,6 +138,7 @@
     <string name="bug_detail_status">状态</string>
     <string name="bug_detail_assign">指派给</string>
     <string name="bug_detail_priority">优先级</string>
+    <string name="bug_detail_serious">影响程度</string>
     <string name="bug_detail_creator">提交者</string>
     <string name="bug_detail_create_time">提交日期</string>
     <string name="bug_detail_active">激活次数</string>
@@ -301,5 +303,39 @@
     <string name="charts_show_priority_title">缺陷优先级饼图</string>
     <string name="charts_show_status_title">缺陷状态饼图</string>
 
+    <!--缺陷提交和修改相关界面界面-->
+    <string name="bug_edit_name">缺陷名称</string>
+    <string name="bug_edit_project">项目名称</string>
+    <string name="bug_edit_module">模块名称</string>
+    <string name="bug_edit_assign">指派给</string>
+    <string name="bug_edit_priority">优先级</string>
+    <string name="bug_edit_priority_low">低</string>
+    <string name="bug_edit_priority_middle">中</string>
+    <string name="bug_edit_priority_high">高</string>
+    <string name="bug_edit_priority_urgency">紧急</string>
+    <string name="bug_edit_serious">影响程度</string>
+    <string name="bug_edit_image">缺陷截图</string>
+    <string name="bug_edit_image_click"><u>点击选择</u></string>
+    <string name="bug_edit_attachment">附件</string>
+    <string name="bug_edit_attachment_click"><u>点击选择</u></string>
+    <string name="bug_edit_introduce">缺陷注释</string>
+    <string name="bug_edit_reappear">重现步骤</string>
+
+    <!--提交新缺陷界面-->
+    <string name="bug_submit_title">新缺陷</string>
+    <string name="bug_submit_add">提交</string>
+
+    <!--修改缺陷界面-->
+    <string name="bug_modify_title">修改缺陷</string>
+    <string name="bug_modify_save">保存</string>
+    <string name="bug_modify_introduce">修改注释</string>
+
+    <!--截图相册界面-->
+    <string name="image_group_title">选择相册</string>
+
+    <!--附件选择界面-->
+    <string name="attachment_title">选择附件</string>
+    <string name="attachment_sure">确定</string>
+    <string name="attachment_go_parent">返回上一层目录</string>
 
 </resources>

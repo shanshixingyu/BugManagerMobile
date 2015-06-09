@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +22,7 @@ import java.util.List;
  * 查询bug条件界面
  * Created by Administrator on 5/15 0015.
  */
-public class SearchBugActivity extends Activity {
+public class SearchBugActivity extends BaseActivity {
     private static final String TAG = "SearchBugActivity";
 
     private int projectId;

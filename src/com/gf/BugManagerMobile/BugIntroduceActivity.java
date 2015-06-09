@@ -1,16 +1,12 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.gf.BugManagerMobile.adapter.BugIntroduceLvAdapter;
 import com.gf.BugManagerMobile.models.BugIntroduceItem;
 import com.gf.BugManagerMobile.utils.MyConstant;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +14,7 @@ import java.util.List;
  * bug注释
  * Created by GuLang on 2015-05-17.
  */
-public class BugIntroduceActivity extends Activity {
+public class BugIntroduceActivity extends BaseActivity {
     private static final String TAG = "BugIntroduceActivity";
 
     private ListView introduceLv;

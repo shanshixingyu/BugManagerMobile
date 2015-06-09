@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,14 +25,14 @@ import java.util.List;
  * bug详情界面
  * Created by Administrator on 5/16 0016.
  */
-public class BugDetailActivity extends Activity {
+public class BugDetailActivity extends BaseActivity {
     private static final String TAG = "BugDetailActivity";
 
     private RecyclerView mImageRecyclerView;
     private ImageRlvAdapter mImageRlvAdapter;
     private int bugId;
-    private TextView nameTv, projectTv, moduleTv, statusTv, assignTv, priorityTv, creatorTv, createTimeTv, activeTv,
-        closeTimeTv, imageTv, introduceTv, attachmentTv;
+    private TextView nameTv, projectTv, moduleTv, statusTv, assignTv, priorityTv, seriousTv, creatorTv, createTimeTv,
+        activeTv, closeTimeTv, imageTv, introduceTv, attachmentTv;
     private List<BugIntroduceItem> mBugIntroduceItems;
     private String attachmentName = null;
     private boolean solveItemStatus = false;
@@ -66,6 +65,7 @@ public class BugDetailActivity extends Activity {
         mImageRecyclerView.setVisibility(View.GONE);
         mImageRlvAdapter = new ImageRlvAdapter(this, null);
         mImageRecyclerView.setAdapter(mImageRlvAdapter);
+        mImageRlvAdapter.setOnItemClickListener(onImageItemClickListener);
 
         nameTv = (TextView) findViewById(R.id.bug_detail_name_tv);
         projectTv = (TextView) findViewById(R.id.bug_detail_project_tv);
@@ -73,6 +73,7 @@ public class BugDetailActivity extends Activity {
         statusTv = (TextView) findViewById(R.id.bug_detail_status_tv);
         assignTv = (TextView) findViewById(R.id.bug_detail_assgin_tv);
         priorityTv = (TextView) findViewById(R.id.bug_detail_priority_tv);
+        seriousTv = (TextView) findViewById(R.id.bug_detail_serious_tv);
         creatorTv = (TextView) findViewById(R.id.bug_detail_creator_tv);
         createTimeTv = (TextView) findViewById(R.id.bug_detail_create_time_tv);
         activeTv = (TextView) findViewById(R.id.bug_detail_active_tv);
@@ -80,7 +81,6 @@ public class BugDetailActivity extends Activity {
         imageTv = (TextView) findViewById(R.id.bug_detail_image_tv);
         introduceTv = (TextView) findViewById(R.id.bug_detail_introduce_tv);
         attachmentTv = (TextView) findViewById(R.id.bug_detail_attachment_tv);
-
     }
 
     private HttpVisitUtils.OnHttpFinishListener onHttpFinishListener = new HttpVisitUtils.OnHttpFinishListener() {
@@ -117,6 +117,7 @@ public class BugDetailActivity extends Activity {
                         statusTv.setText(BugUtils.getStatusStr(bug.getStatus()));
                         assignTv.setText(assignName);
                         priorityTv.setText(BugUtils.getPriorityStr(bug.getPriority()));
+                        seriousTv.setText(BugUtils.getSeriousStr(bug.getSerious_id()));
                         creatorTv.setText(creatorName);
                         createTimeTv.setText(bug.getCreate_time());
                         activeTv.setText("" + bug.getActive_num());
@@ -256,11 +257,13 @@ public class BugDetailActivity extends Activity {
                     if (mBugSolveDialog == null) {
                         mBugSolveDialog = new BugSolveDialog(BugDetailActivity.this);
                         mBugSolveDialog.setBugId(bugId);
-                        mBugSolveDialog.setOnBugOptInterface(onBugOptListener);
+                        mBugSolveDialog.setOnBugOptListener(onBugOptListener);
                     }
                     mBugSolveDialog.show();
                 } else if (itemType == BugDetailOptPopWindow.ItemType.Modify) {
-
+                    Intent modifyBugIntent = new Intent(BugDetailActivity.this, ModifyBugActivity.class);
+                    modifyBugIntent.putExtra(MyConstant.BUG_DETAIL_2_BUG_MODIFY, bugId);
+                    startActivity(modifyBugIntent);
                 } else if (itemType == BugDetailOptPopWindow.ItemType.Active) {
                     if (mBugActiveDialog == null) {
                         mBugActiveDialog = new BugActiveDialog(BugDetailActivity.this);
@@ -392,4 +395,18 @@ public class BugDetailActivity extends Activity {
         String url = LocalInfo.getBaseUrl(this) + "bug/download&fileName=" + name;
         HttpVisitUtils.downloadFile(this, url, attachmentName, true, "正在下载");
     }
+
+    private ShowImageDialog mShowImageDialog;
+
+    private ImageRlvAdapter.OnItemClickListener onImageItemClickListener = new ImageRlvAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(int position, String imgUrl) {
+            Log.i(TAG, "position=" + position + ",imgUrl=" + imgUrl);
+            if (mBugActiveDialog == null) {
+                mShowImageDialog = new ShowImageDialog(BugDetailActivity.this);
+            }
+            mShowImageDialog.show();
+            mShowImageDialog.setShowImage(imgUrl);
+        }
+    };
 }

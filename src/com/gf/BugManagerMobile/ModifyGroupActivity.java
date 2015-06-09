@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,7 +23,7 @@ import java.util.List;
  * 修改团队信息
  * Created by GuLang on 2015-06-02.
  */
-public class ModifyGroupActivity extends Activity {
+public class ModifyGroupActivity extends BaseActivity {
     private static final String TAG = "ModifyGroupActivity";
 
     private int groupId;

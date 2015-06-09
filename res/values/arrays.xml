@@ -7,8 +7,21 @@
         <item>高</item>
         <item>紧急</item>
     </string-array>
+    <string-array name="BugPriorityWithoutAll">
+        <item>低</item>
+        <item>中</item>
+        <item>高</item>
+        <item>紧急</item>
+    </string-array>
     <string-array name="BugSerious">
         <item>全部</item>
+        <item>不影响</item>
+        <item>轻度影响</item>
+        <item>影响</item>
+        <item>影响较大</item>
+        <item>影响严重</item>
+    </string-array>
+    <string-array name="BugSeriousWithoutAll">
         <item>不影响</item>
         <item>轻度影响</item>
         <item>影响</item>

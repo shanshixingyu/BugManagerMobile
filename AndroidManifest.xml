@@ -39,10 +39,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
         <activity
-            android:name=".SubmitBugActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
-        <activity
             android:name=".PimActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
@@ -132,6 +128,18 @@
             android:theme="@style/ActivityTheme" />
         <activity
             android:name=".ChartsShowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".SubmitBugActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".ModifyBugActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityTheme" />
+        <activity
+            android:name=".AttachmentSelectActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
     </application>

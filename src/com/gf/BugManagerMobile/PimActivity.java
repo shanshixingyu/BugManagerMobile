@@ -35,7 +35,7 @@ public class PimActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCenterContentLyt(R.layout.page_pim);
+        setContentView(R.layout.page_pim);
 
         initComponent();
         /**

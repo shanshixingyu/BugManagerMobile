@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Spinner;
 
@@ -8,7 +7,7 @@ import android.widget.Spinner;
  * 测试界面
  * Created by Administrator on 5/10 0010.
  */
-public class TestActivity extends Activity {
+public class TestActivity extends BaseActivity {
     private static final String TAG = "TestActivity";
 
     private Spinner spinner;

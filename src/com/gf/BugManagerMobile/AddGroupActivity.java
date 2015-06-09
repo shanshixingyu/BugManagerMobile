@@ -24,7 +24,7 @@ import java.util.List;
  * 添加团队界面
  * Created by GuLang on 2015-06-01.
  */
-public class AddGroupActivity extends Activity {
+public class AddGroupActivity extends BaseActivity {
     private static final String TAG = "AddGroupActivity";
 
     private EditText groupNameEt;

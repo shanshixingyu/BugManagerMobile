@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/bug_edit_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:id="@+id/bug_edit_title_tv"
+            android:text="te"
+            style="@style/TopOptTitleTheme" />
+
+        <Button
+            android:id="@+id/bug_edit_save_btn"
+            android:visibility="invisible"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:overScrollMode="never"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_name"
+                    style="@style/OptItemTitle" />
+
+                <EditText
+                    android:id="@+id/bug_edit_name_et"
+                    android:inputType="text"
+                    android:background="@drawable/bg_edit_text_selector"
+                    style="@style/OptItemContent" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_project"
+                    style="@style/OptItemTitle" />
+
+                <Spinner
+                    android:id="@+id/bug_edit_project_sp"
+                    android:background="@drawable/bg_spinner_selector"
+                    style="@style/OptItemContent" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_module"
+                    style="@style/OptItemTitle" />
+
+                <Spinner
+                    android:id="@+id/bug_edit_module_sp"
+                    android:background="@drawable/bg_spinner_selector"
+                    style="@style/OptItemContent" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_assign"
+                    style="@style/OptItemTitle" />
+
+                <Spinner
+                    android:id="@+id/bug_edit_assign_sp"
+                    android:background="@drawable/bg_spinner_selector"
+                    style="@style/OptItemContent" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_priority"
+                    style="@style/OptItemTitle" />
+
+                <Spinner
+                    android:id="@+id/bug_edit_priority_sp"
+                    android:entries="@array/BugPriorityWithoutAll"
+                    android:background="@drawable/bg_spinner_selector"
+                    style="@style/OptItemContent" />
+
+                <!--<RadioGroup-->
+                <!--android:id="@+id/bug_edit_priority_rg"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal"-->
+                <!--style="@style/OptItemContent"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:layout_marginBottom="0dp">-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/bug_edit_priority_low_rbtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="@string/bug_edit_priority_low"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/bug_edit_priority_middle_rbtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="@string/bug_edit_priority_middle"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/bug_edit_priority_high_rbtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="@string/bug_edit_priority_high"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--<RadioButton-->
+                <!--android:id="@+id/bug_edit_priority_urgency_rbtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="@string/bug_edit_priority_urgency"-->
+                <!--android:textColor="#000000"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--</RadioGroup>-->
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_serious"
+                    style="@style/OptItemTitle" />
+
+                <Spinner
+                    android:id="@+id/bug_edit_serious_sp"
+                    android:entries="@array/BugSeriousWithoutAll"
+                    android:background="@drawable/bg_spinner_selector"
+                    style="@style/OptItemContent" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_image"
+                    style="@style/OptItemTitle" />
+
+                <TextView
+                    android:id="@+id/bug_edit_image_tv"
+                    style="@style/OptItemContent"
+                    android:text="@string/bug_edit_image_click"
+                    android:clickable="true"
+                    android:onClick="onSelectMemberClick"
+                    android:textSize="14dp"
+                    android:textColor="@color/group_member_selector"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/OptItemRow"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bug_edit_attachment"
+                    style="@style/OptItemTitle" />
+
+                <TextView
+                    android:id="@+id/bug_edit_attachment_tv"
+                    style="@style/OptItemContent"
+                    android:text="@string/bug_edit_image_click"
+                    android:clickable="true"
+                    android:onClick="onSelectMemberClick"
+                    android:textSize="14dp"
+                    android:textColor="@color/group_member_selector"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bug_edit_introduce_tv"
+                    android:text="@string/bug_edit_introduce"
+                    style="@style/OptItemTitle"
+                    android:layout_marginTop="8dp"
+                    android:gravity="top" />
+
+                <EditText
+                    android:id="@+id/bug_edit_introduce_et"
+                    style="@style/OptItemContent"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|left"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bg_edit_text_selector"
+                    android:lines="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@string/bug_edit_reappear"
+                    style="@style/OptItemTitle"
+                    android:layout_marginTop="8dp"
+                    android:gravity="top" />
+
+                <EditText
+                    android:id="@+id/bug_edit_reappear_et"
+                    style="@style/OptItemContent"
+                    android:inputType="textMultiLine"
+                    android:gravity="top|left"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bg_edit_text_selector"
+                    android:lines="5" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,12 +1,10 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.alibaba.fastjson.JSON;
-import com.gf.BugManagerMobile.models.Bug;
 import com.gf.BugManagerMobile.models.HttpResult;
 import com.gf.BugManagerMobile.models.LoginSuccessInfo;
 import com.gf.BugManagerMobile.models.User;
@@ -21,7 +19,7 @@ import org.json.JSONObject;
  * 修改用户信息
  * Created by GuLang on 2015-05-21.
  */
-public class ModifyUserActivity extends Activity {
+public class ModifyUserActivity extends BaseActivity {
     private static final String TAG = "ModifyUserActivity";
 
     private EditText userNameEt;

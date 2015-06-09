@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +24,7 @@ import java.util.TimeZone;
  * 生成报表条件界面
  * Created by GuLang on 2015-06-05.
  */
-public class ChartsSearchActivity extends Activity {
+public class ChartsSearchActivity extends BaseActivity {
     private static final String TAG = "ChartsSearchActivity";
 
     private Spinner mProjectSp;

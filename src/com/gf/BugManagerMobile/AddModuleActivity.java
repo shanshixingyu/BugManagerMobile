@@ -25,7 +25,7 @@ import java.util.List;
  * 添加模块界面
  * Created by GuLang on 2015-06-03.
  */
-public class AddModuleActivity extends Activity {
+public class AddModuleActivity extends BaseActivity {
     private static final String TAG = "AddModuleActivity";
 
     private int projectId;

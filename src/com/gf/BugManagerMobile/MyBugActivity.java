@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +27,7 @@ import java.util.List;
  * 我提交的Bug信息列表
  * Created by GuLang on 2015-05-18.
  */
-public class MyBugActivity extends Activity {
+public class MyBugActivity extends BaseActivity {
     private static final String TAG = "MySubmitActivity";
 
     public static final String ACTIVITY_TYPE = "ActivityTyp";

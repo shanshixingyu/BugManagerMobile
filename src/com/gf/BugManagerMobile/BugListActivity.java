@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +24,7 @@ import java.util.List;
  * 项目缺陷列表
  * Created by Administrator on 5/15 0015.
  */
-public class BugListActivity extends Activity {
+public class BugListActivity extends BaseActivity {
     private static final String TAG = "BugListActivity";
 
     private static final int MSG_REFRESH_CLOSE = 0x011;

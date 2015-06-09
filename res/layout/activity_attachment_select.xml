@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/TopOptTheme">
+
+        <ImageView
+            android:id="@+id/attachment_back_imgv"
+            style="@style/TopOptBackTheme" />
+
+        <TextView
+            android:id="@+id/attachment_title_tv"
+            android:text="@string/attachment_title"
+            style="@style/TopOptTitleTheme" />
+
+        <Button
+            android:id="@+id/attachment_select_btn"
+            android:text="@string/attachment_sure"
+            style="@style/TopOptBtnTheme" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/attachment_select_lv"
+        android:layout_width="match_parent"
+        android:listSelector="@drawable/list_item_selector"
+        android:fastScrollEnabled="true"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

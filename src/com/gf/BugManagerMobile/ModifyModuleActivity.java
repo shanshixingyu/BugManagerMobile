@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +17,7 @@ import java.util.List;
  * 修改模块信息界面
  * Created by GuLang on 2015-06-04.
  */
-public class ModifyModuleActivity extends Activity {
+public class ModifyModuleActivity extends BaseActivity {
     private static final String TAG = "ModifyModuleActivity";
 
     private int moduleId;

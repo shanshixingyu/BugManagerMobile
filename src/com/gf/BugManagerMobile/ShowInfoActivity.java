@@ -1,6 +1,5 @@
 package com.gf.BugManagerMobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
@@ -13,7 +12,7 @@ import com.gf.BugManagerMobile.utils.MyConstant;
  * 显示界面
  * Created by Administrator on 5/14 0014.
  */
-public class ShowInfoActivity extends Activity {
+public class ShowInfoActivity extends BaseActivity {
     private static final String TAG = "ShowInfoActivity";
 
     private ListView showInfoLv;
