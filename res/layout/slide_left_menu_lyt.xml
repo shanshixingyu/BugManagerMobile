@@ -124,7 +124,7 @@
         android:paddingRight="10dp"
         android:paddingTop="8dp"
         android:text="@string/slide_left_menu_exit"
-        android:textColor="#ffb4b8ba"
+        android:textColor="#ffced3d5"
         android:textSize="15dp" />
 
 </LinearLayout>

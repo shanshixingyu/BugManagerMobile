@@ -51,7 +51,10 @@ public class MyBugActivity extends BaseActivity {
 
         titleTv = (TextView) findViewById(R.id.bug_list_title_tv);
 
-        activityType = getIntent().getStringExtra(ACTIVITY_TYPE);
+        if (savedInstanceState != null)
+            activityType = savedInstanceState.getString("ACTIVITY_TYPE");
+        else
+            activityType = getIntent().getStringExtra(ACTIVITY_TYPE);
         if (activityType == null || TYPE_SUBMIT.equals(activityType)) {
             activityType = TYPE_SUBMIT;
             titleTv.setText(R.string.my_submit_title);
@@ -186,4 +189,11 @@ public class MyBugActivity extends BaseActivity {
         }
     };
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putString("ACTIVITY_TYPE", activityType);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

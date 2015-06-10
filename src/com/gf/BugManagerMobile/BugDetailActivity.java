@@ -48,7 +48,10 @@ public class BugDetailActivity extends BaseActivity {
 
         initComponent();
 
-        bugId = getIntent().getIntExtra(MyConstant.BUG_LIST_2_BUG_DETAIL_BUG_ID, -1);
+        if (savedInstanceState == null)
+            bugId = getIntent().getIntExtra(MyConstant.BUG_LIST_2_BUG_DETAIL_BUG_ID, -1);
+        else
+            bugId = savedInstanceState.getInt("BUG_ID", -1);
 
         if (bugId < 0) {
             Toast.makeText(this, "获取缺陷ID失败", Toast.LENGTH_SHORT).show();
@@ -409,4 +412,13 @@ public class BugDetailActivity extends BaseActivity {
             mShowImageDialog.setShowImage(imgUrl);
         }
     };
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.i(TAG, "onSaveInstanceState");
+        if (outState != null) {
+            outState.putInt("BUG_ID", bugId);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

@@ -34,6 +34,8 @@ public class HomeActivity extends BaseHomeActivity {
         setCenterContentLyt(R.layout.page_home);
 
         initComponent();
+        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/index", true, "正在加载...",
+            onResetFinishListener);
     }
 
     private void initComponent() {
@@ -42,9 +44,6 @@ public class HomeActivity extends BaseHomeActivity {
         mBugOverviewLv.setAdapter(mHomeBugOverLvAdapter);
         mBugOverviewLv.setOnItemClickListener(onItemClickListener);
         mBugOverviewLv.setMode(PullToRefreshBase.Mode.BOTH);
-
-        HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/index", true, "正在加载...",
-            onResetFinishListener);
     }
 
     private AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {

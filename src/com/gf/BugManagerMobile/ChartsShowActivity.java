@@ -49,10 +49,16 @@ public class ChartsShowActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts_show);
 
-        Intent startIntent = getIntent();
-        mProjectId = startIntent.getIntExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_PROJECT_ID, -1);
-        mStartTime = startIntent.getLongExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_START_TIME, -1);
-        mEndTime = startIntent.getLongExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_END_TIME, -1);
+        if (savedInstanceState != null) {
+            mProjectId = savedInstanceState.getInt("PROJECT_ID", -1);
+            mStartTime = savedInstanceState.getLong("START_TIME", -1);
+            mEndTime = savedInstanceState.getLong("END_TIME", -1);
+        } else {
+            Intent startIntent = getIntent();
+            mProjectId = startIntent.getIntExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_PROJECT_ID, -1);
+            mStartTime = startIntent.getLongExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_START_TIME, -1);
+            mEndTime = startIntent.getLongExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_END_TIME, -1);
+        }
 
         if (mProjectId < 0 || mStartTime < 0 || mEndTime < 0) {
             Toast.makeText(this, "传递数据出错", Toast.LENGTH_SHORT).show();
@@ -147,7 +153,12 @@ public class ChartsShowActivity extends BaseActivity {
             if (result.isVisitSuccess()) {
                 Log.i(TAG, result.getResult());
                 try {
-                    mChartDataItemList = JSON.parseArray(result.getResult(), ChartDataItem.class);
+                    String resultData = result.getResult();
+                    if (resultData.contains("\"data\":[]")) {
+                        Toast.makeText(ChartsShowActivity.this, "没有缺陷信息", Toast.LENGTH_SHORT).show();
+                    } else {
+                        mChartDataItemList = JSON.parseArray(result.getResult(), ChartDataItem.class);
+                    }
                     resetCharts();
                 } catch (Exception e) {
                     Toast.makeText(ChartsShowActivity.this, "数据解析失败", Toast.LENGTH_SHORT).show();
@@ -250,4 +261,13 @@ public class ChartsShowActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("PROJECT_ID", mProjectId);
+            outState.putLong("START_TIME", mStartTime);
+            outState.putLong("END_TIME", mEndTime);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

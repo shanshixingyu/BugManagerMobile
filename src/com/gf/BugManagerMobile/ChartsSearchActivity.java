@@ -148,6 +148,11 @@ public class ChartsSearchActivity extends BaseActivity {
             return;
         }
 
+        if (startTime > endTime) {
+            Toast.makeText(ChartsSearchActivity.this, "开始日期比结束日期大", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intent = new Intent(this, ChartsShowActivity.class);
         intent.putExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_PROJECT_ID, projectId);
         intent.putExtra(MyConstant.CHARTS_SEARCH_2_CHARTS_SHOW_START_TIME, startTime);

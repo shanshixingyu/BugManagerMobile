@@ -36,7 +36,10 @@ public class ModifyModuleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_modify);
 
-        moduleId = getIntent().getIntExtra(MyConstant.MODULE_LIST_2_MODULE_MODIFY, -1);
+        if (savedInstanceState != null)
+            moduleId = savedInstanceState.getInt("MODULE_ID", -1);
+        else
+            moduleId = getIntent().getIntExtra(MyConstant.MODULE_LIST_2_MODULE_MODIFY, -1);
         if (moduleId < 0) {
             Toast.makeText(this, "界面跳转传递数据出错", Toast.LENGTH_SHORT).show();
             return;

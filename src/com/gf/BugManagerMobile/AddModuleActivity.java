@@ -42,7 +42,10 @@ public class AddModuleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_add);
 
-        projectId = getIntent().getIntExtra(MyConstant.MODULE_LIST_2_MODULE_ADD, -1);
+        if (savedInstanceState != null)
+            projectId = savedInstanceState.getInt("MODULE_ID", -1);
+        else
+            projectId = getIntent().getIntExtra(MyConstant.MODULE_LIST_2_MODULE_ADD, -1);
         if (projectId < 0) {
             Toast.makeText(this, "跳转传递项目ID出错", Toast.LENGTH_SHORT).show();
             return;
@@ -161,4 +164,11 @@ public class AddModuleActivity extends BaseActivity {
         }
     };
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("PROJECT_ID", projectId);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

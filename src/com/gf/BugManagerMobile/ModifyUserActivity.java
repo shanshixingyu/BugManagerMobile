@@ -49,7 +49,10 @@ public class ModifyUserActivity extends BaseActivity {
         // 设置修改按钮状态
         setModifyUserBtnState();
 
-        mUserId = getIntent().getIntExtra(MyConstant.USER_LIST_2_USER_MODIFY, -100);
+        if (savedInstanceState != null)
+            mUserId = savedInstanceState.getInt("BUG_ID", -1);
+        else
+            mUserId = getIntent().getIntExtra(MyConstant.USER_LIST_2_USER_MODIFY, -100);
         if (mUserId < 0)
             Toast.makeText(this, "获取用户ID失败", Toast.LENGTH_SHORT).show();
         else
@@ -194,4 +197,12 @@ public class ModifyUserActivity extends BaseActivity {
             }
         }
     };
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("USER_ID", mUserId);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

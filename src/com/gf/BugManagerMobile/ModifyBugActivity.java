@@ -55,7 +55,11 @@ public class ModifyBugActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bug_edit);
 
-        mBugId = getIntent().getIntExtra(MyConstant.BUG_DETAIL_2_BUG_MODIFY, -1);
+        if (savedInstanceState != null)
+            mBugId = savedInstanceState.getInt("BUG_ID", -1);
+        else
+            mBugId = getIntent().getIntExtra(MyConstant.BUG_DETAIL_2_BUG_MODIFY, -1);
+
         if (mBugId < 0) {
             Toast.makeText(this, "缺陷ID传递出错", Toast.LENGTH_SHORT).show();
             return;
@@ -388,4 +392,11 @@ public class ModifyBugActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("BUG_ID", mBugId);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

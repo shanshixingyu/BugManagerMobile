@@ -45,7 +45,10 @@ public class BugListActivity extends BaseActivity {
         bugPullToRefreshListLv.setOnRefreshListener(onRefreshListener2);
         bugPullToRefreshListLv.setOnItemClickListener(onItemClickListener);
 
-        mSearchBugCondition = getIntent().getStringExtra(MyConstant.SEARCH_BUG_2_BUG_LIST_CONDITION);
+        if (savedInstanceState != null)
+            mSearchBugCondition = savedInstanceState.getString("SEARCH_CONDITION");
+        else
+            mSearchBugCondition = getIntent().getStringExtra(MyConstant.SEARCH_BUG_2_BUG_LIST_CONDITION);
         if (mSearchBugCondition == null) {
             Toast.makeText(this, "传递查询条件的时候出现异常", Toast.LENGTH_SHORT).show();
         } else {
@@ -171,4 +174,12 @@ public class BugListActivity extends BaseActivity {
         }
     };
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.i(TAG, "onSaveInstanceState");
+        if (outState != null) {
+            outState.putString("SEARCH_CONDITION", mSearchBugCondition);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

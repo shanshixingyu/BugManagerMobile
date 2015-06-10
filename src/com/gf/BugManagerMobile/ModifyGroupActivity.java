@@ -41,8 +41,10 @@ public class ModifyGroupActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_modify);
 
-        Intent startIntent = getIntent();
-        groupId = startIntent.getIntExtra(MyConstant.GROUP_LIST_2_GROUP_MODIFY, -1);
+        if (savedInstanceState != null)
+            groupId = savedInstanceState.getInt("GROUP_ID", -1);
+        else
+            groupId = getIntent().getIntExtra(MyConstant.GROUP_LIST_2_GROUP_MODIFY, -1);
         if (groupId < 0) {
             Toast.makeText(this, "传递团队ID数据出现问题", Toast.LENGTH_SHORT).show();
         } else {
@@ -157,8 +159,7 @@ public class ModifyGroupActivity extends BaseActivity {
         }
 
         String postData =
-            "name=" + groupName + "&memberIds=" + JSON.toJSON(selectedUserIdData) + "&introduce="
-                + groupIntroduce;
+            "name=" + groupName + "&memberIds=" + JSON.toJSON(selectedUserIdData) + "&introduce=" + groupIntroduce;
 
         HttpVisitUtils.postHttpVisit(this, LocalInfo.getBaseUrl(this) + "group/modify&groupId=" + groupId, postData,
             true, "添加中...", onModifyGroupFinishListener);
@@ -207,5 +208,13 @@ public class ModifyGroupActivity extends BaseActivity {
             }
         }
         return false;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("GROUP_ID", groupId);
+        }
+        super.onSaveInstanceState(outState);
     }
 }

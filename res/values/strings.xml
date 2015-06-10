@@ -38,9 +38,9 @@
     <string name="slide_left_menu_role_name">用户角色</string>
     <string name="slide_left_menu_pim">个人信息管理</string>
     <string name="slide_left_menu_home">首页</string>
-    <string name="slide_left_menu_submit">我提交的Bug</string>
-    <string name="slide_left_menu_assign">指派给我的Bug</string>
-    <string name="slide_left_menu_opt">操作过的Bug</string>
+    <string name="slide_left_menu_submit">我提交的缺陷</string>
+    <string name="slide_left_menu_assign">指派给我的缺陷</string>
+    <string name="slide_left_menu_opt">操作过的缺陷</string>
     <string name="slide_left_menu_project_module">项目与模块</string>
     <string name="slide_left_menu_charts">缺陷报表</string>
     <string name="slide_left_menu_setting">设置</string>
@@ -68,7 +68,7 @@
     <string name="home_bug_item_closed">已关闭:</string>
 
     <!--提交新Bug-->
-    <string name="submit_bug_title">提交新BUG</string>
+    <string name="submit_bug_title">提交新缺陷</string>
     <string name="submit_bug_add">添加</string>
 
     <!--confirmDialog-->
@@ -159,12 +159,12 @@
 
 
     <!--我提交的bug信息-->
-    <string name="my_submit_title">我提交的Bug</string>
+    <string name="my_submit_title">我提交的缺陷</string>
 
     <!--指派给我的bug信息-->
-    <string name="my_assign_title">指派给我的Bug</string>
+    <string name="my_assign_title">指派给我的缺陷</string>
     <!--我操作过的Bug信息-->
-    <string name="my_opt_title">我操作过的Bug</string>
+    <string name="my_opt_title">我操作过的缺陷</string>
 
 
     <!--用户管理列表界面信息-->

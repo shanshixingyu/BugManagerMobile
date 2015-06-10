@@ -37,8 +37,10 @@ public class ModifyProjectActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_modify);
 
-        Intent startIntent = getIntent();
-        projectId = startIntent.getIntExtra(MyConstant.PROJECT_LIST_2_PROJECT_MODIFY, -1);
+        if (savedInstanceState != null)
+            savedInstanceState.getInt("PROJECT_ID", -1);
+        else
+            projectId = getIntent().getIntExtra(MyConstant.PROJECT_LIST_2_PROJECT_MODIFY, -1);
         if (projectId < 0) {
             Toast.makeText(this, "界面跳转数据传递出错", Toast.LENGTH_SHORT).show();
             return;
@@ -203,4 +205,11 @@ public class ModifyProjectActivity extends BaseActivity {
         return false;
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (outState != null) {
+            outState.putInt("PROJECT_ID", projectId);
+        }
+        super.onSaveInstanceState(outState);
+    }
 }

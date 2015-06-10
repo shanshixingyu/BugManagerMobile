@@ -36,10 +36,18 @@ public class SearchBugActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_bug);
 
-        Intent startIntent = getIntent();
-        projectId = startIntent.getIntExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_ID, 0);
-        projectName = startIntent.getStringExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_NAME);
-
+        if (savedInstanceState == null) {
+            Intent startIntent = getIntent();
+            projectId = startIntent.getIntExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_ID, -1);
+            projectName = startIntent.getStringExtra(MyConstant.HOME_2_SEARCH_BUG_PROJECT_NAME);
+        } else {
+            projectId = savedInstanceState.getInt("PROJECT_ID", -1);
+            projectName = savedInstanceState.getString("PROJECT_NAME");
+        }
+        if (projectId < 0 || projectName == null || "".equals(projectName.trim())) {
+            Toast.makeText(SearchBugActivity.this, "获取项目相关数据错误", Toast.LENGTH_SHORT).show();
+            return;
+        }
         initComponent();
 
         HttpVisitUtils.getHttpVisit(this, LocalInfo.getBaseUrl(this) + "bug/get-module-member&projectId=" + projectId,
@@ -165,5 +173,15 @@ public class SearchBugActivity extends BaseActivity {
                 break;
             default:
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.i(TAG, "onSaveInstanceState");
+        if (outState != null) {
+            outState.putInt("PROJECT_ID", projectId);
+            outState.putString("PROJECT_NAME", projectName);
+        }
+        super.onSaveInstanceState(outState);
     }
 }
